@@ -11,70 +11,75 @@ import React from 'react';
 import {TextInput, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native'
 
+
 const Screen_Width = Dimensions.get('window').width;
 
-const SignIn = () => {
+const SignUp = () => {
     const navigation=useNavigation()
+
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>
-        <View style={{alignItems: 'center', marginVertical: 50}}>
+        <View style={{alignItems: 'center'}}>
           <Image
-            style={{height: 350, width: Screen_Width - 50}}
+            style={{height: 250, width: Screen_Width - 100}}
             source={require('../../assets/Images/logo.png')}
           />
         </View>
-        <View style={{alignItems: 'center'}}>
-          <Text style={{fontSize: 20, color: 'black'}}>Customer Sign In</Text>
-        </View>
-        <View style={{marginHorizontal: 20, marginVertical: 30}}>
+        <View style={{marginHorizontal: 20}}>
+
+          <View style={{alignItems: 'center',marginVertical:10}}>
+            <Text style={{fontSize: 20, color: 'black'}}>Customer Sign In</Text>
+          </View>
           <TextInput
-            label="Email/Mobile No."
+          
+            label="Name"
             style={{backgroundColor: 'white'}}
             onChangeText={text => setText(text)}
           />
           <TextInput
+            label="Mobile No."
+            style={{backgroundColor: 'white'}}
+            onChangeText={text => setText(text)}
+          />
+           <TextInput
+            label="Email Id"
+            style={{backgroundColor: 'white'}}
+            onChangeText={text => setText(text)}
+          />
+           <TextInput
             label="Password"
             style={{backgroundColor: 'white'}}
             onChangeText={text => setText(text)}
           />
-        </View>
-        <View style={{paddingHorizontal: 40}}>
-          <Button
+           <TextInput
+            label="Confirm Password"
+            style={{backgroundColor: 'white'}}
+            onChangeText={text => setText(text)}
+          />
+        <View style={{marginBottom:30,marginTop:50}}>
+        <Button
             contentStyle={{height: 70}}
             labelStyle={{fontSize: 20}}
             style={{borderRadius: 50}}
             buttonColor="#c79248"
             textColor="white"
             onPress={() => navigation.navigate('SignIn')}>
-            SIGN IN
+            SIGN Up
           </Button>
         </View>
-        <Pressable style={{alignItems: 'center', marginVertical: 10}}>
-          <Text>Forget Password?</Text>
-        </Pressable>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
-            paddingHorizontal: 20,
+            marginBottom:10
           }}>
           <View style={{flex: 1, height: 1, backgroundColor: 'darkgrey'}} />
         </View>
-        <View
-          style={{
-            alignItems: 'center',
-            flexDirection: 'row',
-            justifyContent: 'center',
-            marginTop: 10,
-          }}>
-          <Text style={{color: 'black'}}>
-            You are not a registered use click{' '}
+        <Pressable onPress={()=>navigation.navigate('SignIn')}>
+        <Text style={{color: 'black',alignSelf:"center"}}>
+            You are not a registered use click here
           </Text>
-          <Pressable onPress={()=>navigation.navigate('SignUp')}>
-            <Text style={{textDecorationLine: 'underline', color: 'black'}}>
-              here
-            </Text>
           </Pressable>
         </View>
       </ScrollView>
@@ -82,4 +87,4 @@ const SignIn = () => {
   );
 };
 
-export default SignIn;
+export default SignUp;
