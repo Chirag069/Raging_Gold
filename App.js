@@ -1,6 +1,7 @@
 import { View, Text } from 'react-native'
 import React,{useEffect} from 'react'
 import SplashScreen from 'react-native-splash-screen'
+import StackNavigation from './src/components/Navigation/StackNavigation'
 
 const App = () => {
   useEffect(() => {
@@ -8,9 +9,7 @@ const App = () => {
   }, [])
   
   return (
-    <View>
-      <Text>App</Text>
-    </View>
+    <StackNavigation/>
   )
 }
 
