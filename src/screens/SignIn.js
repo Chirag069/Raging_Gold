@@ -7,14 +7,56 @@ import {
   Dimensions,
   Pressable,
 } from 'react-native';
-import React from 'react';
+import React,{useEffect,useState} from 'react';
 import {TextInput, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native'
+import {useSelector, useDispatch} from 'react-redux';
+import Toast from 'react-native-toast-message';
+import {userLoginAction} from '../../redux/actions/authActons'
+import { sha1 } from 'react-native-sha1';
+
+
 
 const Screen_Width = Dimensions.get('window').width;
 
+
+
 const SignIn = () => {
     const navigation=useNavigation()
+    const dispatch = useDispatch();
+    const [emailInput, setEmailInput] = useState('');
+    const [passwordInput, setPasswordInput] = useState('');
+    const [pwd,setPwd]=useState()
+
+    useEffect(() => {
+      const unsubscribe = navigation.addListener('focus', () => {
+        setEmailInput('');
+        setPasswordInput('');
+      });
+  
+     
+      sha1(passwordInput).then( hash => {
+        setPwd(hash);
+    })
+    return unsubscribe;
+    }, [navigation]);
+
+  
+
+    const userSignIn = () => {
+      if (emailInput && pwd) {
+        dispatch(userLoginAction(emailInput, pwd));
+      }else {
+        Toast.show({
+          text1: 'you forgot to enter something',
+          visibilityTime: 3000,
+          autoHide: true,
+          position: 'top',
+          type: 'error',
+        });
+      }
+    }
+    
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>
@@ -31,22 +73,28 @@ const SignIn = () => {
           <TextInput
             label="Email/Mobile No."
             style={{backgroundColor: 'white'}}
-            onChangeText={text => setText(text)}
+            onChangeText={setEmailInput}
+            value={emailInput}
           />
           <TextInput
             label="Password"
             style={{backgroundColor: 'white'}}
-            onChangeText={text => setText(text)}
+            onChangeText={setPasswordInput}
+                  value={passwordInput}
           />
         </View>
         <View style={{paddingHorizontal: 40}}>
           <Button
+          onPress={() => {
+            // Keyboard.dismiss();
+            userSignIn();
+          }}
             contentStyle={{height: 70}}
             labelStyle={{fontSize: 20}}
             style={{borderRadius: 50}}
             buttonColor="#c79248"
             textColor="white"
-            onPress={() => navigation.navigate('SignIn')}>
+            >
             SIGN IN
           </Button>
         </View>
