@@ -1,4 +1,4 @@
-import { View, Text } from 'react-native'
+import { View, Text, StatusBar } from 'react-native'
 import React,{useEffect} from 'react'
 import SplashScreen from 'react-native-splash-screen'
 import StackNavigation from './src/components/Navigation/StackNavigation'
@@ -13,6 +13,7 @@ const App = () => {
   
   return (
     <Provider store={store}>
+      <StatusBar  backgroundColor={"#c79248"} />
     <StackNavigation/>
     <Toast ref={ref => Toast.setRef(ref)} />
     </Provider>
