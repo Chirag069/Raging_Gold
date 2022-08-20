@@ -6,6 +6,7 @@ import {
   ScrollView,
   Dimensions,
   Pressable,
+  Keyboard
 } from 'react-native';
 import React,{useEffect,useState} from 'react';
 import {TextInput, Button} from 'react-native-paper';
@@ -26,18 +27,17 @@ const SignIn = () => {
     const dispatch = useDispatch();
     const [emailInput, setEmailInput] = useState('');
     const [passwordInput, setPasswordInput] = useState('');
-    const [pwd,setPwd]=useState()
+    const [pwd,setPwd]=useState(null)
+
+    sha1(passwordInput).then( hash => {
+      setPwd(hash);
+  })
 
     useEffect(() => {
       const unsubscribe = navigation.addListener('focus', () => {
         setEmailInput('');
         setPasswordInput('');
       });
-  
-     
-      sha1(passwordInput).then( hash => {
-        setPwd(hash);
-    })
     return unsubscribe;
     }, [navigation]);
 
@@ -86,7 +86,7 @@ const SignIn = () => {
         <View style={{paddingHorizontal: 40}}>
           <Button
           onPress={() => {
-            // Keyboard.dismiss();
+            Keyboard.dismiss();
             userSignIn();
           }}
             contentStyle={{height: 70}}

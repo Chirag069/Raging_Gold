@@ -26,6 +26,7 @@ export const userLoginAction =
     formdata.append('password', userPassword);
     formdata.append('auth_token', 'sJ4[pR3=bM5^gJ0]pS6.gI2$hV5*uS');
 
+    
     var requestOptions = {
       method: 'POST',
       body: formdata,
@@ -37,10 +38,10 @@ export const userLoginAction =
       .then(result => {
         let serverResponse = JSON.parse(result);
         dispatch(authLoadingAction());
-        if (serverResponse.success == 1) {
+        if (serverResponse.success == 1 ) {
           dispatch({
             type: USER_LOGIN,
-            payload: serverResponse.token ,
+            payload:serverResponse.token
           });
          
           Toast.show({
@@ -50,8 +51,8 @@ export const userLoginAction =
             position: 'top',
             type: 'success',
           });
+        
         } else {
-          Alert(failed)
           Toast.show({
             text1: 'User Login failed.',
             visibilityTime: 3000,

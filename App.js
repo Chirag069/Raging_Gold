@@ -14,7 +14,7 @@ const App = () => {
   return (
     <Provider store={store}>
     <StackNavigation/>
-    {/* <Toast ref={ref => Toast.setRef(ref)} /> */}
+    <Toast ref={ref => Toast.setRef(ref)} />
     </Provider>
   )
 }
