@@ -7,6 +7,7 @@ import {
   ImageBackground,
   Pressable,
   TouchableOpacity,
+  ScrollView,
 } from 'react-native';
 import React, {useState,useRef} from 'react';
 import Carousel from 'react-native-snap-carousel-v4';
@@ -64,6 +65,7 @@ const Home = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
+      <ScrollView>
       <View style={{ justifyContent: 'center'}}>
         <Carousel
           layout={'default'}
@@ -151,6 +153,7 @@ const Home = () => {
           }}
         />
       </Pressable>
+      </ScrollView>
     </SafeAreaView>
   );
 };
