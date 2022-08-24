@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button, View,Image, Pressable } from 'react-native';
-import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useSelector} from 'react-redux';
@@ -9,16 +8,20 @@ import CustomerOption from '../CustomerOption'
 import SignIn from '../../screens/SignIn';
 import SignUp from '../../screens/SignUp';
 import Home from '../../screens/Home';
-
+import ProductList from '../../screens/ProductList'
+import ProductDetail from '../../screens/ProductDetail';
+import Pagination from '../../screens/Pagination'
+import BottomNavigation from './BottomNavigation';
+import Drawer from '../../components/Navigation/Drawer'
 //icons
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
 
 const Stack = createNativeStackNavigator();
 
-function MyStack() {
+function stackNavigation() {
   const {authLoading, userToken} = useSelector(state => state.authState);
-  console.log(userToken)
+
   return (
     <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
     <Spinner
@@ -36,6 +39,9 @@ function MyStack() {
 
     }}>
         {userToken ? (
+          <>
+           <Stack.Screen name="Bottom" component={BottomNavigation} />
+           <Stack.Screen name="Drawer" component={Drawer} />
        <Stack.Screen 
        options={{
         headerShown:true,
@@ -55,6 +61,48 @@ function MyStack() {
       }}
        name="Home" 
        component={Home} />
+
+       <Stack.Screen 
+       options={{
+        headerShown:true,
+        header:()=>(
+          <View style={{backgroundColor:"#c79248",paddingHorizontal:10,flexDirection:"row",justifyContent:"space-between" }}>
+            <View style={{flexDirection:"row"}}>
+              <Pressable>
+            <Entypo name='list'size={35} color={"white"}  />
+            </Pressable>
+            <Image style={{height:40,width:130,marginTop:5}} source={require('../../../assets/Images/Raging-Gold.png')}/>
+            </View>
+            <Pressable>
+              <AntDesign name='search1' size={30} color="white"/>
+            </Pressable>
+          </View>
+        )
+      }}
+       name="ProductList" 
+       component={ProductList} />
+
+<Stack.Screen 
+       options={{
+        headerShown:true,
+        header:()=>(
+          <View style={{backgroundColor:"#c79248",paddingHorizontal:10,flexDirection:"row",justifyContent:"space-between" }}>
+            <View style={{flexDirection:"row"}}>
+              <Pressable>
+            <Entypo name='list'size={35} color={"white"}  />
+            </Pressable>
+            <Image style={{height:40,width:130,marginTop:5}} source={require('../../../assets/Images/Raging-Gold.png')}/>
+            </View>
+            <Pressable>
+              <AntDesign name='search1' size={30} color="white"/>
+            </Pressable>
+          </View>
+        )
+      }}
+       name="ProductDetail" 
+       component={ProductDetail} />
+      
+        </>
        ) : (
         <>
       <Stack.Screen name="CustomerOption" component={CustomerOption} />
@@ -68,10 +116,4 @@ function MyStack() {
   );
 }
 
-export default function App() {
-  return (
-    <NavigationContainer>
-      <MyStack />
-    </NavigationContainer>
-  );
-}
+export default  stackNavigation
