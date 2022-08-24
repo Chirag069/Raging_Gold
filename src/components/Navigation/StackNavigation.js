@@ -12,7 +12,7 @@ import ProductList from '../../screens/ProductList'
 import ProductDetail from '../../screens/ProductDetail';
 import Pagination from '../../screens/Pagination'
 import BottomNavigation from './BottomNavigation';
-import Drawer from '../../components/Navigation/Drawer'
+
 //icons
 import Entypo from 'react-native-vector-icons/Entypo'
 import AntDesign from 'react-native-vector-icons/AntDesign'
@@ -41,7 +41,7 @@ function stackNavigation() {
         {userToken ? (
           <>
            <Stack.Screen name="Bottom" component={BottomNavigation} />
-           <Stack.Screen name="Drawer" component={Drawer} />
+          
        <Stack.Screen 
        options={{
         headerShown:true,

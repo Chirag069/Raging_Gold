@@ -5,9 +5,8 @@ import StackNavigation from './src/components/Navigation/StackNavigation'
 import {Provider} from 'react-redux';
 import store from './redux/store.js';
 import Toast from 'react-native-toast-message';
-import CustomCarousel from './src/screens/CustomCarousel';
 import { NavigationContainer } from '@react-navigation/native';
-import 'react-native-gesture-handler';
+
 
 const App = () => {
   useEffect(() => {
