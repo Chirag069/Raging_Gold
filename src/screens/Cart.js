@@ -30,7 +30,7 @@ const Cart = () => {
             marginBottom: 10,
           }}>
           <Text style={{color: '#c79248', fontSize: 20}}>
-            Exclusive Gold Ring
+            My Cart
           </Text>
         </View>
         <View
@@ -287,7 +287,7 @@ const Cart = () => {
             </Button>
             <Button
               onPress={() => {
-                navigation.navigate('Cart');
+                navigation.navigate('Checkout');
               }}
               contentStyle={{height: 50}}
               labelStyle={{fontSize: 15}}

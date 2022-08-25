@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, View, Pressable, Image} from 'react-native';
+import {Text, View, Pressable, Image, TouchableOpacity} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 //screen
@@ -47,17 +47,17 @@ function BottomNavigation() {
                 justifyContent: 'space-between',
               }}>
               <View style={{flexDirection: 'row'}}>
-                <Pressable onPress={() => navigation.openDrawer()}>
+                <TouchableOpacity onPress={() => navigation.openDrawer()}>
                   <Entypo name="list" size={35} color={'white'} />
-                </Pressable>
+                </TouchableOpacity>
                 <Image
                   style={{height: 40, width: 130, marginTop: 5}}
                   source={require('../../../assets/Images/Raging-Gold.png')}
                 />
               </View>
-              <Pressable>
+              <TouchableOpacity>
                 <AntDesign name="search1" size={30} color="white" />
-              </Pressable>
+              </TouchableOpacity>
             </View>
           ),
         }}
@@ -74,6 +74,20 @@ function BottomNavigation() {
               color={color}
             />
           ),
+          headerShown:true,
+          header:()=>(
+            <View style={{backgroundColor:"#c79248",paddingHorizontal:10,flexDirection:"row",justifyContent:"space-between" }}>
+              <View style={{flexDirection:"row"}}>
+                <TouchableOpacity>
+              <Entypo name='list'size={35} color={"white"}  />
+              </TouchableOpacity>
+              <Image style={{height:40,width:130,marginTop:5}} source={require('../../../assets/Images/Raging-Gold.png')}/>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name='search1' size={30} color="white"/>
+              </TouchableOpacity>
+            </View>
+          )
         }}
         name="Filter"
         component={Filter}
@@ -88,6 +102,20 @@ function BottomNavigation() {
               color={color}
             />
           ),
+          headerShown:true,
+          header:()=>(
+            <View style={{backgroundColor:"#c79248",paddingHorizontal:10,flexDirection:"row",justifyContent:"space-between" }}>
+              <View style={{flexDirection:"row"}}>
+                <TouchableOpacity>
+              <Entypo name='list'size={35} color={"white"}  />
+              </TouchableOpacity>
+              <Image style={{height:40,width:130,marginTop:5}} source={require('../../../assets/Images/Raging-Gold.png')}/>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name='search1' size={30} color="white"/>
+              </TouchableOpacity>
+            </View>
+          )
         }}
         name="WishList"
         component={WishList}
@@ -101,7 +129,22 @@ function BottomNavigation() {
               size={25}
               color={color}
             />
+            
           ),
+          headerShown:true,
+          header:()=>(
+            <View style={{backgroundColor:"#c79248",paddingHorizontal:10,flexDirection:"row",justifyContent:"space-between" }}>
+              <View style={{flexDirection:"row"}}>
+                <TouchableOpacity>
+              <Entypo name='list'size={35} color={"white"}  />
+              </TouchableOpacity>
+              <Image style={{height:40,width:130,marginTop:5}} source={require('../../../assets/Images/Raging-Gold.png')}/>
+              </View>
+              <TouchableOpacity>
+                <AntDesign name='search1' size={30} color="white"/>
+              </TouchableOpacity>
+            </View>
+          )
         }}
         name="Cart"
         component={Cart}
