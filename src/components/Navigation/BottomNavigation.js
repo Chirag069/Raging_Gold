@@ -48,7 +48,7 @@ function BottomNavigation() {
                 justifyContent: 'space-between',
               }}>
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={() => {DrawerActions.openDrawer()}}>
+                <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
                   <Entypo name="list" size={35} color={'white'} />
                 </TouchableOpacity>
                 <Image

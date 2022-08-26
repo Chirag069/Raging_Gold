@@ -42,7 +42,6 @@ function stackNavigation() {
         }}>
         {userToken ? (
           <>
-          
             <Stack.Screen name="Bottom" component={BottomNavigation} />
             <Stack.Screen name="drawer" component={DrawerNavigation} />
             <Stack.Screen

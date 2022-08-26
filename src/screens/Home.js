@@ -84,7 +84,7 @@ const Home = () => {
       </View>
       <View style={{marginHorizontal: 10,marginBottom:10}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Pressable onPress={()=> navigation.navigate('ProductList')}>
+          <Pressable onPress={()=> navigation.navigate('drawer')}>
           <View style={{backgroundColor: 'white', width: 180}}>
             <ImageBackground
               style={{height: 150, width: '100%', alignSelf: 'center'}}
