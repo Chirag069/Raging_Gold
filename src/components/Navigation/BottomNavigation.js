@@ -2,10 +2,11 @@ import * as React from 'react';
 import {Text, View, Pressable, Image, TouchableOpacity} from 'react-native';
 import {NavigationContainer, useNavigation} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { DrawerActions } from '@react-navigation/native';
 //screen
 import Home from '../../screens/Home';
 import Filter from '../../screens/Filter';
-import Cart from '../../screens/Cart';
+import Cart from '../../screens/Cart'; 
 import WishList from '../../screens/WishList';
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -47,7 +48,7 @@ function BottomNavigation() {
                 justifyContent: 'space-between',
               }}>
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={() => navigation.openDrawer()}>
+                <TouchableOpacity onPress={() => {DrawerActions.openDrawer()}}>
                   <Entypo name="list" size={35} color={'white'} />
                 </TouchableOpacity>
                 <Image
