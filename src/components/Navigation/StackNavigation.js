@@ -3,6 +3,8 @@ import {Button, View, Image, TouchableOpacity} from 'react-native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Spinner from 'react-native-loading-spinner-overlay';
 import {useSelector} from 'react-redux';
+import { DrawerActions, useNavigation } from '@react-navigation/native';
+
 //screens
 import CustomerOption from '../CustomerOption';
 import SignIn from '../../screens/SignIn';
@@ -15,6 +17,7 @@ import BottomNavigation from './BottomNavigation';
 import Checkout from '../../screens/Checkout';
 import OrderHistory from '../../screens/OrderHistory';
 import MyInvoice from '../../screens/MyInvoice';
+import DrawerNavigation from './DrawerNavigation'
 //icons
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -23,7 +26,7 @@ const Stack = createNativeStackNavigator();
 
 function stackNavigation() {
   const {authLoading, userToken} = useSelector(state => state.authState);
-
+  const navigation=useNavigation()
   return (
     <View style={{flex: 1, backgroundColor: '#FFFFFF'}}>
       <Spinner
@@ -39,8 +42,9 @@ function stackNavigation() {
         }}>
         {userToken ? (
           <>
+          
             <Stack.Screen name="Bottom" component={BottomNavigation} />
-
+            <Stack.Screen name="drawer" component={DrawerNavigation} />
             <Stack.Screen
               options={{
                 headerShown: true,
@@ -83,7 +87,7 @@ function stackNavigation() {
                       justifyContent: 'space-between',
                     }}>
                     <View style={{flexDirection: 'row'}}>
-                      <TouchableOpacity>
+                      <TouchableOpacity onPress={() => navigation.openDrawer()}>
                         <Entypo name="list" size={35} color={'white'} />
                       </TouchableOpacity>
                       <Image
@@ -191,7 +195,7 @@ function stackNavigation() {
               component={OrderHistory}
             />
 
-<Stack.Screen
+            <Stack.Screen
               options={{
                 headerShown: true,
                 header: () => (
@@ -217,9 +221,10 @@ function stackNavigation() {
                   </View>
                 ),
               }}
-              name="MyInvoice"
+                name="MyInvoice"
               component={MyInvoice}
-              />
+            />
+            
 
           </>
         ) : (

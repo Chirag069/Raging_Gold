@@ -2,7 +2,7 @@ import {INCREMENT} from '../actions/types'
 import {DECREMENT} from '../actions/types'
 
 const initialState = {
-    counter: 0
+    counter: 1
 }
 
 export default  (state = initialState, action) => {
