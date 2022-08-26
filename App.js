@@ -8,6 +8,7 @@ import Toast from 'react-native-toast-message';
 import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
 
+
 const App = () => {
   useEffect(() => {
     SplashScreen.hide()
