@@ -79,6 +79,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: true,  // clean and rebuild if changing
+     hermesCommand: '../../node_modules/react-native/sdks/hermesc/%OS-BIN%/hermesc'
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -140,6 +141,7 @@ android {
         versionCode 1
         versionName "1.0"
         buildConfigField "boolean", "IS_NEW_ARCHITECTURE_ENABLED", isNewArchitectureEnabled().toString()
+         multiDexEnabled true
 
         if (isNewArchitectureEnabled()) {
             // We configure the NDK build only if you decide to opt-in for the New Architecture.
@@ -224,6 +226,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+    //      release {
+    //   storeFile file('your_key_name.keystore')
+    //   storePassword '12345678'
+    //   keyAlias 'your_key_alias'
+    //   keyPassword '12345678'
+    // }
     }
     buildTypes {
         debug {
@@ -232,7 +240,10 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
+
             signingConfig signingConfigs.debug
+
+            // signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -262,6 +273,7 @@ dependencies {
     implementation "com.facebook.react:react-native:+"  // From node_modules
     implementation project(':react-native-splash-screen')
     implementation "androidx.swiperefreshlayout:swiperefreshlayout:1.0.0"
+    implementation 'com.android.support:multidex:1.0.3'//here
 
     debugImplementation("com.facebook.flipper:flipper:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.fbjni'

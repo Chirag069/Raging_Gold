@@ -15,7 +15,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import Toast from 'react-native-toast-message';
 import {userLoginAction} from '../../redux/actions/authActons'
 import { sha1 } from 'react-native-sha1';
-// import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 
 const Screen_Width = Dimensions.get('window').width;
@@ -29,9 +29,12 @@ const SignIn = () => {
     const [passwordInput, setPasswordInput] = useState('');
     const [pwd,setPwd]=useState(null)
 
-    sha1(passwordInput).then( hash => {
+    {sha1(passwordInput).then( hash => {
       setPwd(hash);
-  })
+  })}
+
+   
+  
 
     useEffect(() => {
       const unsubscribe = navigation.addListener('focus', () => {
