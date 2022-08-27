@@ -20,7 +20,7 @@ const App = () => {
     <NavigationContainer>
     <StackNavigation/>
     </NavigationContainer>
-    <Toast  />
+    <Toast/>
     </Provider>
     // <CustomCarousel/>
   )
