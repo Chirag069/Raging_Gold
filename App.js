@@ -22,7 +22,6 @@ const App = () => {
     </NavigationContainer>
     <Toast/>
     </Provider>
-    // <CustomCarousel/>
   )
 }
 
