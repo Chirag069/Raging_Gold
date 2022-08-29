@@ -5,28 +5,69 @@ import {
   SafeAreaView,
   ScrollView,
   Dimensions,
-  FlatList
+  FlatList,
 } from 'react-native';
-import React, { useState } from 'react';
-
+import React, {useState} from 'react';
 
 const data = [
   {
-    id:1,
+    id: 1,
+    category: 'Ladies Ring',
+    subcategory: 'Ladies Ring',
+    itemgroup:"22 kt",
     gender: 'All',
-    selected:false
+    selected: false,
   },
   {
-    id:2,
+    id: 2,
     gender: 'Male',
-    selected:false
+    itemgroup:"18 kt",
+    category: 'Jeans Ring',
+    subcategory: 'Jeans Ring',
+    selected: false,
   },
   {
-    id:3,
+    id: 3,
     gender: 'Female',
-    selected:false
+    itemgroup:"20 kt",
+    category: 'Pendal Set',
+    subcategory: 'Pendal Set',
+    selected: false,
   },
+  {
+    id: 4,
+    category: 'M.Set',
+    selected: false,
+  },
+  {
+    id: 5,
+    category: 'Tops',
+    subcategory: 'Tops',
+    selected: false,
+  },
+  {
+    id: 6,
+    category: 'Pendal ',
+    subcategory: 'Pendal ',
+    selected: false,
+  },
+  {
+    id: 7,
+    category: 'Ladies Bracelet',
 
+    selected: false,
+  },
+  {
+    id: 8,
+    category: 'Jeans Bracelet',
+
+    selected: false,
+  },
+  {
+    id: 9,
+    category: 'Jeans Lose Kada',
+    selected: false,
+  },
 ];
 
 const Screen_Width = Dimensions.get('window').width;
@@ -34,110 +75,238 @@ const Screen_height = Dimensions.get('window').height;
 
 
 
-const Filter = () => {
-  const [select,setSelect] = useState(data)
 
-  const handleOnpress = (id)=>{
-    const newItem =select.map((val)=>{
-      if(val.id === id){
-        return{...val,selected:!val.selected}
-      }else{
+
+const Filter = () => {
+  const [select, setSelect] = useState(data);
+  const [filter,setFilter] = useState()
+
+  const handleOnpress = item => {
+    const newItem = select.map(val => {
+      if (val.id === item.id) {
+        return {...val, selected: !val.selected};
+      } else {
         return val;
       }
-    })
-    setSelect(newItem)
-  }
+    });
+    setSelect(newItem);
+  };
+
+  const filterdata = (tab) => {
+    if (tab === 'gender') {
+      setFilter(tab);
+    }
+    if (tab === 'itemgroup') {
+      setFilter(tab);
+    }
+    if (tab === 'category') {
+      setFilter(tab);
+    }
+    if (tab === 'subcategory') {
+      setFilter(tab);
+    }
+  };
+
+  
+
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView>
-        <View style={{flexDirection: 'row', height: Screen_height - 115}}>
-          <View style={{backgroundColor: 'lightgrey', flexBasis: '40%'}}>
-            <View style={{alignItems: 'center', marginVertical: 20}}>
+      <ScrollView nestedScrollEnabled={true}>
+        <View style={{flexDirection: 'row', height: Screen_height}}>
+          <View style={{backgroundColor: 'lightgrey', flex:0.7}}>
+            <View style={{alignItems: 'center', marginVertical: 20,}}>
               <Text style={{color: 'grey', fontSize: 15}}>FILTER BY</Text>
             </View>
 
-            <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 15,
-                  paddingVertical: 20,
-                  paddingHorizontal: 10,
-                }}>
-                Gender
-              </Text>
-            </View>
+            <Pressable onPress={() => filterdata('gender')} style={{}}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5,}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    backgroundColor:filter == 'gender'?'darkgrey':'lightgrey',
+                    fontSize: 15,
+                    paddingVertical: 20,
+                    paddingHorizontal: 10,
+                    width:'100%'
+                  }}>
+                  Gender
+                </Text>
+              </View>
+            </Pressable>
 
-            <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 15,
-                  paddingVertical: 20,
-                  paddingHorizontal: 10,
-                }}>
-                Item Group
-              </Text>
-            </View>
+            <Pressable onPress={() => filterdata('itemgroup')}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: 15,
+                    backgroundColor:filter == 'itemgroup'?'darkgrey':'lightgrey',
+                    paddingVertical: 20,
+                    paddingHorizontal: 10,
+                    width:'100%'
+                  }}>
+                  Item Group
+                </Text>
+              </View>
+            </Pressable>
 
-            <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 15,
-                  paddingVertical: 20,
-                  paddingHorizontal: 10,
-                }}>
-                Category
-              </Text>
-            </View>
+            <Pressable onPress={() => filterdata('category')}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: 15,
+                    backgroundColor:filter == 'category'?'darkgrey':'lightgrey',
+                    paddingVertical: 20,
+                    paddingHorizontal: 10,
+                    width:'100%'
+                  }}>
+                  Category
+                </Text>
+              </View>
+            </Pressable>
 
-            <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
-              <Text
-                style={{
-                  color: 'black',
-                  fontSize: 15,
-                  paddingVertical: 20,
-                  paddingHorizontal: 10,
-                }}>
-                Sub Category
-              </Text>
-            </View>
+            <Pressable onPress={() => filterdata('subcategory')}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+                <Text
+                  style={{
+                    color: 'black',
+                    fontSize: 15,
+                    backgroundColor:filter == 'subcategory'?'darkgrey':'lightgrey',
+                    paddingVertical: 20,
+                    paddingHorizontal: 10,
+                    width:'100%'
+                  }}>
+                  Sub Category
+                </Text>
+              </View>
+            </Pressable>
           </View>
 
-          <View style={{flex: 1}}>
+          <View style={{flex: 1.5}}>
             <View
               style={{
                 alignItems: 'center',
                 borderBottomWidth: 0.5,
                 borderBottomColor: 'lightgrey',
+                width:'100%'
               }}>
               <Text style={{color: 'grey', fontSize: 15, paddingVertical: 20}}>
-                FILTER BY
+                {filter}
               </Text>
             </View>
-            <View style={{flexDirection:"row"}}>
-            {select.map(({gender,id,selected}) => {
-              return<Pressable onPress={()=>handleOnpress(id)}>
-              <View  key={id} style={{marginVertical:10,marginHorizontal:5}}>
-              <Text
-                style={{
-                  borderWidth: 1,
-                  borderColor: '#c79248',
-                  backgroundColor:selected?"#c79248":"white",
-                  color:selected?"white":"#c79248",
-                  paddingHorizontal:5,
-                  paddingVertical:5,
-                  borderRadius: 5,
-                  fontSize: 20,
-                }}>
-                {gender}
-              </Text>
+            <View style={{}}>
+              <FlatList
+                contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap'}}
+                data={select}
+                horizontal={false}
+                keyExtractor={item => {
+                  return item.id;
+                }}
+                renderItem={({item}) => {
+                  return (
+                    <Pressable onPress={() => handleOnpress(item)} style={{}}>
+                      <View style={{marginVertical: 10, marginHorizontal: 5}}>
+                        
+                        {filter == 'gender' ? (
+                          item.gender == null ?(''):(
+                          <>
+                          <Text
+                            style={{
+                              borderWidth: 1,
+                              borderColor: '#c79248',
+                              backgroundColor: item.selected
+                                ? '#c79248'
+                                : 'white',
+                              color: item.selected ? 'white' : '#c79248',
+                              paddingHorizontal: 5,
+                              paddingVertical: 5,
+                              borderRadius: 5,
+                              fontSize: 20,
+                            }}>
+                            {item.gender}
+                          </Text>
+                        </>
+                          )
+                        ) : (
+                          ""
+                        )}
+                        {filter == 'itemgroup' ? (
+                           item.itemgroup == null ?(''):(
+                          <>
+                          <Text
+                            style={{
+                              borderWidth: 1,
+                              borderColor: '#c79248',
+                              backgroundColor: item.selected
+                                ? '#c79248'
+                                : 'white',
+                              color: item.selected ? 'white' : '#c79248',
+                              paddingHorizontal: 5,
+                              paddingVertical: 5,
+                              borderRadius: 5,
+                              fontSize: 20,
+                            }}>
+                            {item.itemgroup}
+                          </Text>
+                        </>
+                           )
+                        ) : (
+                          ""
+                        )}
+                        {filter == 'category' ? (
+                           item.category == null ?(''):(
+                          <>
+                          <Text
+                            style={{
+                              borderWidth: 1,
+                              borderColor: '#c79248',
+                              backgroundColor: item.selected
+                                ? '#c79248'
+                                : 'white',
+                              color: item.selected ? 'white' : '#c79248',
+                              paddingHorizontal: 5,
+                              paddingVertical: 5,
+                              borderRadius: 5,
+                              fontSize: 20,
+                            }}>
+                            {item.category}
+                          </Text>
+                        </>
+                           )
+                        ) : (
+                          ""
+                        )}
+                        {filter == 'subcategory' ? (
+                           item.subcategory == null ?(''):(
+                          <>
+                          <Text
+                            style={{
+                              borderWidth: 1,
+                              borderColor: '#c79248',
+                              backgroundColor: item.selected
+                                ? '#c79248'
+                                : 'white',
+                              color: item.selected ? 'white' : '#c79248',
+                              paddingHorizontal: 5,
+                              paddingVertical: 5,
+                              borderRadius: 5,
+                              fontSize: 20,
+                            }}>
+                            {item.subcategory}
+                          </Text>
+                        </>
+                           )
+                        ) : (
+                          ""
+                        )}
+                            
+                      </View>
+                    </Pressable>
+                  );
+                }}
+              />
             </View>
-            </Pressable>
-            })}
-            </View>
-            
           </View>
         </View>
       </ScrollView>

@@ -120,7 +120,7 @@ const ProducDetail = () => {
 
   return (
     <SafeAreaView style={{flex: 1}}>
-      <ScrollView>
+      <ScrollView nestedScrollEnabled={true}>
         <View
           style={{
             backgroundColor: 'white',

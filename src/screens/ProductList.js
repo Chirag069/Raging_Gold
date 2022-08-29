@@ -132,7 +132,7 @@ const ProductList = () => {
   
 
   return (<>
-    <View style={{backgroundColor:"white",paddingHorizontal:10,paddingVertical:10}}>
+    <View style={{backgroundColor:"white",paddingHorizontal:10,paddingVertical:10,marginBottom:20}}>
         <Text style={{color:"#c79248",fontSize:20}}>Exclusive Gold Ring</Text>
       </View>
     <View style={styles.container}>
@@ -191,11 +191,10 @@ const ProductList = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
   },
   list: {
     paddingHorizontal: 5,
-    backgroundColor: '#E6E6E6',
+    backgroundColor: '#F5F5F5',
   },
   listContainer: {
     alignItems: 'center',
