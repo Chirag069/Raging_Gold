@@ -7,8 +7,91 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {DrawerActions} from '@react-navigation/native';
 import BottomNavigation from './BottomNavigation';
+import CustomHeader from '../Custom/CustomHeader';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
+//screen
+import Home from '../../screens/Home';
+import ProductDetail from '../../screens/ProductDetail';
+import OrderHistory from '../../screens/OrderHistory';
+import MyInvoice from '../../screens/MyInvoice';
+import Checkout from '../../screens/Checkout';
 
 const Drawer = createDrawerNavigator();
+const Stack = createNativeStackNavigator();
+
+// const AllProductScreens=()=>{
+//   return(
+//     <Stack.Navigator>
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="Home"
+//       component={Home}
+//     />
+
+//     <Stack.Screen name="Drewer" component={DrawerNavigation} />
+
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="ProductList"
+//       component={ProductList}
+//     />
+
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="ProductDetail"
+//       component={ProductDetail}
+//     />
+
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="OrderHistory"
+//       component={OrderHistory}
+//     />
+
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="MyInvoice"
+//       component={MyInvoice}
+//     />
+
+//     <Stack.Screen
+//       options={{
+//         headerShown: true,
+//         header: () => (
+//           <CustomHeader/>
+//         ),
+//       }}
+//       name="Checkout"
+//       component={Checkout}
+//     />
+//   </Stack.Navigator>
+//   );
+// }
 
 export default function DrawerNavigation() {
   const navigation = useNavigation();
@@ -18,38 +101,7 @@ export default function DrawerNavigation() {
         headerShown: false,
       }}>
       <Drawer.Screen name="Home" component={BottomNavigation} />
-      <Drawer.Screen
-        options={{
-          headerShown: true,
-          header: () => (
-            <View
-              style={{
-                backgroundColor: '#c79248',
-                paddingHorizontal: 10,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-              }}>
-              <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity
-                  onPress={() =>
-                    navigation.dispatch(DrawerActions.toggleDrawer())
-                  }>
-                  <Entypo name="list" size={35} color={'white'} />
-                </TouchableOpacity>
-                <Image
-                  style={{height: 40, width: 130, marginTop: 5}}
-                  source={require('../../../assets/Images/Raging-Gold.png')}
-                />
-              </View>
-              <TouchableOpacity>
-                <AntDesign name="search1" size={30} color="white" />
-              </TouchableOpacity>
-            </View>
-          ),
-        }}
-        name="ProductList"
-        component={ProductList}
-      />
+      {/* <Drawer.Screen name="AllProductScreens" component={AllProductScreens} /> */}
     </Drawer.Navigator>
   );
 }
