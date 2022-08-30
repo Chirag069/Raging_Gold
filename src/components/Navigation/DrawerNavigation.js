@@ -6,13 +6,18 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
 import {DrawerActions} from '@react-navigation/native';
+import BottomNavigation from './BottomNavigation';
 
 const Drawer = createDrawerNavigator();
 
 export default function DrawerNavigation() {
   const navigation = useNavigation();
   return (
-    <Drawer.Navigator useLegacyImplementation initialRouteName="Home">
+    <Drawer.Navigator
+      screenOptions={{
+        headerShown: false,
+      }}>
+      <Drawer.Screen name="Home" component={BottomNavigation} />
       <Drawer.Screen
         options={{
           headerShown: true,
@@ -25,7 +30,10 @@ export default function DrawerNavigation() {
                 justifyContent: 'space-between',
               }}>
               <View style={{flexDirection: 'row'}}>
-                <TouchableOpacity onPress={() => navigation.dispatch(DrawerActions.toggleDrawer())}>
+                <TouchableOpacity
+                  onPress={() =>
+                    navigation.dispatch(DrawerActions.toggleDrawer())
+                  }>
                   <Entypo name="list" size={35} color={'white'} />
                 </TouchableOpacity>
                 <Image

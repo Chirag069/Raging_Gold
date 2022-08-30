@@ -5,9 +5,11 @@ import StackNavigation from './src/components/Navigation/StackNavigation'
 import {Provider} from 'react-redux';
 import store from './redux/store.js';
 import Toast from 'react-native-toast-message';
-import { NavigationContainer } from '@react-navigation/native';
 import 'react-native-gesture-handler';
-
+import BottomNavigation from './src/components/Navigation/BottomNavigation';
+import AuthStack from './src/components/Navigation/AuthStack';
+import AppNav from './src/components/Navigation/AppNav';
+import { NavigationContainer } from '@react-navigation/native';
 
 const App = () => {
   useEffect(() => {
@@ -17,10 +19,11 @@ const App = () => {
   return (
     <Provider store={store}>
       <StatusBar  backgroundColor={"#c79248"} />
-    <NavigationContainer>
-    <StackNavigation/>
+      <NavigationContainer>
+    <AppNav/>
     </NavigationContainer>
     <Toast/>
+   
     </Provider>
   )
 }

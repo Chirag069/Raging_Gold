@@ -49,7 +49,7 @@ const list = [
   // }
 ];
 
-const ProducDetail = () => {
+const ProductDetail = () => {
   const navigation = useNavigation();
   const ref = useRef(null);
   const [carouselItems, setCarouselItems] = useState(exampleItems);
@@ -305,4 +305,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ProducDetail;
+export default ProductDetail;

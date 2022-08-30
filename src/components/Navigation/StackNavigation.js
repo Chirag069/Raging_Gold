@@ -42,8 +42,8 @@ function stackNavigation() {
         }}>
         {userToken ? (
           <>
-            <Stack.Screen name="Bottom" component={BottomNavigation} />
-            <Stack.Screen name="drawer" component={DrawerNavigation} />
+            
+            
             <Stack.Screen
               options={{
                 headerShown: true,
@@ -74,35 +74,7 @@ function stackNavigation() {
               component={Home}
             />
 
-            <Stack.Screen
-              options={{
-                headerShown: true,
-                header: () => (
-                  <View
-                    style={{
-                      backgroundColor: '#c79248',
-                      paddingHorizontal: 10,
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                    }}>
-                    <View style={{flexDirection: 'row'}}>
-                      <TouchableOpacity onPress={() => navigation.openDrawer()}>
-                        <Entypo name="list" size={35} color={'white'} />
-                      </TouchableOpacity>
-                      <Image
-                        style={{height: 40, width: 130, marginTop: 5}}
-                        source={require('../../../assets/Images/Raging-Gold.png')}
-                      />
-                    </View>
-                    <TouchableOpacity>
-                      <AntDesign name="search1" size={30} color="white" />
-                    </TouchableOpacity>
-                  </View>
-                ),
-              }}
-              name="ProductList"
-              component={ProductList}
-            />
+            
 
             <Stack.Screen
               options={{
