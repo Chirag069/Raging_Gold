@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -14,6 +14,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {DrawerActions} from '@react-navigation/native';
 import {Input, NativeBaseProvider} from 'native-base';
 import {Button} from 'react-native-paper';
+import { useKeyboard } from '@react-native-community/hooks'
 //screen
 import Home from '../../screens/Home';
 import Filter from '../../screens/Filter';
@@ -27,10 +28,16 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 
 const Tab = createBottomTabNavigator();
 
+
+
 function BottomNavigation() {
   const navigation = useNavigation();
   const [modalVisible, setModalVisible] = useState(false);
-  console.log(modalVisible)
+ 
+  console.log(modalVisible);
+
+
+
   return (
     <Tab.Navigator
       screenOptions={{
@@ -76,9 +83,10 @@ function BottomNavigation() {
                animationType='slide'
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                  setModalVisible(!modalVisible);
-                }}>
+                // onRequestClose={() => {
+                //   setModalVisible(!modalVisible);
+                // }}
+                >
                 <View
                   style={{
                     flex: 1,
@@ -111,6 +119,7 @@ function BottomNavigation() {
                       Serch Any Product
                     </Text>
                     <Input
+                    autoFocus={true}
                     width={"80%"}
                       variant="underlined"
                       _focus={{borderColor: '#c79248'}}
@@ -120,7 +129,7 @@ function BottomNavigation() {
                     <View style={{flexDirection:"row",marginTop:20}}>
                     <Button
                     mode='text'
-                      onPress={() => setModalVisible(!modalVisible)}
+                      onPress={()=>setModalVisible(false)}
                       contentStyle={{}}
                       labelStyle={{fontSize: 15}}
                       style={{
@@ -154,7 +163,7 @@ function BottomNavigation() {
                   </View>
                 </View>
               </Modal>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <TouchableOpacity onPress={()=>setModalVisible(true)}>
                 <AntDesign name="search1" size={30} color="white" />
               </TouchableOpacity>
             </View>
@@ -187,10 +196,11 @@ function BottomNavigation() {
                animationType='slide'
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert('Modal has been closed.');
-                  setModalVisible(!modalVisible);
-                }}>
+                // onRequestClose={() => {
+                //   Alert.alert('Modal has been closed.');
+                //   setModalVisible(!modalVisible);
+                // }}
+                >
                 <View
                   style={{
                     flex: 1,
@@ -223,6 +233,7 @@ function BottomNavigation() {
                       Serch Any Product
                     </Text>
                     <Input
+                    autoFocus={true}
                     width={"80%"}
                       variant="underlined"
                       _focus={{borderColor: '#c79248'}}
@@ -232,7 +243,7 @@ function BottomNavigation() {
                     <View style={{flexDirection:"row",marginTop:20}}>
                     <Button
                     mode='text'
-                      onPress={() => setModalVisible(!modalVisible)}
+                      onPress={()=>setModalVisible(false)}
                       contentStyle={{}}
                       labelStyle={{fontSize: 15}}
                       style={{
@@ -274,7 +285,7 @@ function BottomNavigation() {
                   source={require('../../../assets/Images/Raging-Gold.png')}
                 />
               </View>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <TouchableOpacity onPress={()=>setModalVisible(true)}>
                 <AntDesign name="search1" size={30} color="white" />
               </TouchableOpacity>
             </View>
@@ -315,10 +326,11 @@ function BottomNavigation() {
                animationType='slide'
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert('Modal has been closed.');
-                  setModalVisible(!modalVisible);
-                }}>
+                // onRequestClose={() => {
+                //   Alert.alert('Modal has been closed.');
+                //   setModalVisible(!modalVisible);
+                // }}
+                >
                 <View
                   style={{
                     flex: 1,
@@ -351,6 +363,7 @@ function BottomNavigation() {
                       Serch Any Product
                     </Text>
                     <Input
+                    autoFocus={true}
                     width={"80%"}
                       variant="underlined"
                       _focus={{borderColor: '#c79248'}}
@@ -360,7 +373,7 @@ function BottomNavigation() {
                     <View style={{flexDirection:"row",marginTop:20}}>
                     <Button
                     mode='text'
-                      onPress={() => setModalVisible(!modalVisible)}
+                      onPress={()=>setModalVisible(false)}
                       contentStyle={{}}
                       labelStyle={{fontSize: 15}}
                       style={{
@@ -394,7 +407,7 @@ function BottomNavigation() {
                   </View>
                 </View>
               </Modal>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <TouchableOpacity onPress={()=>setModalVisible(true)}>
                 <AntDesign name="search1" size={30} color="white" />
               </TouchableOpacity>
             </View>
@@ -435,10 +448,12 @@ function BottomNavigation() {
                animationType='slide'
                 transparent={true}
                 visible={modalVisible}
-                onRequestClose={() => {
-                  Alert.alert('Modal has been closed.');
-                  setModalVisible(!modalVisible);
-                }}>
+                
+                // onRequestClose={() => {
+                //   Alert.alert('Modal has been closed.');
+                //   setModalVisible(!modalVisible);
+                // }}
+                >
                 <View
                   style={{
                     flex: 1,
@@ -471,6 +486,7 @@ function BottomNavigation() {
                       Serch Any Product
                     </Text>
                     <Input
+                    autoFocus={true}
                     width={"80%"}
                       variant="underlined"
                       _focus={{borderColor: '#c79248'}}
@@ -480,7 +496,7 @@ function BottomNavigation() {
                     <View style={{flexDirection:"row",marginTop:20}}>
                     <Button
                     mode='text'
-                      onPress={() => setModalVisible(!modalVisible)}
+                      onPress={()=>setModalVisible(false)}
                       contentStyle={{}}
                       labelStyle={{fontSize: 15}}
                       style={{
@@ -514,7 +530,7 @@ function BottomNavigation() {
                   </View>
                 </View>
               </Modal>
-              <TouchableOpacity onPress={() => setModalVisible(true)}>
+              <TouchableOpacity onPress={()=>setModalVisible(true)}>
                 <AntDesign name="search1" size={30} color="white" />
               </TouchableOpacity>
             </View>

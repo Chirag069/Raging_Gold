@@ -80,6 +80,7 @@ const Screen_height = Dimensions.get('window').height;
 const Filter = () => {
   const [select, setSelect] = useState(data);
   const [filter,setFilter] = useState()
+  
 
   const handleOnpress = item => {
     const newItem = select.map(val => {
@@ -195,8 +196,9 @@ const Filter = () => {
                 {filter}
               </Text>
             </View>
-            <View style={{}}>
+            <View >
               <FlatList
+              ref={(ref) => { flatListRef = ref; }}
                 contentContainerStyle={{flexDirection: 'row', flexWrap: 'wrap'}}
                 data={select}
                 horizontal={false}
