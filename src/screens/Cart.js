@@ -13,6 +13,8 @@ import {useDispatch, useSelector} from 'react-redux';
 import {increment, decrement} from '../../redux/actions/CounterActions';
 import {Button} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 const Cart = () => {
   const navigation=useNavigation()
@@ -24,24 +26,24 @@ const Cart = () => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            marginBottom: 10,
+            paddingHorizontal: scale(10),
+            paddingVertical: verticalScale(10),
+            marginBottom: verticalScale(5),
           }}>
-          <Text style={{color: '#c79248', fontSize: 20}}>
+          <Text style={{color: '#c79248', fontSize: scale(20)}}>
             My Cart
           </Text>
         </View>
         <View
           style={{
-            marginHorizontal: 10,
-            marginVertical: 10,
+            marginHorizontal: scale(10),
+            marginVertical: verticalScale(5),
             backgroundColor: 'white',
           }}>
           <View style={{flexDirection: 'row'}}>
             <View style={{flexDirection: 'row'}}>
               <Image
-                style={{height: 120, width: 120}}
+                style={{height: scale(120), width: scale(120)}}
                 source={{
                   uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/513220FIIAAP1_1.jpg',
                 }}
@@ -49,49 +51,49 @@ const Cart = () => {
               <View
                 style={{
                   borderColor: 'grey',
-                  borderWidth: 0.5,
-                  height: '80%',
+                  borderWidth: scale(0.5),
+                  height: verticalScale(120),
                   alignSelf: 'center',
                 }}
               />
             </View>
-            <View style={{marginHorizontal: 10}}>
-              <Text style={{color: 'black', fontSize: 20}}>Gold Ring</Text>
-              <Text style={{color: '#c79248', fontSize: 20}}>Rs. 14500.00</Text>
-              <View style={{flexDirection: 'row', marginTop: 15}}>
+            <View style={{marginHorizontal: scale(10)}}>
+              <Text style={{color: 'black', fontSize: scale(20)}}>Gold Ring</Text>
+              <Text style={{color: '#c79248', fontSize: scale(20)}}>Rs. 14500.00</Text>
+              <View style={{flexDirection: 'row', marginTop: verticalScale(15)}}>
                 <TouchableOpacity
                   onPress={() => dispatch(decrement())}
                   style={{
                     backgroundColor: '#c79248',
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 12,
-                    borderBottomLeftRadius: 10,
+                    paddingHorizontal: scale(12),
+                    borderBottomLeftRadius: scale(10),
                   }}>
-                  <Text style={{fontSize: 20, color: 'white'}}>-</Text>
+                  <Text style={{fontSize: scale(20), color: 'white'}}>-</Text>
                 </TouchableOpacity>
                 <View
                   style={{
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 12,
+                    paddingHorizontal: scale(12),
                   }}>
-                  <Text style={{fontSize: 20}}>{counter}</Text>
+                  <Text style={{fontSize: scale(20)}}>{counter}</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => dispatch(increment())}
                   style={{
                     backgroundColor: '#c79248',
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 10,
-                    borderTopRightRadius: 10,
+                    paddingHorizontal: scale(10),
+                    borderTopRightRadius: scale(10),
                     // borderBottomRightRadius: 10,
                   }}>
-                  <Text style={{fontSize: 20, color: 'white'}}>+</Text>
+                  <Text style={{fontSize: scale(20), color: 'white'}}>+</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -100,14 +102,14 @@ const Cart = () => {
 
         <View
           style={{
-            marginHorizontal: 10,
-            marginVertical: 10,
+            marginHorizontal: scale(10),
+            marginVertical: verticalScale(5),
             backgroundColor: 'white',
           }}>
           <View style={{flexDirection: 'row'}}>
             <View style={{flexDirection: 'row'}}>
               <Image
-                style={{height: 120, width: 120}}
+                style={{height: scale(120), width: scale(120)}}
                 source={{
                   uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/513220FIIAAP1_1.jpg',
                 }}
@@ -115,48 +117,49 @@ const Cart = () => {
               <View
                 style={{
                   borderColor: 'grey',
-                  borderWidth: 0.5,
-                  height: '80%',
+                  borderWidth: scale(0.5),
+                  height: verticalScale(120),
                   alignSelf: 'center',
                 }}
               />
             </View>
-            <View style={{marginHorizontal: 10}}>
-              <Text style={{color: 'black', fontSize: 20}}>Gold Ring</Text>
-              <Text style={{color: '#c79248', fontSize: 20}}>Rs. 14500.00</Text>
-              <View style={{flexDirection: 'row', marginTop: 15}}>
+            <View style={{marginHorizontal: scale(10)}}>
+              <Text style={{color: 'black', fontSize: scale(20)}}>Gold Ring</Text>
+              <Text style={{color: '#c79248', fontSize: scale(20)}}>Rs. 14500.00</Text>
+              <View style={{flexDirection: 'row', marginTop: verticalScale(15)}}>
                 <TouchableOpacity
                   onPress={() => dispatch(decrement())}
                   style={{
                     backgroundColor: '#c79248',
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 12,
-                    borderBottomLeftRadius: 10,
+                    paddingHorizontal: scale(12),
+                    borderBottomLeftRadius: scale(10),
                   }}>
-                  <Text style={{fontSize: 20, color: 'white'}}>-</Text>
+                  <Text style={{fontSize: scale(20), color: 'white'}}>-</Text>
                 </TouchableOpacity>
                 <View
                   style={{
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 12,
+                    paddingHorizontal: scale(12),
                   }}>
-                  <Text style={{fontSize: 20}}>{counter}</Text>
+                  <Text style={{fontSize: scale(20)}}>{counter}</Text>
                 </View>
                 <TouchableOpacity
                   onPress={() => dispatch(increment())}
                   style={{
                     backgroundColor: '#c79248',
-                    borderWidth: 0.5,
+                    borderWidth: scale(0.5),
                     borderColor: 'grey',
                     alignItems: 'center',
-                    paddingHorizontal: 10,
-                    borderTopRightRadius: 10,
+                    paddingHorizontal: scale(10),
+                    borderTopRightRadius: scale(10),
+                    // borderBottomRightRadius: 10,
                   }}>
-                  <Text style={{fontSize: 20, color: 'white'}}>+</Text>
+                  <Text style={{fontSize: scale(20), color: 'white'}}>+</Text>
                 </TouchableOpacity>
               </View>
             </View>
@@ -168,75 +171,75 @@ const Cart = () => {
             alignItems: 'flex-end',
             flexDirection: 'row',
             justifyContent: 'flex-end',
-            marginHorizontal: 10,
+            marginHorizontal: scale(10),
           }}>
           <View style={{alignItems: 'flex-end'}}>
-            <Text style={{fontSize: 17, color: 'black'}}>Item Total</Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black'}}>Item Total</Text>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               CGST(1.5%)
             </Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               SGST(1.5%)
             </Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               Discount
             </Text>
             <Text
               style={{
-                fontSize: 17,
+                fontSize: scale(17),
                 color: 'black',
                 fontWeight: 'bold',
-                marginTop: 5,
+                marginTop: scale(5),
               }}>
               Grand Total
             </Text>
           </View>
 
           <View style={{alignItems: 'flex-end', marginLeft: 30}}>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               29000.00
             </Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               CGST(1.5%)
             </Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               SGST(1.5%)
             </Text>
-            <Text style={{fontSize: 17, color: 'black', marginTop: 5}}>
+            <Text style={{fontSize: scale(17), color: 'black', marginTop: scale(5)}}>
               Discount
             </Text>
             <Text
               style={{
-                fontSize: 17,
+                fontSize: scale(17),
                 color: 'black',
                 fontWeight: 'bold',
-                marginTop: 5,
+                marginTop: scale(5),
               }}>
               Grand Total
             </Text>
           </View>
         </View>
 
-        <View style={{marginHorizontal: 10}}>
+        <View style={{marginHorizontal: scale(10)}}>
           <View
             style={{
-              borderWidth: 0.5,
+              borderWidth: scale(0.5),
               borderColor: 'darkgrey',
               marginBottom: 10,
-              marginTop: 20,
+              marginTop: verticalScale(20),
             }}
           />
           <View
             style={{
               backgroundColor: 'white',
               borderColor:"darkgrey",
-              borderWidth: 0.5,
-              borderRadius: 30,
+              borderWidth: scale(0.5),
+              borderRadius: scale(30),
               flexDirection:"row"
             }}>
             <TextInput
             
-            style={{marginLeft:10,}}
+            style={{marginLeft:scale(10),}}
               placeholder="Apply discount coupon"
               placeholderTextColor="black"
             />
@@ -244,26 +247,26 @@ const Cart = () => {
               onPress={() => {
                 navigation.navigate('Cart');
               }}
-              contentStyle={{height: 50}}
+              contentStyle={{height: verticalScale(40)}}
               labelStyle={{fontSize: 20}}
               style={{
-                borderRadius: 50,
+                borderRadius: scale(50),
                 marginLeft: 'auto',
-                width: '50%',
+                width: scale(150),
                 justifyContent: 'center',
-                margin:3,
+                margin:scale(3),
               }}
               buttonColor="#c79248"
               textColor="white">
-              Applay
+              Apply
             </Button>
           </View>
           <View
             style={{
-              borderWidth: 0.5,
+              borderWidth: scale(0.5),
               borderColor: 'darkgrey',
-              marginBottom: 10,
-              marginTop: 10,
+              marginBottom: verticalScale(10),
+              marginTop: verticalScale(10),
             }}
           />
           <View style={{flexDirection:"row"}}>
@@ -271,12 +274,12 @@ const Cart = () => {
               onPress={() => {
                 navigation.navigate('Home');
               }}
-              contentStyle={{height: 50}}
+              contentStyle={{height: verticalScale(50)}}
               labelStyle={{fontSize: 15}}
               style={{
-                borderRadius: 50,
+                borderRadius: scale(50),
                 marginLeft: 'auto',
-                width: '48%',
+                width: scale(160),
                 justifyContent: 'center',
                 margin:3,
               }}
@@ -288,18 +291,18 @@ const Cart = () => {
               onPress={() => {
                 navigation.navigate('Checkout');
               }}
-              contentStyle={{height: 50}}
+              contentStyle={{height: verticalScale(50)}}
               labelStyle={{fontSize: 15}}
               style={{
-                borderRadius: 50,
+                borderRadius: scale(50),
                 marginLeft: 'auto',
-                width: '48%',
+                width: scale(160),
                 justifyContent: 'center',
                 margin:3,
               }}
               buttonColor="#c79248"
               textColor="white">
-              PROCEED TO PAY
+              PROCCED TO PAY
             </Button>
             </View>
         </View>

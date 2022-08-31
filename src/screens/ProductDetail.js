@@ -260,16 +260,17 @@ const ProductDetail = () => {
             onPress={() => {
               navigation.navigate('Cart');
             }}
-            contentStyle={{height: verticalScale(50)}}
-            labelStyle={{fontSize: 20}}
+            contentStyle={{height: verticalScale(50), }}
+            labelStyle={{fontSize:scale(9)}}
             style={{
               borderRadius: scale(50),
               marginLeft: 'auto',
-              width: scale(150),
               justifyContent: 'center',
+              width: scale(150),
             }}
             buttonColor="#c79248"
-            textColor="white">
+            textColor="white"
+            >
             ADD TO CART
           </Button>
         </View>

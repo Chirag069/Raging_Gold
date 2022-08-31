@@ -10,6 +10,8 @@ import React, {useState} from 'react';
 import {Input, NativeBaseProvider} from 'native-base';
 import {Button} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 const Screen_Width = Dimensions.get('window').width;
 
@@ -21,56 +23,56 @@ const OrderHistory = () => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            marginBottom: 10,
+            paddingHorizontal: scale(10),
+            paddingVertical: verticalScale(10),
+            marginBottom: verticalScale(10),
           }}>
-          <Text style={{color: '#c79248', fontSize: 20}}>
+          <Text style={{color: '#c79248', fontSize: scale(20)}}>
             Order History
           </Text>
         </View>
 
-        <View style={{marginHorizontal: 10, marginVertical: 10}}>
-          <View style={{backgroundColor: 'white', padding: 10}}>
-            <Text style={{fontSize: 20, color: '#c79248'}}>Order Id #121</Text>
+        <View style={{marginHorizontal: scale(10), marginVertical: verticalScale(10)}}>
+          <View style={{backgroundColor: 'white', padding: scale(10)}}>
+            <Text style={{fontSize: scale(20), color: '#c79248'}}>Order Id #121</Text>
             <View
               style={{
-                borderWidth: 0.5,
+                borderWidth: scale(0.5),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}
             />
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{alignItems: 'flex-start'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Incoice No.</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>OrderDate</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>Order Amount</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Incoice No.</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>OrderDate</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Order Amount</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
                   Payment Methord
                 </Text>
               </View>
               <View style={{alignItems: 'flex-end'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
                   VP - 1256/2020-21
                 </Text>
-                <Text style={{fontSize: 17, color: 'black'}}>25-may-2020</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>2870.00</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>Paytm</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>25-may-2020</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>2870.00</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Paytm</Text>
               </View>
             </View>
           </View>
 
           <View
             style={{backgroundColor: 'white', padding: 10, marginVertical: 10}}>
-            <Text style={{fontSize: 20, color: '#c79248'}}>
+            <Text style={{fontSize: scale(20), color: '#c79248'}}>
               Billing and shipping Address
             </Text>
             <View
               style={{
-                borderWidth: 0.5,
+                borderWidth: scale(0.5),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}
             />
             <Input
@@ -117,35 +119,35 @@ const OrderHistory = () => {
             />
           </View>
 
-          <View style={{backgroundColor: 'white', padding: 10}}>
-            <Text style={{fontSize: 20, color: '#c79248'}}>
+          <View style={{backgroundColor: 'white', padding: scale(10)}}>
+            <Text style={{fontSize: scale(20), color: '#c79248'}}>
               Product Summary
             </Text>
             <View
               style={{
-                borderWidth: 0.5,
+                borderWidth: scale(0.5),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}
             />
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{alignItems: 'flex-start'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Items</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>Gold Ring</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>Gold Ring</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Items</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>Gold Ring</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>Gold Ring</Text>
               </View>
 
               <View style={{alignItems: 'flex-end'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Qty</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>1</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>1</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Qty</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>1</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>1</Text>
               </View>
 
               <View style={{alignItems: 'flex-end'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Amount</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>14000.00</Text>
-                <Text style={{fontSize: 17, color: 'grey'}}>14000.00</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Amount</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>14000.00</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>14000.00</Text>
               </View>
             </View>
           </View>
@@ -154,14 +156,14 @@ const OrderHistory = () => {
               onPress={() => {
                 navigation.navigate('MyInvoice');
               }}
-              contentStyle={{height: 50}}
+              contentStyle={{height: verticalScale(50)}}
               labelStyle={{fontSize: 20}}
               style={{
-                borderRadius: 50,
+                borderRadius: scale(50),
                 marginLeft: 'auto',
-                width: '48%',
+                width: scale(200),
                 justifyContent: 'center',
-                margin:3,
+                margin:scale(3),
                 marginRight:"auto",
                 marginLeft:'auto'
               }}

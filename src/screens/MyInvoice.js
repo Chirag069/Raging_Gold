@@ -9,6 +9,8 @@ import {
 import React from 'react';
 import {Button} from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 const MyInvoice = () => {
     const navigation=useNavigation()
@@ -18,19 +20,19 @@ const MyInvoice = () => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
+            paddingHorizontal: scale(10),
+            paddingVertical: verticalScale(10),
 
           }}>
-          <Text style={{color: '#c79248', fontSize: 20}}>
+          <Text style={{color: '#c79248', fontSize: scale(20)}}>
             Exclusive Gold Ring
           </Text>
         </View>
 
-        <View style={{marginHorizontal: 10, marginVertical: 10}}>
+        <View style={{marginHorizontal: scale(10), marginVertical: verticalScale(10)}}>
           <View style={{backgroundColor: 'white'}}>
-            <View style={{alignItems: 'center', marginVertical: 10}}>
-              <Text style={{fontSize: 20, fontWeight: 'bold'}}>
+            <View style={{alignItems: 'center', marginVertical: verticalScale(10)}}>
+              <Text style={{fontSize: scale(20), fontWeight: 'bold'}}>
                 TEXT INVOICE
               </Text>
             </View>
@@ -38,62 +40,62 @@ const MyInvoice = () => {
             <View
               style={{
                 borderStyle: 'dashed',
-                borderWidth: 1,
+                borderWidth: scale(1),
                 borderColor: 'darkgrey',
               }}></View>
 
             <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 20}}>Raging Gold</Text>
-              <View style={{width: '90%', alignItems: 'center'}}>
-                <Text style={{}}>
-                  A-11 sradar mall, near narnarayan park nava naroda{' '}
+              <Text style={{fontSize: scale(20)}}>Raging Gold</Text>
+              <View style={{width: scale(230), alignItems: 'center'}}>
+                <Text style={{textAlign:"center",fontSize:scale(10)}}>
+                  A-11 sradar mall, near narnarayan park nava naroda  road Ahmedabad 382350 
                 </Text>
-                <Text style={{}}> road Ahmedabad 382350 </Text>
+                
               </View>
             </View>
 
             <View
               style={{
                 borderStyle: 'dashed',
-                borderWidth: 1,
+                borderWidth: scale(1),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}></View>
 
             <View
               style={{
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                marginHorizontal: 10,
+                marginHorizontal: scale(10),
               }}>
               <View style={{alignItems: 'flex-start'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Incoice No.</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Incoice No.</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
                   Payment Methord
                 </Text>
-                <Text style={{fontSize: 17, color: 'black'}}>Order Date</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Order Date</Text>
               </View>
               <View style={{alignItems: 'flex-end'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>VP - 1256</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>VP - 1256</Text>
 
-                <Text style={{fontSize: 17, color: 'black'}}>Paytm</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>25 may 2020</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Paytm</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>25 may 2020</Text>
               </View>
             </View>
 
             <View
               style={{
                 borderStyle: 'dashed',
-                borderWidth: 1,
+                borderWidth: scale(1),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}></View>
 
             <View style={{marginHorizontal: 10}}>
-              <Text style={{fontSize: 20, color: 'black'}}>
+              <Text style={{fontSize: scale(20), color: 'black'}}>
                 Billing Address
               </Text>
-              <Text>
+              <Text style={{fontSize:scale(10)}}>
                 A-11 sradar mall, near narnarayan park nava naroda road
                 Ahmedabad 382350
               </Text>
@@ -102,16 +104,16 @@ const MyInvoice = () => {
             <View
               style={{
                 borderStyle: 'dashed',
-                borderWidth: 1,
+                borderWidth: scale(1),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}></View>
 
             <View style={{marginHorizontal: 10}}>
               <Text style={{fontSize: 20, color: 'black'}}>
                 Shipping Address
               </Text>
-              <Text>
+              <Text style={{fontSize:scale(10)}}>
                 A-11 sradar mall, near narnarayan park nava naroda road
                 Ahmedabad 382350
               </Text>
@@ -120,70 +122,70 @@ const MyInvoice = () => {
             <View
               style={{
                 borderStyle: 'dashed',
-                borderWidth: 1,
+                borderWidth: scale(1),
                 borderColor: 'darkgrey',
-                marginVertical: 10,
+                marginVertical: verticalScale(10),
               }}></View>
 
-            <View style={{marginHorizontal: 10}}>
+            <View style={{marginHorizontal: scale(10)}}>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={{fontSize: 17, color: 'black'}}>Item Detail</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>Qty</Text>
-                <Text style={{fontSize: 17, color: 'black'}}>Item Detail</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Item Detail</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Qty</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>Item Detail</Text>
               </View>
               <View
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: 0.5,
-                  borderColor: 'darkgrey',
-                  marginVertical: 5,
-                }}></View>
+              style={{
+                borderStyle: 'dashed',
+                borderWidth: scale(1),
+                borderColor: 'darkgrey',
+                marginVertical: verticalScale(10),
+              }}></View>
 
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={{fontSize: 15, color: 'grey'}}>Gold Ring</Text>
-                <Text style={{fontSize: 15, color: 'grey'}}>1</Text>
-                <Text style={{fontSize: 15, color: 'grey'}}>14000.00</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>Gold Ring</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>1</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>14000.00</Text>
               </View>
               <View
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: 0.5,
-                  borderColor: 'darkgrey',
-                  marginVertical: 5,
-                }}></View>
+              style={{
+                borderStyle: 'dashed',
+                borderWidth: scale(1),
+                borderColor: 'darkgrey',
+                marginVertical: verticalScale(10),
+              }}></View>
               <View
                 style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-                <Text style={{fontSize: 15, color: 'grey'}}>Gold Ring</Text>
-                <Text style={{fontSize: 15, color: 'grey'}}>1</Text>
-                <Text style={{fontSize: 15, color: 'grey'}}>14000.00</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>Gold Ring</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>1</Text>
+                <Text style={{fontSize: scale(15), color: 'grey'}}>14000.00</Text>
               </View>
               <View
-                style={{
-                  borderStyle: 'solid',
-                  borderWidth: 0.5,
-                  borderColor: 'darkgrey',
-                  marginVertical: 5,
-                }}></View>
+              style={{
+                borderStyle: 'dashed',
+                borderWidth: scale(1),
+                borderColor: 'darkgrey',
+                marginVertical: verticalScale(10),
+              }}></View>
 
               <View
                 style={{
                   alignItems: 'flex-end',
                   flexDirection: 'row',
                   justifyContent: 'flex-end',
-                  marginHorizontal: 10,
+                  marginHorizontal: scale(10),
                 }}>
                 <View style={{alignItems: 'flex-end'}}>
-                  <Text style={{fontSize: 17, color: 'black'}}>Item Total</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>CGST(1.5%)</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>SGST(1.5%)</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>Total</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>Discount</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>Item Total</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>CGST(1.5%)</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>SGST(1.5%)</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>Total</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>Discount</Text>
 
                   <Text
                     style={{
-                      fontSize: 17,
+                      fontSize: scale(17),
                       color: 'black',
                       fontWeight: 'bold',
                     }}>
@@ -192,14 +194,14 @@ const MyInvoice = () => {
                 </View>
 
                 <View style={{alignItems: 'flex-end', marginLeft: 30}}>
-                  <Text style={{fontSize: 17, color: 'black'}}>29000.00</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>435.00</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>435.00</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>29870.00</Text>
-                  <Text style={{fontSize: 17, color: 'black'}}>1000.00</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>29000.00</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>435.00</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>435.00</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>29870.00</Text>
+                  <Text style={{fontSize: scale(17), color: 'black'}}>1000.00</Text>
                   <Text
                     style={{
-                      fontSize: 17,
+                      fontSize: scale(17),
                       color: 'black',
                       fontWeight: 'bold',
                     }}>
@@ -209,16 +211,16 @@ const MyInvoice = () => {
               </View>
 
               <View
-                style={{
-                  borderStyle: 'dashed',
-                  borderWidth: 1,
-                  borderColor: 'darkgrey',
-                  marginVertical: 5,
-                }}></View>
+              style={{
+                borderStyle: 'dashed',
+                borderWidth: scale(1),
+                borderColor: 'darkgrey',
+                marginVertical: verticalScale(10),
+              }}></View>
 
                 <View style={{justifyContent:"space-between",flexDirection:"row",marginBottom:10}}>
-                    <Text style={{fontSize:13,color:"black"}}>Company GST :ADFWEFEEEF</Text>
-                    <Text style={{fontSize:13,color:"black"}}>*Trems & Condition Apply</Text>
+                    <Text style={{fontSize:scale(13),color:"black"}}>Company GST :ADFWEFEEEF</Text>
+                    <Text style={{fontSize:scale(13),color:"black"}}>*Trems & Condition Apply</Text>
                 </View>
             </View>
           </View>
@@ -227,14 +229,14 @@ const MyInvoice = () => {
               onPress={() => {
                 
               }}
-              contentStyle={{height: 50}}
-              labelStyle={{fontSize: 15}}
+              contentStyle={{height: verticalScale(50)}}
+              labelStyle={{fontSize: 20}}
               style={{
-                borderRadius: 50,
+                borderRadius: scale(50),
                 marginLeft: 'auto',
-                width: '48%',
+                width: scale(200),
                 justifyContent: 'center',
-                margin:3,
+                margin:scale(3),
                 marginRight:"auto",
                 marginLeft:'auto'
               }}
