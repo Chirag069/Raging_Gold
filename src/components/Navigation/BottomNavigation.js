@@ -1,20 +1,10 @@
 import React, {useState} from 'react';
-import {
-  Text,
-  View,
-  Image,
-  TouchableOpacity,
-  Modal,
-  Alert,
-  StyleSheet,
-} from 'react-native';
-import {useNavigation} from '@react-navigation/native';
+import {} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {DrawerActions} from '@react-navigation/native';
 import {Input, NativeBaseProvider} from 'native-base';
-import {Button} from 'react-native-paper';
-import {useKeyboard} from '@react-native-community/hooks';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 //screen
 import Home from '../../screens/Home';
 import Filter from '../../screens/Filter';
@@ -42,9 +32,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="Home"
         component={Home}
@@ -55,9 +43,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="ProductList"
         component={ProductList}
@@ -66,9 +52,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="ProductDetail"
         component={ProductDetail}
@@ -77,9 +61,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="OrderHistory"
         component={OrderHistory}
@@ -88,9 +70,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="MyInvoice"
         component={MyInvoice}
@@ -99,9 +79,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="Checkout"
         component={Checkout}
@@ -111,9 +89,6 @@ const HomeStack = () => {
 };
 
 function BottomNavigation() {
-  const navigation = useNavigation();
-  const [modalVisible, setModalVisible] = useState(false);
-
   return (
     <Tab.Navigator
       screenOptions={{
@@ -149,9 +124,7 @@ function BottomNavigation() {
             />
           ),
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="Filter"
         component={Filter}
@@ -167,9 +140,7 @@ function BottomNavigation() {
             />
           ),
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="WishList"
         component={WishList}
@@ -185,9 +156,7 @@ function BottomNavigation() {
             />
           ),
           headerShown: true,
-          header: () => (
-            <CustomHeader/>
-          ),
+          header: () => <CustomHeader />,
         }}
         name="Cart"
         component={Cart}
@@ -195,29 +164,6 @@ function BottomNavigation() {
     </Tab.Navigator>
   );
 }
-
-const styles = StyleSheet.create({
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: '#F194FF',
-  },
-  buttonClose: {
-    backgroundColor: '#2196F3',
-  },
-  textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-});
 
 export default () => {
   return (

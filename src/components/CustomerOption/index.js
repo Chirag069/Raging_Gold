@@ -2,6 +2,7 @@ import {View, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
 import React from 'react';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native'
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 const Screen_Width = Dimensions.get('window').width;
 
@@ -10,16 +11,16 @@ const CustomerOption = () => {
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>
-        <View style={{alignItems: 'center', marginVertical: 50}}>
+        <View style={{alignItems: 'center', marginVertical: verticalScale(50)}}>
           <Image
-            style={{height: 350, width: Screen_Width - 50}}
-            source={require('../../../assets/Images/logo.png')}
+            style={{height: verticalScale(200), width:  scale(180)}}
+            source={require('../../../assets/Images/Logo1.png')}
           />
         </View>
-        <View style={{marginVertical:"20%"}}>
-        <View style={{marginHorizontal: 40}}>
+        <View style={{marginVertical:verticalScale(30)}}>
+        <View style={{marginHorizontal: scale(40)}}>
           <Button
-            contentStyle={{height: 70}}
+            contentStyle={{height:  verticalScale(50)}}
             labelStyle={{fontSize: 20}}
             style={{borderRadius: 50}}
             buttonColor="#405070"
@@ -28,9 +29,9 @@ const CustomerOption = () => {
             ARE YOU BUYER
           </Button>
         </View>
-        <View style={{marginHorizontal: 40,marginVertical:30}}>
+        <View style={{marginHorizontal: scale(40),marginVertical:verticalScale(30)}}>
           <Button
-            contentStyle={{height: 70}}
+            contentStyle={{height:  verticalScale(50)}}
             labelStyle={{fontSize: 20}}
             style={{borderRadius: 50}}
             buttonColor="#c79248"

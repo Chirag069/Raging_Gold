@@ -9,7 +9,6 @@ import {
   TextInput,
 } from 'react-native';
 import React from 'react';
-import {Provider} from 'react-redux';
 import {useDispatch, useSelector} from 'react-redux';
 import {increment, decrement} from '../../redux/actions/CounterActions';
 import {Button} from 'react-native-paper';

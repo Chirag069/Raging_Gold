@@ -18,6 +18,7 @@ import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {AccordionList} from 'accordion-collapse-react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 const Screen_Width = Dimensions.get('window').width;
 
@@ -42,11 +43,6 @@ const list = [
     title: 'Product Details',
     body: 'React native Accordion/Collapse component, very good to use in toggles & show/hide content',
   },
-  // {
-  //   id:2,
-  //   title: 'Components',
-  //   body: 'AccordionList,Collapse,CollapseHeader & CollapseBody'
-  // }
 ];
 
 const ProductDetail = () => {
@@ -75,11 +71,10 @@ const ProductDetail = () => {
       <View
         style={{
           backgroundColor: 'floralwhite',
-          width: Screen_Width - 20,
           alignSelf: 'center',
         }}>
         <Image
-          style={{height: 350, width: Screen_Width - 20}}
+          style={{height: scale(330), width: scale(330)}}
           resizeMode="cover"
           source={{uri: item.image}}
         />
@@ -91,18 +86,18 @@ const ProductDetail = () => {
   const head = item => {
     return (
       <ScrollView>
-      <View
-        style={{
-          backgroundColor: 'white',
-          marginHorizontal: 10,
-          padding: 10,
-          flexDirection: 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-        }}>
-        <Text style={{fontSize: 20}}>{item.title}</Text>
-        <AntDesign name="down" size={25} />
-      </View>
+        <View
+          style={{
+            backgroundColor: 'white',
+            marginHorizontal: scale(10),
+            padding: scale(10),
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+          <Text style={{fontSize: scale(20)}}>{item.title}</Text>
+          <AntDesign name="down" size={scale(25)} />
+        </View>
       </ScrollView>
     );
   };
@@ -111,8 +106,12 @@ const ProductDetail = () => {
     return (
       <ScrollView>
         <View
-          style={{padding: 10, backgroundColor: 'white', marginHorizontal: 10}}>
-          <Text style={{textAlign: 'center'}}>{item.body}</Text>
+          style={{
+            padding: scale(10),
+            backgroundColor: 'white',
+            marginHorizontal: scale(10),
+          }}>
+          <Text style={{textAlign: 'center' ,fontSize:scale(15)}}>{item.body}</Text>
         </View>
       </ScrollView>
     );
@@ -124,11 +123,11 @@ const ProductDetail = () => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            marginBottom: 10,
+            paddingHorizontal:scale(10),
+            paddingVertical: verticalScale(10),
+            marginBottom: verticalScale(10),
           }}>
-          <Text style={{color: '#c79248', fontSize: 20}}>
+          <Text style={{color: '#c79248', fontSize: scale(20)}}>
             Exclusive Gold Ring
           </Text>
         </View>
@@ -150,32 +149,32 @@ const ProductDetail = () => {
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            marginHorizontal: 10,
+            paddingHorizontal: scale(10),
+            paddingVertical: verticalScale(10),
+            marginHorizontal: scale(10),
             flexDirection: 'row',
             justifyContent: 'space-between',
             alignItems: 'center',
           }}>
-          <Text style={{color: 'grey', fontSize: 20}}>Rating -</Text>
+          <Text style={{color: 'grey', fontSize: scale(20)}}>Rating -</Text>
           <StarRating
-            starSize={25}
+            starSize={scale(25)}
             rating={rating}
             onChange={setRating}
             color={'#c79248'}
           />
-          <Text style={{fontSize: 17}}>{rating}</Text>
+          <Text style={{fontSize: scale(17)}}>{rating}</Text>
         </View>
         <View
           style={{
             backgroundColor: 'white',
-            paddingHorizontal: 10,
-            paddingVertical: 10,
-            marginHorizontal: 10,
+            paddingHorizontal: scale(10),
+            paddingVertical: verticalScale(10),
+            marginHorizontal: scale(10),
             flexDirection: 'row',
-            marginVertical: 10,
+            marginVertical: verticalScale(10),
           }}>
-          <Text style={{color: 'grey', fontSize: 20, alignSelf: 'flex-start'}}>
+          <Text style={{color: 'grey', fontSize: scale(20), alignSelf: 'flex-start'}}>
             Size -
           </Text>
           <View
@@ -187,13 +186,13 @@ const ProductDetail = () => {
             <TouchableOpacity onPress={handleClick}>
               <Text
                 style={{
-                  fontSize: 17,
+                  fontSize: scale(17),
                   color: 'grey',
-                  marginRight: 10,
+                  marginRight: scale(10),
                   backgroundColor: isActive ? '#c79248' : 'white',
                   color: isActive ? 'white' : 'grey',
-                  paddingHorizontal: 10,
-                  borderRadius: 15,
+                  paddingHorizontal: scale(10),
+                  borderRadius: scale(15),
                 }}>
                 2.5
               </Text>
@@ -201,29 +200,29 @@ const ProductDetail = () => {
             <Pressable onPress={handleClick}>
               <Text
                 style={{
-                  fontSize: 17,
+                  fontSize: scale(17),
                   color: 'grey',
-                  marginRight: 10,
+                  marginRight: scale(10),
                   backgroundColor: isActive ? '#c79248' : 'white',
                   color: isActive ? 'white' : 'grey',
-                  paddingHorizontal: 10,
-                  borderRadius: 15,
+                  paddingHorizontal: scale(10),
+                  borderRadius: scale(15),
                 }}>
                 3.0
               </Text>
             </Pressable>
             <Pressable>
-              <Text style={{fontSize: 17, color: 'grey', marginRight: 20}}>
+              <Text style={{fontSize: scale(17), color: 'grey', marginRight: scale(20)}}>
                 3.5
               </Text>
             </Pressable>
             <Pressable>
-              <Text style={{fontSize: 17, color: 'grey', marginRight: 20}}>
+              <Text style={{fontSize: scale(17), color: 'grey', marginRight: scale(20)}}>
                 4.0
               </Text>
             </Pressable>
             <Pressable>
-              <Text style={{fontSize: 17, color: 'grey', marginRight: 20}}>
+              <Text style={{fontSize: scale(17), color: 'grey', marginRight: scale(20)}}>
                 4.5
               </Text>
             </Pressable>
@@ -232,24 +231,24 @@ const ProductDetail = () => {
         <View
           style={{
             flexDirection: 'row',
-            marginHorizontal: 10,
-            marginBottom: 20,
-            marginTop: 10,
+            marginHorizontal: scale(10),
+            marginBottom: verticalScale(20),
+            marginTop: verticalScale(10),
           }}>
           <View style={{}}>
             <View style={{flexDirection: 'row'}}>
-              <Text style={{fontSize: 17}}>MRP -</Text>
-              <Text style={{fontSize: 17, marginLeft: 5}}>14599/-</Text>
+              <Text style={{fontSize: scale(17)}}>MRP -</Text>
+              <Text style={{fontSize: scale(17), marginLeft: scale(5)}}>14599/-</Text>
             </View>
-            <View style={{flexDirection: 'row', marginTop: 5}}>
+            <View style={{flexDirection: 'row', marginTop: verticalScale(5)}}>
               <Text
-                style={{fontSize: 17, color: '#c79248', fontWeight: 'bold'}}>
+                style={{fontSize: scale(17), color: '#c79248', fontWeight: 'bold'}}>
                 Offer Price -
               </Text>
               <Text
                 style={{
-                  fontSize: 17,
-                  marginLeft: 5,
+                  fontSize: scale(17),
+                  marginLeft: scale(5),
                   color: '#c79248',
                   fontWeight: 'bold',
                 }}>
@@ -261,12 +260,12 @@ const ProductDetail = () => {
             onPress={() => {
               navigation.navigate('Cart');
             }}
-            contentStyle={{height: 50}}
+            contentStyle={{height: verticalScale(50)}}
             labelStyle={{fontSize: 20}}
             style={{
-              borderRadius: 50,
+              borderRadius: scale(50),
               marginLeft: 'auto',
-              width: '50%',
+              width: scale(150),
               justifyContent: 'center',
             }}
             buttonColor="#c79248"
@@ -288,20 +287,20 @@ const ProductDetail = () => {
 const styles = StyleSheet.create({
   item: {
     backgroundColor: 'white',
-    padding: 15,
-    marginVertical: 8,
+    padding: scale(15),
+    marginVertical: verticalScale(8),
   },
   subitem: {
     backgroundColor: 'lightblue',
-    padding: 20,
-    marginVertical: 8,
+    padding: scale(20),
+    marginVertical: verticalScale(8),
   },
   header: {
-    fontSize: 32,
+    fontSize: scale(32),
     backgroundColor: '#fff',
   },
   title: {
-    fontSize: 24,
+    fontSize: scale(24),
   },
 });
 

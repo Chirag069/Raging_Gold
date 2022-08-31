@@ -10,6 +10,7 @@ import {
 import React,{useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 
 const Screen_Width = Dimensions.get('window').width;
@@ -132,8 +133,8 @@ const ProductList = () => {
   
 
   return (<>
-    <View style={{backgroundColor:"white",paddingHorizontal:10,paddingVertical:10,marginBottom:20}}>
-        <Text style={{color:"#c79248",fontSize:20}}>Exclusive Gold Ring</Text>
+    <View style={{backgroundColor:"white",paddingHorizontal:scale(10),paddingVertical:verticalScale(10),marginBottom:verticalScale(17)}}>
+        <Text style={{color:"#c79248",fontSize:scale(20)}}>Exclusive Gold Ring</Text>
       </View>
     <View style={styles.container}>
       <FlatList
@@ -155,12 +156,12 @@ const ProductList = () => {
               <View
                 style={{
                   backgroundColor: 'white',
-                  width: Screen_Width - 210,
-                  marginHorizontal: 5,
+                  width: scale(160),
+                  marginHorizontal: scale(5),
 
                 }}>
                 <ImageBackground
-                  style={{height:180, width:'100%', alignSelf: 'center'}}
+                  style={{height:scale(140), width:scale(150), alignSelf: 'center'}}
                   source={{
                     uri: item.image,
                   }}>
@@ -168,13 +169,13 @@ const ProductList = () => {
                     <Ionicons
                       name={item.selected ?  "heart-outline":"heart"}
                       color={'#c79248'}
-                      size={30}
-                      style={{alignSelf: 'flex-end', padding: 2}}
+                      size={scale(30)}
+                      style={{alignSelf: 'flex-end', padding: scale(2)}}
                     />
                   </Pressable>
                 </ImageBackground>
                 <View style={{alignItems: 'center'}}>
-                  <Text style={{fontSize: 17, marginTop: 5, marginBottom: 5}}>
+                  <Text style={{fontSize: scale(17), marginTop: verticalScale(5), marginBottom: verticalScale(5)}}>
                     {item.price}
                   </Text>
                 </View>
@@ -193,93 +194,21 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   list: {
-    paddingHorizontal: 5,
+    paddingHorizontal: scale(5),
     backgroundColor: '#F5F5F5',
   },
   listContainer: {
     alignItems: 'center',
   },
   separator: {
-    marginTop: 10,
+    marginTop: scale(10),
   },
-  /******** card **************/
-  card: {
-    shadowColor: '#00000021',
-    shadowOffset: {
-      width: 2,
-    },
-    shadowOpacity: 0.5,
-    shadowRadius: 4,
-    marginVertical: 8,
-    backgroundColor: 'white',
-    flexBasis: '47%',
-    marginHorizontal: 5,
-  },
-  cardHeader: {
-    paddingVertical: 17,
-    paddingHorizontal: 16,
-    borderTopLeftRadius: 1,
-    borderTopRightRadius: 1,
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-  },
-  cardContent: {
-    paddingVertical: 12.5,
-    paddingHorizontal: 16,
-  },
-  cardFooter: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    paddingTop: 12.5,
-    paddingBottom: 25,
-    paddingHorizontal: 16,
-    borderBottomLeftRadius: 1,
-    borderBottomRightRadius: 1,
-  },
-  cardImage: {
-    flex: 1,
-    height: 150,
-    width: null,
-  },
-  /******** card components **************/
-  title: {
-    fontSize: 18,
-    flex: 1,
-  },
-  price: {
-    fontSize: 16,
-    color: 'green',
-    marginTop: 5,
-  },
-  buyNow: {
-    color: 'purple',
-  },
-  icon: {
-    width: 25,
-    height: 25,
-  },
-  /******** social bar ******************/
-  socialBarContainer: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    flexDirection: 'row',
-    flex: 1,
-  },
-  socialBarSection: {
-    justifyContent: 'center',
-    flexDirection: 'row',
-    flex: 1,
-  },
-  socialBarlabel: {
-    marginLeft: 8,
-    alignSelf: 'flex-end',
-    justifyContent: 'center',
-  },
-  socialBarButton: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
+
+
+
+
+
+  
 });
 
 export default ProductList;

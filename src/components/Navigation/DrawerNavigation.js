@@ -1,13 +1,7 @@
 import * as React from 'react';
-import {Button, View, Image, TouchableOpacity} from 'react-native';
+import {} from 'react-native';
 import {createDrawerNavigator} from '@react-navigation/drawer';
-import ProductList from '../../screens/ProductList';
-import Entypo from 'react-native-vector-icons/Entypo';
-import AntDesign from 'react-native-vector-icons/AntDesign';
 import {useNavigation} from '@react-navigation/native';
-import {DrawerActions} from '@react-navigation/native';
-import BottomNavigation from './BottomNavigation';
-import CustomHeader from '../Custom/CustomHeader';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 //screen
 import Home from '../../screens/Home';
@@ -15,6 +9,14 @@ import ProductDetail from '../../screens/ProductDetail';
 import OrderHistory from '../../screens/OrderHistory';
 import MyInvoice from '../../screens/MyInvoice';
 import Checkout from '../../screens/Checkout';
+import CustomHeader from '../Custom/CustomHeader';
+import BottomNavigation from './BottomNavigation';
+import ProductList from '../../screens/ProductList';
+
+
+//icon
+import Entypo from 'react-native-vector-icons/Entypo';
+import AntDesign from 'react-native-vector-icons/AntDesign';
 
 const Drawer = createDrawerNavigator();
 const Stack = createNativeStackNavigator();

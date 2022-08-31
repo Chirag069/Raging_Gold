@@ -64,7 +64,6 @@ export const userLoginAction =
       })
       .catch(error => {
         dispatch(authLoadingAction());
-
         Toast.show({
           text1: 'Server response failed',
           visibilityTime: 3000,

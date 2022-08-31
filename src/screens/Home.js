@@ -14,6 +14,8 @@ import Carousel from 'react-native-snap-carousel-v4';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import Dots from 'react-native-dots-pagination';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -55,7 +57,7 @@ const Home = () => {
           width: Screen_Width,
         }}>
         <Image
-          style={{height:200, width: Screen_Width}}
+          style={{height:scale(170), width: Screen_Width}}
           resizeMode="cover"
           source={{uri: item.image}}
         />
@@ -82,62 +84,64 @@ const Home = () => {
         />
         <Dots length={4} active={activeIndex} />
       </View>
-      <View style={{marginHorizontal: 10,marginBottom:10}}>
+      <View style={{marginHorizontal: scale(10),marginBottom: scale(10)}}>
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <Pressable onPress={()=> navigation.navigate('ProductList')}>
-          <View style={{backgroundColor: 'white', width: 180}}>
+          <View style={{backgroundColor: 'white', width: scale(160)}}>
             <ImageBackground
-              style={{height: 150, width: '100%', alignSelf: 'center'}}
+              style={{height: scale(130), width: scale(150), alignSelf: 'center'}}
               source={{
                 uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/503920FCHAA29_1.jpg',
               }}>
-              <Pressable onPress={() => {}}>
+              <Pressable >
                 <Ionicons
                   name="heart-outline"
                   color={'#c79248'}
-                  size={30}
-                  style={{alignSelf: 'flex-end', padding: 2}}
+                  size={scale(30)}
+                  style={{alignSelf: 'flex-end', padding: scale(2)}}
                 />
               </Pressable>
             </ImageBackground>
             <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 17}}>Gold Ring</Text>
-              <Text style={{fontSize: 17, marginTop: 5, marginBottom: 5}}>
+              <Text style={{fontSize: scale(15)}}>Gold Ring</Text>
+              <Text style={{fontSize: scale(15), marginTop: 5, marginBottom: 5}}>
                 ₹ 15000/-
               </Text>
             </View>
           </View>
           </Pressable>
 
-              <Pressable>
-          <View style={{backgroundColor: 'white', width: 180}}>
+           <Pressable onPress={()=> navigation.navigate('ProductList')}>
+          <View style={{backgroundColor: 'white', width: scale(160)}}>
             <ImageBackground
-              style={{height: 150, width: '100%', alignSelf: 'center'}}
+              style={{height: scale(130), width: scale(150), alignSelf: 'center'}}
               source={{
                 uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/501169SDHAAA29_2.jpg',
               }}>
-              <Pressable onPress={() => {}}>
+              <Pressable >
                 <Ionicons
                   name="heart-outline"
                   color={'#c79248'}
-                  size={30}
-                  style={{alignSelf: 'flex-end', padding: 2}}
+                  size={scale(30)}
+                  style={{alignSelf: 'flex-end', padding: scale(2)}}
                 />
               </Pressable>
             </ImageBackground>
             <View style={{alignItems: 'center'}}>
-              <Text style={{fontSize: 17}}>Errings</Text>
-              <Text style={{fontSize: 17, marginTop: 5, marginBottom: 5}}>
+              <Text style={{fontSize: scale(15)}}>Gold Ring</Text>
+              <Text style={{fontSize: scale(15), marginTop: 5, marginBottom: 5}}>
                 ₹ 15000/-
               </Text>
             </View>
           </View>
           </Pressable>
+
         </View>
       </View>
+      <View style={{marginHorizontal:20,alignItems:"center",marginBottom:scale(10)}}>
       <Pressable>
         <Image
-          style={{width: Screen_Width, height: 160}}
+          style={{width: scale(330), height: scale(140)}}
           resizeMode="cover"
           source={{
             uri: 'https://www.shilpalifestyle.com/assets/home-slider/home_slider_HOME_PAGE_-3.jpg',
@@ -146,13 +150,14 @@ const Home = () => {
       </Pressable>
       <Pressable>
         <Image
-          style={{width: Screen_Width, height: 160, marginTop: 10}}
+          style={{width: scale(330), height: scale(140), marginTop: scale(10)}}
           resizeMode="cover"
           source={{
             uri: 'https://www.shilpalifestyle.com/assets/category/Bridal-Diamond-Banner.jpg',
           }}
         />
       </Pressable>
+      </View>
       </ScrollView>
     </SafeAreaView>
   );

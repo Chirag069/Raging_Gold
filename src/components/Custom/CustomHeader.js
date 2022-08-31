@@ -6,11 +6,12 @@ import {
   TouchableOpacity,
   Modal,
   Alert,
-  StyleSheet,
 } from 'react-native';
-import {Input, NativeBaseProvider} from 'native-base';
+import {Input, } from 'native-base';
 import {Button} from 'react-native-paper';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -25,13 +26,14 @@ const CustomHeader = () => {
     <View
     style={{
       backgroundColor: '#c79248',
-      paddingHorizontal: 10,
+      paddingHorizontal: scale(10),
       flexDirection: 'row',
       justifyContent: 'space-between',
     }}>
     <View style={{flexDirection: 'row'}}>
       <Modal
         animationType="slide"
+        
         transparent={true}
         visible={modalVisible}
         onRequestClose={() => {
@@ -44,18 +46,19 @@ const CustomHeader = () => {
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: 'rgba(0,0,0,0.6)',
+            
           }}>
           <View
             style={{
               backgroundColor: 'white',
-              borderRadius: 20,
-              paddingHorizontal: 40,
-              paddingVertical: 20,
+              borderRadius: scale(15),
+              paddingHorizontal: scale(40),
+              paddingVertical: verticalScale(20),
               alignItems: 'center',
               shadowColor: '#000',
               shadowOffset: {
                 width: 0,
-                height: 2,
+                height: scale(2),
               },
               shadowOpacity: 0.25,
               shadowRadius: 4,
@@ -63,34 +66,34 @@ const CustomHeader = () => {
             }}>
             <Text
               style={{
-                fontSize: 17,
+                fontSize: moderateScale(17),
                 color: 'black',
                 fontWeight: 'bold',
+                marginBottom:verticalScale(5)
               }}>
               Serch Any Product
             </Text>
             <Input
               autoFocus={true}
-              width={'80%'}
+              width={scale(220)}
               variant="underlined"
               _focus={{borderColor: '#c79248'}}
-              _input={{fontSize: 17, placeholderTextColor: 'black'}}
+              _input={{fontSize: verticalScale(15), placeholderTextColor: 'black'}}
               placeholder="Serch Product"
             />
-            <View style={{flexDirection: 'row', marginTop: 20}}>
+            <View style={{flexDirection: 'row', marginTop: scale(20)}}>
               <Button
                 mode="text"
                 onPress={() => setModalVisible(!modalVisible)}
-                contentStyle={{}}
-                labelStyle={{fontSize: 15}}
+                contentStyle={{height: verticalScale(35),  width: scale(100),}}
+                labelStyle={{fontSize:20}}
                 style={{
                   borderColor: '#c79248',
-                  borderWidth: 1,
+                  borderWidth: scale(1),
                   borderRadius: 0,
-                  height: 40,
                   justifyContent: 'center',
-                  marginRight: 20,
-                  width: '38%',
+                  marginRight: scale(20),
+                  
                 }}
                 buttonColor="white"
                 textColor="#c79248">
@@ -98,13 +101,12 @@ const CustomHeader = () => {
               </Button>
               <Button
                 onPress={() => navigation.navigate('ProductList')}
-                contentStyle={{height: 50}}
-                labelStyle={{fontSize: 15}}
+                contentStyle={{height: verticalScale(35), width: scale(100),}}
+                labelStyle={{fontSize:20}}
                 style={{
                   borderRadius: 0,
-                  height: 40,
                   justifyContent: 'center',
-                  width: '38%',
+                  width: scale(100),
                 }}
                 buttonColor="#c79248"
                 textColor="white">
@@ -115,15 +117,15 @@ const CustomHeader = () => {
         </View>
       </Modal>
       <TouchableOpacity onPress={()=>navigation.dispatch(DrawerActions.openDrawer())}>
-        <Entypo name="list" size={35} color={'white'} />
+        <Entypo name="list" size={scale(30)} color={'white'} />
       </TouchableOpacity>
       <Image
-        style={{height: 40, width: 130, marginTop: 5}}
+        style={{height: verticalScale(30), width: verticalScale(120), marginTop: scale(5)}}
         source={require('../../../assets/Images/Raging-Gold.png')}
       />
     </View>
     <TouchableOpacity onPress={() => setModalVisible(true)}>
-      <AntDesign name="search1" size={30} color="white" />
+      <AntDesign name="search1" size={scale(25)} color="white" />
     </TouchableOpacity>
   </View>
   )

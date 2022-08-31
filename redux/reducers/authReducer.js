@@ -1,9 +1,15 @@
 import {USER_LOGOUT, USER_LOGIN, AUTH_LOADING} from '../actions/types';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+
 
 const initialState = {
   userToken: null,
   authLoading: false,
+  Token
 };
+const Token = AsyncStorage.getItem("userToken");
+
 
 export default (state = initialState, action) => {
   switch (action.type) {
