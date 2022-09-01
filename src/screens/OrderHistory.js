@@ -9,14 +9,14 @@ import {
 import React, {useState} from 'react';
 import {Input, NativeBaseProvider} from 'native-base';
 import {Button} from 'react-native-paper';
-import { useNavigation } from '@react-navigation/native';
+import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
+import CustomButton from '../components/Custom/CustomButton';
 
 const Screen_Width = Dimensions.get('window').width;
 
 const OrderHistory = () => {
-    const navigation=useNavigation()
+  const navigation = useNavigation();
   return (
     <SafeAreaView style={{flex: 1}}>
       <ScrollView>
@@ -32,9 +32,15 @@ const OrderHistory = () => {
           </Text>
         </View>
 
-        <View style={{marginHorizontal: scale(10), marginVertical: verticalScale(10)}}>
+        <View
+          style={{
+            marginHorizontal: scale(10),
+            marginVertical: verticalScale(10),
+          }}>
           <View style={{backgroundColor: 'white', padding: scale(10)}}>
-            <Text style={{fontSize: scale(20), color: '#c79248'}}>Order Id #121</Text>
+            <Text style={{fontSize: scale(20), color: '#c79248'}}>
+              Order Id #121
+            </Text>
             <View
               style={{
                 borderWidth: scale(0.5),
@@ -45,9 +51,15 @@ const OrderHistory = () => {
             <View
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{alignItems: 'flex-start'}}>
-                <Text style={{fontSize: scale(17), color: 'black'}}>Incoice No.</Text>
-                <Text style={{fontSize: scale(17), color: 'black'}}>OrderDate</Text>
-                <Text style={{fontSize: scale(17), color: 'black'}}>Order Amount</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  Incoice No.
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  OrderDate
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  Order Amount
+                </Text>
                 <Text style={{fontSize: scale(17), color: 'black'}}>
                   Payment Methord
                 </Text>
@@ -56,8 +68,12 @@ const OrderHistory = () => {
                 <Text style={{fontSize: scale(17), color: 'black'}}>
                   VP - 1256/2020-21
                 </Text>
-                <Text style={{fontSize: scale(17), color: 'black'}}>25-may-2020</Text>
-                <Text style={{fontSize: scale(17), color: 'black'}}>2870.00</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  25-may-2020
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  2870.00
+                </Text>
                 <Text style={{fontSize: scale(17), color: 'black'}}>Paytm</Text>
               </View>
             </View>
@@ -134,8 +150,12 @@ const OrderHistory = () => {
               style={{flexDirection: 'row', justifyContent: 'space-between'}}>
               <View style={{alignItems: 'flex-start'}}>
                 <Text style={{fontSize: scale(17), color: 'black'}}>Items</Text>
-                <Text style={{fontSize: scale(17), color: 'grey'}}>Gold Ring</Text>
-                <Text style={{fontSize: scale(17), color: 'grey'}}>Gold Ring</Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>
+                  Gold Ring
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>
+                  Gold Ring
+                </Text>
               </View>
 
               <View style={{alignItems: 'flex-end'}}>
@@ -145,32 +165,39 @@ const OrderHistory = () => {
               </View>
 
               <View style={{alignItems: 'flex-end'}}>
-                <Text style={{fontSize: scale(17), color: 'black'}}>Amount</Text>
-                <Text style={{fontSize: scale(17), color: 'grey'}}>14000.00</Text>
-                <Text style={{fontSize: scale(17), color: 'grey'}}>14000.00</Text>
+                <Text style={{fontSize: scale(17), color: 'black'}}>
+                  Amount
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>
+                  14000.00
+                </Text>
+                <Text style={{fontSize: scale(17), color: 'grey'}}>
+                  14000.00
+                </Text>
               </View>
             </View>
           </View>
         </View>
-        <Button
-              onPress={() => {
-                navigation.navigate('MyInvoice');
-              }}
-              contentStyle={{height: verticalScale(50)}}
-              labelStyle={{fontSize: 20}}
-              style={{
-                borderRadius: scale(50),
-                marginLeft: 'auto',
-                width: scale(200),
-                justifyContent: 'center',
-                margin:scale(3),
-                marginRight:"auto",
-                marginLeft:'auto'
-              }}
-              buttonColor="#c79248"
-              textColor="white">
-              View Invoice
-            </Button>
+
+        <View
+          style={{
+            marginLeft: 'auto',
+            marginRight: 'auto',
+            marginBottom: verticalScale(10),
+          }}>
+          <CustomButton
+            buttoncolor={'#c79248'}
+            buttonwidth={scale(180)}
+            buttonheight={verticalScale(50)}
+            borderradius={scale(30)}
+            text={'View Invoice'}
+            fontcolor={'white'}
+            fontSize={scale(15)}
+            onPress={() => {
+              navigation.navigate('MyInvoice');
+            }}
+          />
+        </View>
       </ScrollView>
     </SafeAreaView>
   );

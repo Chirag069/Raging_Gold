@@ -2,7 +2,6 @@ import {
   View,
   Text,
   SafeAreaView,
-  ImageBackground,
   Pressable,
   Dimensions,
   Image,
@@ -19,6 +18,7 @@ import {useNavigation} from '@react-navigation/native';
 import {AccordionList} from 'accordion-collapse-react-native';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import CustomButton from '../components/Custom/CustomButton';
 
 const Screen_Width = Dimensions.get('window').width;
 
@@ -256,7 +256,7 @@ const ProductDetail = () => {
               </Text>
             </View>
           </View>
-          <Button
+          {/* <Button
             onPress={() => {
               navigation.navigate('Cart');
             }}
@@ -272,7 +272,21 @@ const ProductDetail = () => {
             textColor="white"
             >
             ADD TO CART
-          </Button>
+          </Button> */}
+          <View style={{marginLeft:"auto"}}>
+          <CustomButton
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(160)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={'ADD TO CART'}
+              fontcolor={"white"}
+              fontSize={scale(20)}
+              onPress={() => {
+               navigation.navigate('Cart')
+              }}
+            />
+            </View>
         </View>
         <AccordionList
           list={list}

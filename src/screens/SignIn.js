@@ -16,7 +16,7 @@ import Toast from 'react-native-toast-message';
 import {userLoginAction} from '../../redux/actions/authActons';
 import {sha1} from 'react-native-sha1';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import { s, vs, ms, mvs } from 'react-native-size-matters';
+import CustomButton from '../components/Custom/CustomButton';
 const Screen_Width = Dimensions.get('window').width;
 
 const SignIn = () => {
@@ -84,7 +84,7 @@ const SignIn = () => {
           />
         </View>
         <View style={{paddingHorizontal: scale(35)}}>
-          <Button
+          {/* <Button
             onPress={() => {
               Keyboard.dismiss();
               userSignIn();
@@ -95,7 +95,20 @@ const SignIn = () => {
             buttonColor="#c79248"
             textColor="white">
             SIGN IN
-          </Button>
+          </Button> */}
+           <CustomButton
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(270)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={'SIGN IN'}
+              fontcolor={"white"}
+              fontSize={scale(20)}
+              onPress={() => {
+                Keyboard.dismiss();
+                userSignIn();
+              }}
+            />
         </View>
         <Pressable style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: scale(12)}}>Forget Password?</Text>

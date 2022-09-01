@@ -6,12 +6,13 @@ import {
   TouchableOpacity,
   Modal,
   Alert,
+  Keyboard
 } from 'react-native';
 import {Input, } from 'native-base';
 import {Button} from 'react-native-paper';
 import {DrawerActions, useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
+import CustomButton from './CustomButton';
 
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -82,36 +83,34 @@ const CustomHeader = () => {
               placeholder="Serch Product"
             />
             <View style={{flexDirection: 'row', marginTop: scale(20)}}>
-              <Button
-                mode="text"
-                onPress={() => setModalVisible(!modalVisible)}
-                contentStyle={{height: verticalScale(35),  width: scale(100),}}
-                labelStyle={{fontSize:20}}
-                style={{
-                  borderColor: '#c79248',
-                  borderWidth: scale(1),
-                  borderRadius: 0,
-                  justifyContent: 'center',
-                  marginRight: scale(20),
-                  
-                }}
-                buttonColor="white"
-                textColor="#c79248">
-                CANCEL
-              </Button>
-              <Button
-                onPress={() => navigation.navigate('ProductList')}
-                contentStyle={{height: verticalScale(35), width: scale(100),}}
-                labelStyle={{fontSize:20}}
-                style={{
-                  borderRadius: 0,
-                  justifyContent: 'center',
-                  width: scale(100),
-                }}
-                buttonColor="#c79248"
-                textColor="white">
-                SERCH
-              </Button>
+              <View style={{marginRight:scale(20)}}>
+              <CustomButton
+              borderWidth={scale(1)}
+              borderColor={"#c79248"}
+              buttoncolor={'white'}
+              buttonwidth={scale(100)}
+              buttonheight={verticalScale(40)}
+              text={'CANCEL'}
+              fontcolor={"#c79248"}
+              fontSize={scale(20)}
+              onPress={() => {
+                Keyboard.dismiss();
+                setModalVisible(!modalVisible)
+              }}
+            />
+            </View>
+              <CustomButton
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(100)}
+              buttonheight={verticalScale(40)}
+              text={'SERCH'}
+              fontcolor={"white"}
+              fontSize={scale(20)}
+              onPress={() => {
+                Keyboard.dismiss();
+                navigation.navigate('ProductList')
+              }}
+            />
             </View>
           </View>
         </View>

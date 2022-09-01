@@ -14,6 +14,7 @@ import {increment, decrement} from '../../redux/actions/CounterActions';
 import {Button} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import CustomButton from '../components/Custom/CustomButton';
 
 
 const Cart = () => {
@@ -243,23 +244,20 @@ const Cart = () => {
               placeholder="Apply discount coupon"
               placeholderTextColor="black"
             />
-            <Button
+            <View style={{marginLeft:"auto",padding:scale(2)}}>
+            <CustomButton
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(150)}
+              buttonheight={verticalScale(40)}
+              borderradius={scale(30)}
+              text={'APPLY'}
+              fontcolor={"white"}
+              fontSize={scale(20)}
               onPress={() => {
-                navigation.navigate('Cart');
+               navigation.navigate('Cart')
               }}
-              contentStyle={{height: verticalScale(40)}}
-              labelStyle={{fontSize: 20}}
-              style={{
-                borderRadius: scale(50),
-                marginLeft: 'auto',
-                width: scale(150),
-                justifyContent: 'center',
-                margin:scale(3),
-              }}
-              buttonColor="#c79248"
-              textColor="white">
-              Apply
-            </Button>
+            />
+            </View>
           </View>
           <View
             style={{
@@ -269,41 +267,32 @@ const Cart = () => {
               marginTop: verticalScale(10),
             }}
           />
-          <View style={{flexDirection:"row"}}>
-            <Button
-              onPress={() => {
-                navigation.navigate('Home');
-              }}
-              contentStyle={{height: verticalScale(50)}}
-              labelStyle={{fontSize: 15}}
-              style={{
-                borderRadius: scale(50),
-                marginLeft: 'auto',
-                width: scale(160),
-                justifyContent: 'center',
-                margin:3,
-              }}
-              buttonColor="#c79248"
-              textColor="white">
-              CONTINUE SHOPPING
-            </Button>
-            <Button
-              onPress={() => {
-                navigation.navigate('Checkout');
-              }}
-              contentStyle={{height: verticalScale(50)}}
-              labelStyle={{fontSize: 15}}
-              style={{
-                borderRadius: scale(50),
-                marginLeft: 'auto',
-                width: scale(160),
-                justifyContent: 'center',
-                margin:3,
-              }}
-              buttonColor="#c79248"
-              textColor="white">
-              PROCCED TO PAY
-            </Button>
+          <View style={{flexDirection:"row",justifyContent:"space-between"}}>
+           
+            <CustomButton
+            onPress={() => {
+              navigation.navigate('ProductList');
+            }}
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(160)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={'CONTINUE SHOPPING'}
+              fontcolor={"white"}
+              fontSize={scale(12)}
+            />
+            <CustomButton
+            onPress={() => {
+              navigation.navigate('Checkout');
+            }}
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(160)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={'PROCCED TO PAY'}
+              fontcolor={"white"}
+              fontSize={scale(12)}
+            />
             </View>
         </View>
       </ScrollView>

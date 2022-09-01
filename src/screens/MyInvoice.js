@@ -10,6 +10,7 @@ import React from 'react';
 import {Button} from 'react-native-paper'
 import { useNavigation } from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import CustomButton from '../components/Custom/CustomButton';
 
 
 const MyInvoice = () => {
@@ -217,7 +218,6 @@ const MyInvoice = () => {
                 borderColor: 'darkgrey',
                 marginVertical: verticalScale(10),
               }}></View>
-
                 <View style={{justifyContent:"space-between",flexDirection:"row",marginBottom:10}}>
                     <Text style={{fontSize:scale(13),color:"black"}}>Company GST :ADFWEFEEEF</Text>
                     <Text style={{fontSize:scale(13),color:"black"}}>*Trems & Condition Apply</Text>
@@ -225,7 +225,7 @@ const MyInvoice = () => {
             </View>
           </View>
         </View>
-        <Button
+        {/* <Button
               onPress={() => {
                 
               }}
@@ -243,7 +243,22 @@ const MyInvoice = () => {
               buttonColor="#c79248"
               textColor="white">
               SHARE INVOICE
-            </Button>
+            </Button> */}
+            <View style={{marginLeft:"auto",marginRight:"auto",marginBottom:verticalScale(10)}}>
+            <CustomButton
+             onPress={() => {
+                
+            }}
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(180)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={' SHARE INVOICE'}
+              fontcolor={"white"}
+              fontSize={scale(15)}
+             
+            />
+            </View>
       </ScrollView>
     </SafeAreaView>
   );

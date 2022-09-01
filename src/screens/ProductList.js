@@ -11,7 +11,7 @@ import React,{useState} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useNavigation } from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-
+import CustomButton from '../components/Custom/CustomButton';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;

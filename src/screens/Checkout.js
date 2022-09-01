@@ -11,6 +11,7 @@ import {Input, NativeBaseProvider} from 'native-base';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import CustomButton from '../components/Custom/CustomButton';
 
 const Screen_Width = Dimensions.get('window').width;
 
@@ -150,25 +151,20 @@ const Checkout = () => {
             source={require('../../assets/Images/paymentoptions.png')}
           />
         </View>
-        <Button
-          onPress={() => {
-            navigation.navigate('OrderHistory');
-          }}
-          contentStyle={{height: verticalScale(50)}}
-          labelStyle={{fontSize: 15}}
-          style={{
-            borderRadius: scale(50),
-            marginLeft: 'auto',
-            width: scale(170),
-            justifyContent: 'center',
-            margin: 3,
-            marginRight: 'auto',
-            marginLeft: 'auto',
-          }}
-          buttonColor="#c79248"
-          textColor="white">
-          PROCEED TO PAY
-        </Button>
+        <View style={{marginLeft:"auto",marginRight:"auto",marginBottom:verticalScale(10)}}>
+        <CustomButton
+              buttoncolor={'#c79248'}
+              buttonwidth={scale(180)}
+              buttonheight={verticalScale(50)}
+              borderradius={scale(30)}
+              text={'PROCEED TO PAY'}
+              fontcolor={"white"}
+              fontSize={scale(15)}
+              onPress={() => {
+                navigation.navigate('OrderHistory');
+              }}
+            />
+            </View>
       </ScrollView>
     </SafeAreaView>
   );
