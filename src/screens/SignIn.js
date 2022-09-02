@@ -84,18 +84,6 @@ const SignIn = () => {
           />
         </View>
         <View style={{paddingHorizontal: scale(35)}}>
-          {/* <Button
-            onPress={() => {
-              Keyboard.dismiss();
-              userSignIn();
-            }}
-            contentStyle={{height: verticalScale(50)}}
-            labelStyle={{fontSize: 20}}
-            style={{borderRadius: 50}}
-            buttonColor="#c79248"
-            textColor="white">
-            SIGN IN
-          </Button> */}
            <CustomButton
               buttoncolor={'#c79248'}
               buttonwidth={scale(270)}

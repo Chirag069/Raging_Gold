@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {} from 'react-native';
+import {View, Text, TouchableOpacity} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Input, NativeBaseProvider} from 'native-base';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
@@ -15,18 +15,22 @@ import ProductList from '../../screens/ProductList';
 import ProductDetail from '../../screens/ProductDetail';
 import Checkout from '../../screens/Checkout';
 import CustomHeader from '../Custom/CustomHeader';
+import OrderHistory from '../../screens/OrderHistory';
+import MyInvoice from '../../screens/MyInvoice';
+import Profile from '../../screens/Profile';
+import ProfileHeader from '../Custom/ProfileHeader';
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import OrderHistory from '../../screens/OrderHistory';
-import MyInvoice from '../../screens/MyInvoice';
+import {useNavigation} from '@react-navigation/native';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
 
 const HomeStack = () => {
+  const navigation = useNavigation();
   return (
     <Stack.Navigator>
       <Stack.Screen
@@ -83,6 +87,15 @@ const HomeStack = () => {
         }}
         name="Checkout"
         component={Checkout}
+      />
+
+      <Stack.Screen
+        options={{
+          headerShown: false,
+          header: () => <ProfileHeader/>
+        }}
+        name="Profile"
+        component={Profile}
       />
     </Stack.Navigator>
   );

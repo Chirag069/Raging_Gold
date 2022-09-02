@@ -8,6 +8,8 @@ import {
   FlatList,
 } from 'react-native';
 import React, {useState} from 'react';
+import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+
 
 const data = [
   {
@@ -115,19 +117,19 @@ const Filter = () => {
       <ScrollView nestedScrollEnabled={true}>
         <View style={{flexDirection: 'row', height: Screen_height}}>
           <View style={{backgroundColor: 'lightgrey', flex:0.7}}>
-            <View style={{alignItems: 'center', marginVertical: 20,}}>
-              <Text style={{color: 'grey', fontSize: 15}}>FILTER BY</Text>
+            <View style={{alignItems: 'center', marginVertical: verticalScale(20),}}>
+              <Text style={{color: 'grey', fontSize: scale(15)}}>FILTER BY</Text>
             </View>
 
             <Pressable onPress={() => filterdata('gender')} style={{}}>
-              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5,}}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: scale(0.5),}}>
                 <Text
                   style={{
                     color: 'black',
                     backgroundColor:filter == 'gender'?'darkgrey':'lightgrey',
-                    fontSize: 15,
-                    paddingVertical: 20,
-                    paddingHorizontal: 10,
+                    fontSize: scale(15),
+                    paddingVertical: verticalScale(20),
+                    paddingHorizontal: scale(10),
                     width:'100%'
                   }}>
                   Gender
@@ -136,14 +138,14 @@ const Filter = () => {
             </Pressable>
 
             <Pressable onPress={() => filterdata('itemgroup')}>
-              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: scale(0.5)}}>
                 <Text
                   style={{
                     color: 'black',
-                    fontSize: 15,
+                    fontSize: scale(15),
                     backgroundColor:filter == 'itemgroup'?'darkgrey':'lightgrey',
-                    paddingVertical: 20,
-                    paddingHorizontal: 10,
+                    paddingVertical: verticalScale(20),
+                    paddingHorizontal: scale(10),
                     width:'100%'
                   }}>
                   Item Group
@@ -152,14 +154,14 @@ const Filter = () => {
             </Pressable>
 
             <Pressable onPress={() => filterdata('category')}>
-              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: scale(0.5)}}>
                 <Text
                   style={{
                     color: 'black',
-                    fontSize: 15,
+                    fontSize: scale(15),
                     backgroundColor:filter == 'category'?'darkgrey':'lightgrey',
-                    paddingVertical: 20,
-                    paddingHorizontal: 10,
+                    paddingVertical: verticalScale(20),
+                    paddingHorizontal: scale(10),
                     width:'100%'
                   }}>
                   Category
@@ -168,14 +170,14 @@ const Filter = () => {
             </Pressable>
 
             <Pressable onPress={() => filterdata('subcategory')}>
-              <View style={{alignItems: 'flex-start', borderBottomWidth: 0.5}}>
+              <View style={{alignItems: 'flex-start', borderBottomWidth: scale(0.5)}}>
                 <Text
                   style={{
                     color: 'black',
-                    fontSize: 15,
+                    fontSize:scale(15),
                     backgroundColor:filter == 'subcategory'?'darkgrey':'lightgrey',
-                    paddingVertical: 20,
-                    paddingHorizontal: 10,
+                    paddingVertical: verticalScale(20),
+                    paddingHorizontal: scale(10),
                     width:'100%'
                   }}>
                   Sub Category
@@ -188,11 +190,11 @@ const Filter = () => {
             <View
               style={{
                 alignItems: 'center',
-                borderBottomWidth: 0.5,
+                borderBottomWidth: scale(0.5),
                 borderBottomColor: 'lightgrey',
                 width:'100%'
               }}>
-              <Text style={{color: 'grey', fontSize: 15, paddingVertical: 20}}>
+              <Text style={{color: 'grey', fontSize: scale(15), paddingVertical: verticalScale(20)}}>
                 {filter}
               </Text>
             </View>
@@ -215,16 +217,16 @@ const Filter = () => {
                           <>
                           <Text
                             style={{
-                              borderWidth: 1,
+                              borderWidth: scale(1),
                               borderColor: '#c79248',
                               backgroundColor: item.selected
                                 ? '#c79248'
                                 : 'white',
                               color: item.selected ? 'white' : '#c79248',
-                              paddingHorizontal: 5,
-                              paddingVertical: 5,
-                              borderRadius: 5,
-                              fontSize: 20,
+                              paddingHorizontal: scale(5),
+                              paddingVertical: verticalScale(5),
+                              borderRadius: scale(5),
+                              fontSize: scale(20),
                             }}>
                             {item.gender}
                           </Text>
@@ -238,16 +240,16 @@ const Filter = () => {
                           <>
                           <Text
                             style={{
-                              borderWidth: 1,
+                              borderWidth: scale(1),
                               borderColor: '#c79248',
                               backgroundColor: item.selected
                                 ? '#c79248'
                                 : 'white',
                               color: item.selected ? 'white' : '#c79248',
-                              paddingHorizontal: 5,
-                              paddingVertical: 5,
-                              borderRadius: 5,
-                              fontSize: 20,
+                              paddingHorizontal: scale(5),
+                              paddingVertical: verticalScale(5),
+                              borderRadius: scale(5),
+                              fontSize: scale(20),
                             }}>
                             {item.itemgroup}
                           </Text>
@@ -261,16 +263,16 @@ const Filter = () => {
                           <>
                           <Text
                             style={{
-                              borderWidth: 1,
+                              borderWidth: scale(1),
                               borderColor: '#c79248',
                               backgroundColor: item.selected
                                 ? '#c79248'
                                 : 'white',
                               color: item.selected ? 'white' : '#c79248',
-                              paddingHorizontal: 5,
-                              paddingVertical: 5,
-                              borderRadius: 5,
-                              fontSize: 20,
+                              paddingHorizontal: scale(5),
+                              paddingVertical: verticalScale(5),
+                              borderRadius: scale(5),
+                              fontSize: scale(20),
                             }}>
                             {item.category}
                           </Text>
@@ -284,16 +286,16 @@ const Filter = () => {
                           <>
                           <Text
                             style={{
-                              borderWidth: 1,
+                              borderWidth: scale(1),
                               borderColor: '#c79248',
                               backgroundColor: item.selected
                                 ? '#c79248'
                                 : 'white',
                               color: item.selected ? 'white' : '#c79248',
-                              paddingHorizontal: 5,
-                              paddingVertical: 5,
-                              borderRadius: 5,
-                              fontSize: 20,
+                              paddingHorizontal: scale(5),
+                              paddingVertical: verticalScale(5),
+                              borderRadius: scale(5),
+                              fontSize: scale(20),
                             }}>
                             {item.subcategory}
                           </Text>
