@@ -90,7 +90,9 @@ export default function DrawerNavigation() {
   return (
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
+    
       screenOptions={{
+        
         drawerItemStyle: {
           marginVertical:  scale(0),
           marginHorizontal:  scale(0),
@@ -104,7 +106,7 @@ export default function DrawerNavigation() {
         drawerInactiveBackgroundColor: 'white',
         drawerActiveTintColor: '#333',
         drawerInactiveTintColor: '#333',
-        drawerStyle: {},
+        drawerStyle: {width:scale(280)},
         drawerLabelStyle: {},
         headerShown: false,
       }}>

@@ -74,7 +74,7 @@ const CustomDrawer = props => {
             </View>
           </TouchableOpacity>
 
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
+          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1),}}>
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={{
@@ -82,6 +82,7 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
               <Text style={{color: '#333', fontSize: verticalScale(12)}}>
                 Home
@@ -98,8 +99,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Our Collection</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Our Collection</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -112,8 +114,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Wish List</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Wish List</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -126,8 +129,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Cart</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Cart</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -148,8 +152,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Ladies Ring</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Ladies Ring</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -162,8 +167,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Jeans Ring</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Ring</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -176,8 +182,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Pendal Set</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Pendal Set</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -190,8 +197,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>M.Set</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>M.Set</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -204,8 +212,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Tops</Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Tops</Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -218,8 +227,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Pendal </Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Pendal </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -232,8 +242,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Jeans Lose Kada </Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Lose Kada </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -246,8 +257,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Jeans Bracelet </Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Bracelet </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -260,8 +272,9 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
+                alignItems:"center"
               }}>
-              <Text style={{color: '#333'}}>Ladies Bracelet </Text>
+              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Ladies Bracelet </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>

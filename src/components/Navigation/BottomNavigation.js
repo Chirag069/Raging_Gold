@@ -111,14 +111,19 @@ function BottomNavigation() {
         tabBarInactiveTintColor: 'white',
         tabBarStyle: {
           backgroundColor: '#c79248',
+          height:scale(50),
+          width:scale(350)
+          
         },
       }}>
       <Tab.Screen
         options={{
+          tabBarIconStyle:{height:scale(30),width:scale(30)},
           tabBarIcon: ({focused, color}) => (
+            
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
-              size={25}
+              size={scale(25)}
               color={color}
             />
           ),
@@ -129,10 +134,11 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
+          tabBarIconStyle:{height:scale(30),width:scale(30)},
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons
               name={focused ? 'filter' : 'filter-outline'}
-              size={25}
+              size={scale(25)}
               color={color}
             />
           ),
@@ -145,10 +151,11 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
+          tabBarIconStyle:{height:scale(30),width:scale(30)},
           tabBarIcon: ({focused, color}) => (
             <AntDesign
               name={focused ? 'heart' : 'hearto'}
-              size={25}
+              size={scale(25)}
               color={color}
             />
           ),
@@ -161,10 +168,11 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
+          tabBarIconStyle:{height:scale(30),width:scale(30)},
           tabBarIcon: ({focused, color}) => (
             <Ionicons
               name={focused ? 'cart' : 'cart-outline'}
-              size={25}
+              size={scale(25)}
               color={color}
             />
           ),
