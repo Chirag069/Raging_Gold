@@ -10,7 +10,7 @@ export const GET_USER_ALL_ERROR = 'GET_USER_ALL_ERROR';
 
 export const TOGGLE_TASK = 'TOGGLE_TASK';
 
-export const INCREMENT = "INCREMENT";
-export const DECREMENT = "DECREMENT";
+export const INCREMENT = 'INCREMENT';
+export const DECREMENT = 'DECREMENT';
 
-export const RETRIEVE_TOKEN = "RETRIEVE_TOKEN"
+export const USER_DATA = 'USER_DATA';
