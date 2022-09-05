@@ -12,6 +12,8 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 
+
+
 const Profile = () => {
   const navigation = useNavigation();
   return (

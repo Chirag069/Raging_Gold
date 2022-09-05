@@ -1,4 +1,4 @@
-import {USER_LOGOUT, USER_LOGIN, AUTH_LOADING} from '../actions/types';
+import {USER_LOGOUT, USER_LOGIN, AUTH_LOADING,RETRIEVE_TOKEN} from '../actions/types';
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
 
@@ -6,9 +6,9 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const initialState = {
   userToken: null,
   authLoading: false,
-  Token
+  usertoken:null
 };
-const Token = AsyncStorage.getItem("userToken");
+
 
 
 export default (state = initialState, action) => {
@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userToken: action.payload,
+      };
+      case RETRIEVE_TOKEN:
+      return {
+        ...state,
+        usertoken: action.payload,
       };
     case AUTH_LOADING:
       return {

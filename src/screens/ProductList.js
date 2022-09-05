@@ -13,10 +13,13 @@ import { useNavigation } from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import CustomButton from '../components/Custom/CustomButton';
 
+
+
+
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
 
-const data = [
+const productdata = [
   {
     id: 1,
     title: 'Product 1',
@@ -118,10 +121,11 @@ const data = [
 
 const ProductList = () => {
   const navigation=useNavigation()
-  const [select,setSelect] = useState(data)
+  const [select,setSelect] = useState(productdata)
 
   const handleOnpress = (item)=>{
     const newItem =select.map((val)=>{
+      console.log(val)
       if(val.id === item.id){
         return{...val,selected:!val.selected}
       }else{
@@ -158,7 +162,6 @@ const ProductList = () => {
                   backgroundColor: 'white',
                   width: scale(160),
                   marginHorizontal: scale(5),
-
                 }}>
                 <ImageBackground
                   style={{height:scale(140), width:scale(150), alignSelf: 'center'}}
