@@ -41,8 +41,8 @@ const SignIn = () => {
   }, [navigation]);
 
   const userSignIn = () => {
-    if (emailInput && pwd) {
-      dispatch(userLoginAction(emailInput, pwd));
+    if (emailInput && passwordInput) {
+      dispatch(userLoginAction(emailInput, passwordInput));
     } else {
       Toast.show({
         text1: 'you forgot to enter something',
@@ -57,13 +57,13 @@ const SignIn = () => {
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>
-        <View style={{alignItems: 'center',marginTop:verticalScale(20)}}>
+        <View style={{alignItems: 'center', marginTop: verticalScale(20)}}>
           <Image
             style={{height: verticalScale(200), width: scale(180)}}
             source={require('../../assets/Images/Logo1.png')}
           />
         </View>
-        <View style={{alignItems: 'center',marginTop:scale(20)}}>
+        <View style={{alignItems: 'center', marginTop: scale(20)}}>
           <Text style={{fontSize: scale(20), color: 'black'}}>
             Customer Sign In
           </Text>
@@ -71,32 +71,32 @@ const SignIn = () => {
         <View style={{marginHorizontal: 20, marginVertical: 30}}>
           <TextInput
             label="Email/Mobile No."
-            style={{backgroundColor: 'white',fontSize:scale(13)}}
+            style={{backgroundColor: 'white', fontSize: scale(13)}}
             onChangeText={setEmailInput}
             value={emailInput}
           />
           <TextInput
             label="Password"
-            style={{backgroundColor: 'white',fontSize:scale(13)}}
+            style={{backgroundColor: 'white', fontSize: scale(13)}}
             secureTextEntry={true}
             onChangeText={setPasswordInput}
             value={passwordInput}
           />
         </View>
         <View style={{paddingHorizontal: scale(35)}}>
-           <CustomButton
-              buttoncolor={'#c79248'}
-              buttonwidth={scale(270)}
-              buttonheight={verticalScale(50)}
-              borderradius={scale(30)}
-              text={'SIGN IN'}
-              fontcolor={"white"}
-              fontSize={scale(20)}
-              onPress={() => {
-                Keyboard.dismiss();
-                userSignIn();
-              }}
-            />
+          <CustomButton
+            buttoncolor={'#c79248'}
+            buttonwidth={scale(270)}
+            buttonheight={verticalScale(50)}
+            borderradius={scale(30)}
+            text={'SIGN IN'}
+            fontcolor={'white'}
+            fontSize={scale(20)}
+            onPress={() => {
+              Keyboard.dismiss();
+              userSignIn();
+            }}
+          />
         </View>
         <Pressable style={{alignItems: 'center', marginVertical: 10}}>
           <Text style={{fontSize: scale(12)}}>Forget Password?</Text>

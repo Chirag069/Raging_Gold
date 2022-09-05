@@ -1,15 +1,17 @@
-import {USER_LOGOUT, USER_LOGIN, AUTH_LOADING,RETRIEVE_TOKEN} from '../actions/types';
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
-
+import {
+  USER_LOGOUT,
+  USER_LOGIN,
+  AUTH_LOADING,
+  USER_DATA,
+} from '../actions/types';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
   userToken: null,
   authLoading: false,
-  usertoken:null
+  usertoken: null,
+  userdata: null,
 };
-
-
 
 export default (state = initialState, action) => {
   switch (action.type) {
@@ -18,10 +20,10 @@ export default (state = initialState, action) => {
         ...state,
         userToken: action.payload,
       };
-      case RETRIEVE_TOKEN:
+    case USER_DATA:
       return {
         ...state,
-        usertoken: action.payload,
+        userdata: action.payload,
       };
     case AUTH_LOADING:
       return {
