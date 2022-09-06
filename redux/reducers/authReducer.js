@@ -3,6 +3,7 @@ import {
   USER_LOGIN,
   AUTH_LOADING,
   USER_DATA,
+  PRODUCT_LIST,
 } from '../actions/types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,6 +12,7 @@ const initialState = {
   authLoading: false,
   usertoken: null,
   userdata: null,
+  ProductList: null,
 };
 
 export default (state = initialState, action) => {
@@ -34,6 +36,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         userToken: null,
+      };
+    case PRODUCT_LIST:
+      return {
+        ...state,
+        ProductList: action.payload,
       };
     default:
       return state;

@@ -14,3 +14,5 @@ export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
 
 export const USER_DATA = 'USER_DATA';
+
+export const PRODUCT_LIST = 'PRODUCT_LIST';

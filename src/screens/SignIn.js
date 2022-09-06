@@ -24,13 +24,13 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  const [pwd, setPwd] = useState(null);
+  // const [pwd, setPwd] = useState(null);
 
-  {
-    sha1(passwordInput).then(hash => {
-      setPwd(hash);
-    });
-  }
+  // {
+  //   sha1(passwordInput).then(hash => {
+  //     setPwd(hash);
+  //   });
+  // }
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {

@@ -7,9 +7,11 @@ import DrawerNavigation from './DrawerNavigation';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 
 const AppNav = () => {
-  const {authLoading, userToken} = useSelector(state => state.authState);
+  const {authLoading, userToken, ProductList} = useSelector(
+    state => state.authState,
+  );
 
-  console.log(userToken);
+  console.log(ProductList);
   return (
     <View style={{flex: 1}}>
       <Spinner
