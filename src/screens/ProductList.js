@@ -2,17 +2,22 @@ import {
   View,
   Text,
   Dimensions,
-  ImageBackground,
+  Image,
   Pressable,
   StyleSheet,
   FlatList,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import CustomButton from '../components/Custom/CustomButton';
 import {useSelector} from 'react-redux';
+import {ProductListAction} from '../../redux/actions/authActons';
+import {useDispatch} from 'react-redux';
+import {TouchableOpacity} from 'react-native';
+
+import Spinner from 'react-native-loading-spinner-overlay';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -105,15 +110,18 @@ const productdata = [
 ];
 
 const ProductList = () => {
-  const navigation = useNavigation();
-  const [select, setSelect] = useState(productdata);
-  const {ProductList} = useSelector(state => state.authState);
-
+  const {authLoading, ProductList} = useSelector(state => state.authState);
   console.log(ProductList);
+  const data = ProductList.data;
+  const navigation = useNavigation();
+  const [select, setSelect] = useState(data);
+
+  const dispatch = useDispatch();
+  // console.log(ProductList.data);
 
   const handleOnpress = item => {
     const newItem = select.map(val => {
-      console.log(val);
+      // console.log(val);
       if (val.id === item.id) {
         return {...val, selected: !val.selected};
       } else {
@@ -123,8 +131,19 @@ const ProductList = () => {
     setSelect(newItem);
   };
 
+  // useEffect(() => {
+  //   handleOnpress();
+  // }, []);
+
   return (
     <>
+      <Spinner
+        visible={authLoading}
+        textContent={'Loading...'}
+        textStyle={{color: '#fff'}}
+        overlayColor="rgba(0,0,0, 0.5)"
+        size={scale(30)}
+      />
       <View
         style={{
           backgroundColor: 'white',
@@ -136,11 +155,12 @@ const ProductList = () => {
           Exclusive Gold Ring
         </Text>
       </View>
+
       <View style={styles.container}>
         <FlatList
           style={styles.list}
           contentContainerStyle={styles.listContainer}
-          data={select}
+          data={data}
           horizontal={false}
           numColumns={2}
           keyExtractor={item => {
@@ -151,6 +171,7 @@ const ProductList = () => {
           }}
           renderItem={post => {
             const item = post.item;
+            // console.log(item);
             return (
               <Pressable onPress={() => navigation.navigate('ProductDetail')}>
                 <View
@@ -159,15 +180,19 @@ const ProductList = () => {
                     width: scale(160),
                     marginHorizontal: scale(5),
                   }}>
-                  <ImageBackground
+                  <View
                     style={{
-                      height: scale(140),
-                      width: scale(150),
-                      alignSelf: 'center',
-                    }}
-                    source={{
-                      uri: item.image,
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
                     }}>
+                    <Pressable onPress={() => handleOnpress(item)}>
+                      <Ionicons
+                        name={item.selected ? 'cart-outline' : 'cart'}
+                        color={'#c79248'}
+                        size={scale(30)}
+                        style={{alignSelf: 'flex-end', padding: scale(2)}}
+                      />
+                    </Pressable>
                     <Pressable onPress={() => handleOnpress(item)}>
                       <Ionicons
                         name={item.selected ? 'heart-outline' : 'heart'}
@@ -176,15 +201,64 @@ const ProductList = () => {
                         style={{alignSelf: 'flex-end', padding: scale(2)}}
                       />
                     </Pressable>
-                  </ImageBackground>
-                  <View style={{alignItems: 'center'}}>
+                  </View>
+
+                  <Image
+                    style={{
+                      height: scale(140),
+                      width: scale(160),
+                      alignSelf: 'center',
+                    }}
+                    source={{
+                      uri: item.image,
+                    }}
+                  />
+
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      paddingHorizontal: scale(5),
+                    }}>
                     <Text
                       style={{
-                        fontSize: scale(17),
+                        fontSize: scale(12),
                         marginTop: verticalScale(5),
                         marginBottom: verticalScale(5),
                       }}>
-                      {item.price}
+                      {item.design_name}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: scale(12),
+                        marginTop: verticalScale(5),
+                        marginBottom: verticalScale(5),
+                      }}>
+                      GW:{item.item}
+                    </Text>
+                  </View>
+
+                  <View
+                    style={{
+                      flexDirection: 'row',
+                      justifyContent: 'space-between',
+                      paddingHorizontal: scale(5),
+                    }}>
+                    <Text
+                      style={{
+                        fontSize: scale(12),
+                        marginTop: verticalScale(5),
+                        marginBottom: verticalScale(5),
+                      }}>
+                      {item.amount}
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: scale(12),
+                        marginTop: verticalScale(5),
+                        marginBottom: verticalScale(5),
+                      }}>
+                      GW:{item.gr}
                     </Text>
                   </View>
                 </View>

@@ -16,3 +16,7 @@ export const DECREMENT = 'DECREMENT';
 export const USER_DATA = 'USER_DATA';
 
 export const PRODUCT_LIST = 'PRODUCT_LIST';
+
+export const GET_WISHLIST = 'GET_WISHLIST';
+export const ADD_WISHLIST = 'ADD_WISHLIST';
+export const REMOVE_WISHLIST = 'REMOVE_WISHLIST';

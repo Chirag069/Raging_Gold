@@ -10,9 +10,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const initialState = {
   userToken: null,
   authLoading: false,
-  usertoken: null,
   userdata: null,
-  ProductList: null,
+  ProductList: [],
 };
 
 export default (state = initialState, action) => {
