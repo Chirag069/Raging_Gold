@@ -72,6 +72,7 @@ const ProductList = () => {
                 marginTop: 'auto',
                 marginBottom: 'auto',
                 alignItems: 'center',
+                paddingVertical: verticalScale(20),
               }}>
               <ActivityIndicator
                 animating={productlistloading}
