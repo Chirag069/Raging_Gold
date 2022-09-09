@@ -36,11 +36,6 @@ export default (state = initialState, action) => {
         ...state,
         userToken: null,
       };
-    case PRODUCT_LIST:
-      return {
-        ...state,
-        ProductList: action.payload,
-      };
     default:
       return state;
   }

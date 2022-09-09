@@ -16,7 +16,7 @@ import {useNavigation} from '@react-navigation/native';
 import Dots from 'react-native-dots-pagination';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
-import {ProductListAction} from '../../redux/actions/authActons';
+import {ProductListAction} from '../../redux/actions/ProductListAction';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;

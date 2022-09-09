@@ -11,139 +11,41 @@ import React, {useState, useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
-import CustomButton from '../components/Custom/CustomButton';
 import {useSelector} from 'react-redux';
-import {ProductListAction} from '../../redux/actions/authActons';
+
+import {
+  AddWishlistAction,
+  RemoveWishlistAction,
+} from '../../redux/actions/WishListAction';
 import {useDispatch} from 'react-redux';
-import {TouchableOpacity} from 'react-native';
-
-import Spinner from 'react-native-loading-spinner-overlay';
-
-const Screen_Width = Dimensions.get('window').width;
-const Screen_height = Dimensions.get('window').height;
-
-const productdata = [
-  {
-    id: 1,
-    title: 'Product 1',
-    price: ' ₹ 16000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/503920FCHAA29_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 2,
-    title: 'Product 2',
-    price: ' ₹ 19000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/503119FLRAA02_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 3,
-    title: 'Product 3',
-    price: ' ₹ 5000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/502119FAZAA02_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 4,
-    title: 'Product 4',
-    price: ' ₹ 8000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/501206FANABP5_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 5,
-    title: 'Product 5',
-    price: ' ₹ 30000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/512318FGLAA18_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 6,
-    title: 'Product 6',
-    price: ' ₹ 15000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/502219FCLAAP4_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 7,
-    title: 'Product 7',
-    price: ' ₹ 17000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/511170FCEAAP5_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 8,
-    title: 'Product 8',
-    price: ' ₹ 17000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/500462FOAAA12_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 9,
-    title: 'Product 9',
-    price: ' ₹ 10000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/513220FIIAAP1_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 10,
-    title: 'Product 10',
-    price: ' ₹ 13000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/500005FWAAA02_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 11,
-    title: 'Product 11',
-    price: ' ₹ 18000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/500272FCAAA11_1.jpg',
-    selected: 'false',
-  },
-  {
-    id: 12,
-    title: 'Product 12',
-    price: ' ₹ 18000/-',
-    image: 'https://staticimg.titan.co.in/Tanishq/Catalog/501206FAWABP5_1.jpg',
-    selected: 'false',
-  },
-];
+import {ProductListAction} from '../../redux/actions/ProductListAction';
+import {ActivityIndicator} from 'react-native-paper';
 
 const ProductList = () => {
-  const {authLoading, ProductList} = useSelector(state => state.authState);
-  console.log(ProductList);
+  const {authLoading, userToken} = useSelector(state => state.authState);
+  const {ProductList, productlistloading} = useSelector(
+    state => state.productlistState,
+  );
   const data = ProductList.data;
   const navigation = useNavigation();
-  const [select, setSelect] = useState(data);
+  const [wishlistid, setWishlistid] = useState();
 
   const dispatch = useDispatch();
-  // console.log(ProductList.data);
 
   const handleOnpress = item => {
-    const newItem = select.map(val => {
-      // console.log(val);
-      if (val.id === item.id) {
-        return {...val, selected: !val.selected};
-      } else {
-        return val;
-      }
-    });
-    setSelect(newItem);
+    console.log(item.id);
+    if (item) {
+      dispatch(AddWishlistAction(userToken, wishlistid));
+    } else {
+      dispatch(RemoveWishlistAction(userToken, wishlistid));
+    }
+    setWishlistid(item.id);
   };
 
-  // useEffect(() => {
-  //   handleOnpress();
-  // }, []);
+  const limit = data?.length + 10;
 
   return (
     <>
-      <Spinner
-        visible={authLoading}
-        textContent={'Loading...'}
-        textStyle={{color: '#fff'}}
-        overlayColor="rgba(0,0,0, 0.5)"
-        size={scale(30)}
-      />
       <View
         style={{
           backgroundColor: 'white',
@@ -163,6 +65,21 @@ const ProductList = () => {
           data={data}
           horizontal={false}
           numColumns={2}
+          onEndReached={() => dispatch(ProductListAction(userToken, limit))}
+          ListFooterComponent={() => (
+            <View
+              style={{
+                marginTop: 'auto',
+                marginBottom: 'auto',
+                alignItems: 'center',
+              }}>
+              <ActivityIndicator
+                animating={productlistloading}
+                color={'#c79248'}
+                size={scale(30)}
+              />
+            </View>
+          )}
           keyExtractor={item => {
             return item.id;
           }}
@@ -171,7 +88,6 @@ const ProductList = () => {
           }}
           renderItem={post => {
             const item = post.item;
-            // console.log(item);
             return (
               <Pressable onPress={() => navigation.navigate('ProductDetail')}>
                 <View
@@ -187,7 +103,7 @@ const ProductList = () => {
                     }}>
                     <Pressable onPress={() => handleOnpress(item)}>
                       <Ionicons
-                        name={item.selected ? 'cart-outline' : 'cart'}
+                        name={item.id ? 'cart-outline' : 'cart'}
                         color={'#c79248'}
                         size={scale(30)}
                         style={{alignSelf: 'flex-end', padding: scale(2)}}
@@ -195,7 +111,7 @@ const ProductList = () => {
                     </Pressable>
                     <Pressable onPress={() => handleOnpress(item)}>
                       <Ionicons
-                        name={item.selected ? 'heart-outline' : 'heart'}
+                        name={'heart'}
                         color={'#c79248'}
                         size={scale(30)}
                         style={{alignSelf: 'flex-end', padding: scale(2)}}

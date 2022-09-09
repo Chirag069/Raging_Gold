@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Pressable, Button} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Input, NativeBaseProvider} from 'native-base';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import {useDispatch, useSelector} from 'react-redux';
 
 //screen
 import Home from '../../screens/Home';
@@ -19,6 +20,12 @@ import OrderHistory from '../../screens/OrderHistory';
 import MyInvoice from '../../screens/MyInvoice';
 import Profile from '../../screens/Profile';
 import ProfileHeader from '../Custom/ProfileHeader';
+import {
+  GetWishlistAction,
+  AddWishlistAction,
+  RemoveWishlistAction,
+  WishListLoadingAction,
+} from '../../../redux/actions/WishListAction';
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -92,7 +99,7 @@ const HomeStack = () => {
       <Stack.Screen
         options={{
           headerShown: false,
-          header: () => <ProfileHeader/>
+          header: () => <ProfileHeader />,
         }}
         name="Profile"
         component={Profile}
@@ -102,6 +109,11 @@ const HomeStack = () => {
 };
 
 function BottomNavigation() {
+  const dispatch = useDispatch();
+  const {userToken} = useSelector(state => state.authState);
+  const {wishlist, addwishlist, removewishlist, wishlistLoading} = useSelector(
+    state => state.wishlistState,
+  );
   return (
     <Tab.Navigator
       screenOptions={{
@@ -111,16 +123,14 @@ function BottomNavigation() {
         tabBarInactiveTintColor: 'white',
         tabBarStyle: {
           backgroundColor: '#c79248',
-          height:scale(50),
-          width:scale(350)
-          
+          height: scale(50),
+          width: scale(350),
         },
       }}>
       <Tab.Screen
         options={{
-          tabBarIconStyle:{height:scale(30),width:scale(30)},
+          tabBarIconStyle: {height: scale(30), width: scale(30)},
           tabBarIcon: ({focused, color}) => (
-            
             <Ionicons
               name={focused ? 'home' : 'home-outline'}
               size={scale(25)}
@@ -134,7 +144,7 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
-          tabBarIconStyle:{height:scale(30),width:scale(30)},
+          tabBarIconStyle: {height: scale(30), width: scale(30)},
           tabBarIcon: ({focused, color}) => (
             <MaterialCommunityIcons
               name={focused ? 'filter' : 'filter-outline'}
@@ -151,7 +161,7 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
-          tabBarIconStyle:{height:scale(30),width:scale(30)},
+          tabBarIconStyle: {height: scale(30), width: scale(30)},
           tabBarIcon: ({focused, color}) => (
             <AntDesign
               name={focused ? 'heart' : 'hearto'}
@@ -168,7 +178,7 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
-          tabBarIconStyle:{height:scale(30),width:scale(30)},
+          tabBarIconStyle: {height: scale(30), width: scale(30)},
           tabBarIcon: ({focused, color}) => (
             <Ionicons
               name={focused ? 'cart' : 'cart-outline'}
