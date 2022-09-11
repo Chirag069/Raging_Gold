@@ -12,6 +12,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
+import {GetWishlistAction} from '../../redux/actions/WishListAction';
 
 import {
   AddWishlistAction,
@@ -22,24 +23,28 @@ import {ProductListAction} from '../../redux/actions/ProductListAction';
 import {ActivityIndicator} from 'react-native-paper';
 
 const ProductList = () => {
-  const {authLoading, userToken} = useSelector(state => state.authState);
+  const dispatch = useDispatch();
+  const {userToken} = useSelector(state => state.authState);
   const {ProductList, productlistloading} = useSelector(
     state => state.productlistState,
   );
+  const {wishlist} = useSelector(state => state.wishlistState);
   const data = ProductList.data;
   const navigation = useNavigation();
-  const [wishlistid, setWishlistid] = useState();
-
-  const dispatch = useDispatch();
+  const wishlistdata = wishlist.data;
+  const [select, setSelect] = useState();
 
   const handleOnpress = item => {
-    console.log(item.id);
     if (item) {
-      dispatch(AddWishlistAction(userToken, wishlistid));
-    } else {
-      dispatch(RemoveWishlistAction(userToken, wishlistid));
+      dispatch(AddWishlistAction(userToken, item.id));
+      const newItem = wishlistdata.map(val => {
+        if (val.id === item.id) {
+          dispatch(RemoveWishlistAction(userToken, item.id));
+        }
+        setSelect(newItem);
+      });
     }
-    setWishlistid(item.id);
+    dispatch(GetWishlistAction(userToken));
   };
 
   const limit = data?.length + 10;
@@ -102,7 +107,7 @@ const ProductList = () => {
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                     }}>
-                    <Pressable onPress={() => handleOnpress(item)}>
+                    <Pressable onPress={() => {}}>
                       <Ionicons
                         name={item.id ? 'cart-outline' : 'cart'}
                         color={'#c79248'}

@@ -17,6 +17,10 @@ import Dots from 'react-native-dots-pagination';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
+import {
+  GetWishlistAction,
+  WishListLoadingAction,
+} from '../../redux/actions/WishListAction';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -92,6 +96,7 @@ const Home = () => {
               onPress={() => {
                 navigation.navigate('ProductList'),
                   dispatch(ProductListAction(userToken));
+                // dispatch(GetWishlistAction(userToken));
               }}>
               <View style={{backgroundColor: 'white', width: scale(160)}}>
                 <ImageBackground
