@@ -21,5 +21,9 @@ export const PRODUCTLIST_LOADING = 'PRODUCTLIST_LOADING';
 export const GET_WISHLIST = 'GET_WISHLIST';
 export const ADD_WISHLIST = 'ADD_WISHLIST';
 export const REMOVE_WISHLIST = 'REMOVE_WISHLIST';
-
 export const WISHLIST_LOADING = 'WISHLIST_LOADING';
+
+export const GET_CART = 'GET_CART';
+export const UPDATE_CART = 'ADD_CART';
+export const REMOVE_CART = 'REMOVE_CART';
+export const CART_LOADING = 'CART_LOADING';

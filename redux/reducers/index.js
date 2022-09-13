@@ -5,6 +5,7 @@ import productReducer from './productReducer.js';
 import counterReducer from './counterReducer';
 import WishListReducer from './WishListReducer.js';
 import ProductListReducer from './ProductListReducer.js';
+import CartReducer from './CartReducer.js';
 
 export default combineReducers({
   themeState: themeReducer,
@@ -13,4 +14,5 @@ export default combineReducers({
   counterState: counterReducer,
   wishlistState: WishListReducer,
   productlistState: ProductListReducer,
+  cartState: CartReducer,
 });

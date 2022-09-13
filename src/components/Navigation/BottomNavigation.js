@@ -32,6 +32,7 @@ import AntDesign from 'react-native-vector-icons/AntDesign';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
+import Total from '../../screens/Total';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -116,6 +117,11 @@ function BottomNavigation() {
   );
   return (
     <Tab.Navigator
+      tabBar={() => (
+        <View>
+          <Text>hello</Text>
+        </View>
+      )}
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
@@ -191,6 +197,22 @@ function BottomNavigation() {
         }}
         name="Cart"
         component={Cart}
+      />
+      <Tab.Screen
+        options={{
+          tabBarIconStyle: {height: scale(30), width: scale(30)},
+          tabBarIcon: ({focused, color}) => (
+            <Ionicons
+              name={focused ? 'cart' : 'cart-outline'}
+              size={scale(25)}
+              color={color}
+            />
+          ),
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="Total"
+        component={Total}
       />
     </Tab.Navigator>
   );

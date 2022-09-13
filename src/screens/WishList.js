@@ -18,7 +18,7 @@ import {
   AddWishlistAction,
   RemoveWishlistAction,
 } from '../../redux/actions/WishListAction';
-import Spinner from 'react-native-loading-spinner-overlay';
+import {ActivityIndicator} from 'react-native-paper';
 import {useFocusEffect} from '@react-navigation/native';
 
 const WishList = () => {
@@ -49,34 +49,33 @@ const WishList = () => {
   return (
     <>
       {wishlistLoading ? (
-        <>
-          <Spinner
-            visible={wishlistLoading}
-            textContent={'Loading...'}
-            textStyle={{color: '#fff'}}
-            overlayColor="rgba(0,0,0, 0.5)"
+        <View
+          style={{
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            alignItems: 'center',
+            paddingVertical: verticalScale(20),
+          }}>
+          <ActivityIndicator
+            animating={wishlistLoading}
+            color={'#c79248'}
             size={scale(30)}
-            color={'#fff'}
           />
-        </>
+        </View>
       ) : (
         <View style={{flex: 1}}>
-          <TouchableOpacity
-            onPress={() => {
-              dispatch(GetWishlistAction(userToken));
+          <View
+            style={{
+              backgroundColor: 'white',
+              paddingHorizontal: scale(10),
+              paddingVertical: verticalScale(10),
+              marginBottom: verticalScale(5),
             }}>
-            <View
-              style={{
-                backgroundColor: 'white',
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(10),
-                marginBottom: verticalScale(5),
-              }}>
-              <Text style={{color: '#c79248', fontSize: scale(20)}}>
-                Wishlist
-              </Text>
-            </View>
-          </TouchableOpacity>
+            <Text style={{color: '#c79248', fontSize: scale(20)}}>
+              Wishlist
+            </Text>
+          </View>
+
           {data?.length != 0 ? (
             <ScrollView>
               <FlatList
@@ -191,12 +190,9 @@ const WishList = () => {
                 marginBottom: 'auto',
               }}>
               <Image
-                style={{height: scale(170), width: scale(300)}}
-                source={require('../../assets/Images/emptywishlist.png')}
+                style={{height: scale(400), width: scale(400)}}
+                source={require('../../assets/Images/giphy.gif')}
               />
-              <Text style={{fontSize: scale(17), color: '#333'}}>
-                Your Wishlist is Empty
-              </Text>
             </View>
           )}
         </View>

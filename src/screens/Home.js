@@ -96,7 +96,7 @@ const Home = () => {
               onPress={() => {
                 navigation.navigate('ProductList'),
                   dispatch(ProductListAction(userToken));
-                // dispatch(GetWishlistAction(userToken));
+                dispatch(GetWishlistAction(userToken));
               }}>
               <View style={{backgroundColor: 'white', width: scale(160)}}>
                 <ImageBackground

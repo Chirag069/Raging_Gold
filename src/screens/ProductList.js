@@ -6,6 +6,7 @@ import {
   Pressable,
   StyleSheet,
   FlatList,
+  TouchableOpacity,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -21,6 +22,7 @@ import {
 import {useDispatch} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
 import {ActivityIndicator} from 'react-native-paper';
+import {UpdateCartAction} from '../../redux/actions/CartAction';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -29,23 +31,44 @@ const ProductList = () => {
     state => state.productlistState,
   );
   const {wishlist} = useSelector(state => state.wishlistState);
+  const {updatecart} = useSelector(state => state.cartState);
   const data = ProductList.data;
   const navigation = useNavigation();
-  const wishlistdata = wishlist.data;
+  const wishlistdata = wishlist?.data;
   const [select, setSelect] = useState();
+  const [val, setVal] = useState();
 
   const handleOnpress = item => {
-    if (item) {
-      dispatch(AddWishlistAction(userToken, item.id));
-      const newItem = wishlistdata.map(val => {
-        if (val.id === item.id) {
-          dispatch(RemoveWishlistAction(userToken, item.id));
+    const newItem = wishlistdata.filter(val => {
+      console.log(val.id, item.id);
+      if (val.id === item.id) {
+        dispatch(GetWishlistAction(userToken));
+        dispatch(RemoveWishlistAction(userToken, item.id));
+      } else {
+        if (val.id !== item.id) {
+          dispatch(GetWishlistAction(userToken));
+          dispatch(AddWishlistAction(userToken, item.id));
         }
-        setSelect(newItem);
-      });
-    }
-    dispatch(GetWishlistAction(userToken));
+      }
+    });
+    setSelect(newItem);
   };
+
+  // const newItem = wishlistdata.map(val => {
+  //   setVal(val);
+  //   // console.log(val);
+  // });
+  // setSelect(newItem);
+  // console.log(val.id, item.id);
+  // if (val?.id !== item.id) {
+  //   dispatch(GetWishlistAction(userToken));
+  //   dispatch(AddWishlistAction(userToken, item.id));
+  // } else {
+  //   if (val?.id == item.id) {
+  //     dispatch(GetWishlistAction(userToken));
+  //     dispatch(RemoveWishlistAction(userToken, item.id));
+  //   }
+  // }
 
   const limit = data?.length + 10;
 
@@ -107,14 +130,17 @@ const ProductList = () => {
                       flexDirection: 'row',
                       justifyContent: 'space-between',
                     }}>
-                    <Pressable onPress={() => {}}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        dispatch(UpdateCartAction(userToken, item.id))
+                      }>
                       <Ionicons
-                        name={item.id ? 'cart-outline' : 'cart'}
+                        name={'cart-outline'}
                         color={'#c79248'}
                         size={scale(30)}
                         style={{alignSelf: 'flex-end', padding: scale(2)}}
                       />
-                    </Pressable>
+                    </TouchableOpacity>
                     <Pressable onPress={() => handleOnpress(item)}>
                       <Ionicons
                         name={'heart'}
