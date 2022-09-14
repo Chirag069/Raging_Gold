@@ -94,7 +94,7 @@ export const RemoveCartAction =
       .then(response => response.json())
       .then(result => {
         let serverResponse = result;
-        dispatch(CartLoadingAction());
+        dispatch(CartLoadingAction(false));
         if (serverResponse.status == true) {
           dispatch({
             type: REMOVE_CART,
@@ -131,7 +131,7 @@ export const RemoveCartAction =
   };
 
 export const UpdateCartAction =
-  (userToken = '', item_config_id = '') =>
+  (userToken = '', item_config_id = '', qty = '') =>
   dispatch => {
     dispatch(CartLoadingAction(true));
     var myHeaders = new Headers();
@@ -160,6 +160,7 @@ export const UpdateCartAction =
       .then(response => response.json())
       .then(result => {
         let serverResponse = result;
+        console.log(qty, item_config_id);
         dispatch(CartLoadingAction());
         if (serverResponse.status == true) {
           dispatch({

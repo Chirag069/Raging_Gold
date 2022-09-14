@@ -8,8 +8,9 @@ import {
   Pressable,
   TouchableOpacity,
   ScrollView,
+  FlatList,
 } from 'react-native';
-import React, {useState, useRef} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
 import Carousel from 'react-native-snap-carousel-v4';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
@@ -21,6 +22,7 @@ import {
   GetWishlistAction,
   WishListLoadingAction,
 } from '../../redux/actions/WishListAction';
+import {HomeAction} from '../../redux/actions/HomeAction';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -31,29 +33,21 @@ const Home = () => {
   const ref = useRef(null);
   const dispatch = useDispatch();
   const {userToken} = useSelector(state => state.authState);
+  const {home} = useSelector(state => state.homeState);
 
-  const carouselItems = [
-    {
-      image:
-        'https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936835948-LEHCW0662BQPPWWLTQRQ/Home-Carousel-4.jpg?format=2500w',
-    },
-    {
-      image:
-        'https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936834266-5T8BZ4MJ2N9ETBYDA1LS/Home-Carousel-3.jpg?format=2500w',
-    },
-    {
-      image:
-        'https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936831481-4VUJZREY6C79S8YS6APL/Home-Carousel-2.jpg?format=2500w',
-    },
-    {
-      image:
-        'https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1464320671031-P0SNKCPIX63PFEICW0V0/Home-Carousel-5_2.jpg?format=2500w',
-    },
-    {
-      image:
-        'https://images.squarespace-cdn.com/content/v1/5535c7f4e4b07fe01de70f4b/1436936869886-SOFIVPBTQ83SJX55FXE6/Home-Carousel-1.jpg?format=2500w',
-    },
-  ];
+  useEffect(() => {
+    dispatch(HomeAction(userToken));
+  }, []);
+
+ 
+
+  const carouselItems = home.data?.slider;
+  const data = home.data?.sub_category;
+  const limit = data?.length +1;
+
+  // console.log(limit)
+
+  // console.log(data);
 
   const _renderItem = ({item, index}) => {
     return (
@@ -63,7 +57,7 @@ const Home = () => {
           width: Screen_Width,
         }}>
         <Image
-          style={{height: scale(170), width: Screen_Width}}
+          style={{height: scale(220), width: Screen_Width}}
           resizeMode="cover"
           source={{uri: item.image}}
         />
@@ -88,9 +82,9 @@ const Home = () => {
             inactiveSlideOpacity={1}
             onSnapToItem={index => setActiveIndex(index)}
           />
-          <Dots length={4} active={activeIndex} />
+          <Dots length={carouselItems?.length} active={activeIndex} />
         </View>
-        <View style={{marginHorizontal: scale(10), marginBottom: scale(10)}}>
+        {/* <View style={{marginHorizontal: scale(10), marginBottom: scale(10)}}>
           <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
             <Pressable
               onPress={() => {
@@ -165,36 +159,48 @@ const Home = () => {
               </View>
             </Pressable>
           </View>
-        </View>
-        <View
+        </View> */}
+
+        <FlatList
           style={{
-            marginHorizontal: 20,
-            alignItems: 'center',
-            marginBottom: scale(10),
-          }}>
-          <Pressable>
-            <Image
-              style={{width: scale(330), height: scale(140)}}
-              resizeMode="cover"
-              source={{
-                uri: 'https://www.shilpalifestyle.com/assets/home-slider/home_slider_HOME_PAGE_-3.jpg',
-              }}
-            />
-          </Pressable>
-          <Pressable>
-            <Image
-              style={{
-                width: scale(330),
-                height: scale(140),
-                marginTop: scale(10),
-              }}
-              resizeMode="cover"
-              source={{
-                uri: 'https://www.shilpalifestyle.com/assets/category/Bridal-Diamond-Banner.jpg',
-              }}
-            />
-          </Pressable>
-        </View>
+            paddingHorizontal: scale(5),
+            backgroundColor: '#F5F5F5',
+          }}
+          contentContainerStyle={{flex: 1}}
+          data={data}
+          horizontal={false}
+          numColumns={1}
+          keyExtractor={item => {
+            return item.id;
+          }}
+          ItemSeparatorComponent={() => {
+            return <View style={{marginTop: scale(5)}} />;
+          }}
+          renderItem={post => {
+            const item = post.item;
+           return (
+              <View
+                style={{
+                  marginHorizontal: 20,
+                  alignItems: 'center',
+                  marginBottom: scale(10),
+                }}>
+                <TouchableOpacity onPress={()=>{navigation.navigate('ProductList'),
+                  dispatch(ProductListAction(userToken,10,item.id))}}>
+                  <ImageBackground
+                    style={{width: scale(330), height: scale(180),alignItems:"flex-end"}}
+                    resizeMode="cover"
+                    source={{
+                      uri: item.image
+                    }}
+                  >
+                    <Text style={{color:"white",fontSize:scale(20),marginRight:scale(20),marginTop:verticalScale(10)}}>{item.name}</Text>
+                  </ImageBackground>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
       </ScrollView>
     </SafeAreaView>
   );

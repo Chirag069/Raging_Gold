@@ -45,7 +45,7 @@ const Cart = () => {
     }, []),
   );
 
-  console.log(updatecart);
+  // console.log(counter);
 
   const data = cart.data;
 
@@ -191,6 +191,7 @@ const Cart = () => {
                               <TouchableOpacity
                                 onPress={() => {
                                   dispatch(decrement());
+                                  dispatch(UpdateCartAction(userToken, -1));
                                 }}
                                 style={{
                                   backgroundColor: '#c79248',
@@ -218,7 +219,12 @@ const Cart = () => {
                                 </Text>
                               </View>
                               <TouchableOpacity
-                                onPress={() => dispatch(increment())}
+                                onPress={() => {
+                                  dispatch(increment());
+                                  dispatch(
+                                    UpdateCartAction(userToken, counter),
+                                  );
+                                }}
                                 style={{
                                   backgroundColor: '#c79248',
                                   // borderWidth: scale(0.5),
@@ -238,8 +244,12 @@ const Cart = () => {
 
                             <Pressable
                               onPress={() => {
-                                dispatch(RemoveCartAction(userToken, item.id));
-                                dispatch(GetCartAction(userToken));
+                                return (
+                                  dispatch(
+                                    RemoveCartAction(userToken, item.id),
+                                  ),
+                                  dispatch(GetCartAction(userToken))
+                                );
                               }}
                               style={{
                                 alignSelf: 'flex-end',

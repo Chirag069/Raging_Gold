@@ -4,8 +4,9 @@ import {
   Image,
   ImageBackground,
   TouchableOpacity,
+  FlatList,
 } from 'react-native';
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
   DrawerContentScrollView,
   DrawerItemList,
@@ -18,11 +19,22 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import {authLogOutAction} from '../../../redux/actions/authActons';
+import {HomeAction} from '../../../redux/actions/HomeAction';
 import Profile from '../../screens/Profile';
+import {ProductListAction} from '../../../redux/actions/ProductListAction';
 
 const CustomDrawer = props => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
+  const {userToken} = useSelector(state => state.authState);
+  const {home} = useSelector(state => state.homeState);
+
+  useEffect(() => {
+    dispatch(HomeAction(userToken));
+  }, []);
+
+  const data = home.data?.sub_category;
+
   return (
     <View style={{flex: 1}}>
       <DrawerContentScrollView
@@ -60,9 +72,7 @@ const CustomDrawer = props => {
             </Text>
           </View>
 
-          <TouchableOpacity 
-          onPress={()=>navigation.navigate('Profile')}
-          >
+          <TouchableOpacity onPress={() => navigation.navigate('Profile')}>
             <View
               style={{
                 marginHorizontal: scale(10),
@@ -74,7 +84,7 @@ const CustomDrawer = props => {
             </View>
           </TouchableOpacity>
 
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1),}}>
+          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
             <TouchableOpacity
               onPress={() => navigation.navigate('Home')}
               style={{
@@ -82,7 +92,7 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems:"center"
+                alignItems: 'center',
               }}>
               <Text style={{color: '#333', fontSize: verticalScale(12)}}>
                 Home
@@ -99,9 +109,11 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems:"center"
+                alignItems: 'center',
               }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Our Collection</Text>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                Our Collection
+              </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -114,9 +126,11 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems:"center"
+                alignItems: 'center',
               }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Wish List</Text>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                Wish List
+              </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -129,9 +143,11 @@ const CustomDrawer = props => {
                 paddingVertical: verticalScale(8),
                 flexDirection: 'row',
                 justifyContent: 'space-between',
-                alignItems:"center"
+                alignItems: 'center',
               }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Cart</Text>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                Cart
+              </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </TouchableOpacity>
           </View>
@@ -143,143 +159,47 @@ const CustomDrawer = props => {
           </Text>
         </View>
 
-        <View>
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-              onPress={() => navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Ladies Ring</Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Ring</Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Pendal Set</Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>M.Set</Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Tops</Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Pendal </Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Lose Kada </Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Jeans Bracelet </Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-          <View style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
-            <TouchableOpacity
-            onPress={()=>navigation.navigate('ProductList')}
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems:"center"
-              }}>
-              <Text style={{color: '#333',fontSize: verticalScale(12)}}>Ladies Bracelet </Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </TouchableOpacity>
-          </View>
-
-        </View>
+        <FlatList
+          style={{
+            paddingHorizontal: scale(5),
+            backgroundColor: 'white',
+          }}
+          contentContainerStyle={{flex: 1}}
+          data={data}
+          horizontal={false}
+          numColumns={1}
+          keyExtractor={item => {
+            return item.id;
+          }}
+          renderItem={item => {
+            return (
+              <View
+                style={{borderColor: 'lightgrey', borderBottomWidth: scale(1)}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('ProductList'),
+                      dispatch(ProductListAction(userToken, 10, item.item.id));
+                  }}
+                  style={{
+                    paddingHorizontal: scale(10),
+                    paddingVertical: verticalScale(8),
+                    flexDirection: 'row',
+                    justifyContent: 'space-between',
+                    alignItems: 'center',
+                  }}>
+                  <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                    {item.item.name}
+                  </Text>
+                  <Entypo
+                    name="chevron-right"
+                    size={scale(20)}
+                    color="#c79248"
+                  />
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
 
         {/* <View style={{  backgroundColor: '#fff', }}>
                     <DrawerItemList {...props} />

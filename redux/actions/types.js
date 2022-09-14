@@ -27,3 +27,5 @@ export const GET_CART = 'GET_CART';
 export const UPDATE_CART = 'ADD_CART';
 export const REMOVE_CART = 'REMOVE_CART';
 export const CART_LOADING = 'CART_LOADING';
+
+export const HOME = 'HOME';

@@ -29,6 +29,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         updatecart: action.payload,
+        cartLoading: false,
       };
     case REMOVE_CART:
       return {

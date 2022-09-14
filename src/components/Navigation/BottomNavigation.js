@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, Pressable, Button} from 'react-native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Input, NativeBaseProvider} from 'native-base';
@@ -26,6 +26,7 @@ import {
   RemoveWishlistAction,
   WishListLoadingAction,
 } from '../../../redux/actions/WishListAction';
+import {GetCartAction} from '../../../redux/actions/CartAction';
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -33,6 +34,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useNavigation} from '@react-navigation/native';
 import Total from '../../screens/Total';
+import CustomTabBar from '../Custom/CustomTabBar';
+import { HomeAction } from '../../../redux/actions/HomeAction';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -112,16 +115,21 @@ const HomeStack = () => {
 function BottomNavigation() {
   const dispatch = useDispatch();
   const {userToken} = useSelector(state => state.authState);
-  const {wishlist, addwishlist, removewishlist, wishlistLoading} = useSelector(
-    state => state.wishlistState,
-  );
+  const {cart} = useSelector(state => state.cartState);
+  const [itemqty, setItemqty] = useState(null);
+
+  useEffect(() => {
+    dispatch(GetCartAction(userToken));
+    // dispatch(HomeAction(userToken));
+  }, []);
+
+  const cartqty = cart?.totaldata?.total_qty;
+
+  // console.log(cartqty);
+
   return (
     <Tab.Navigator
-      tabBar={() => (
-        <View>
-          <Text>hello</Text>
-        </View>
-      )}
+      // tabBar={props => <CustomTabBar {...props} />}
       screenOptions={{
         tabBarShowLabel: false,
         headerShown: false,
@@ -132,6 +140,7 @@ function BottomNavigation() {
           height: scale(50),
           width: scale(350),
         },
+        // tabBarHideOnKeyboard: true,
       }}>
       <Tab.Screen
         options={{
@@ -184,6 +193,8 @@ function BottomNavigation() {
 
       <Tab.Screen
         options={{
+          tabBarBadge: cartqty,
+          tabBarBadgeStyle: {marginLeft: scale(20)},
           tabBarIconStyle: {height: scale(30), width: scale(30)},
           tabBarIcon: ({focused, color}) => (
             <Ionicons
@@ -197,22 +208,6 @@ function BottomNavigation() {
         }}
         name="Cart"
         component={Cart}
-      />
-      <Tab.Screen
-        options={{
-          tabBarIconStyle: {height: scale(30), width: scale(30)},
-          tabBarIcon: ({focused, color}) => (
-            <Ionicons
-              name={focused ? 'cart' : 'cart-outline'}
-              size={scale(25)}
-              color={color}
-            />
-          ),
-          headerShown: true,
-          header: () => <CustomHeader />,
-        }}
-        name="Total"
-        component={Total}
       />
     </Tab.Navigator>
   );

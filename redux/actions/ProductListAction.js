@@ -11,9 +11,10 @@ export const ProductListLoadingAction =
   };
 
 export const ProductListAction =
-  (userToken = '', limit = '10') =>
+  (userToken = '', limit = '10', category = '') =>
   dispatch => {
     dispatch(ProductListLoadingAction(true));
+    // console.log(limit, category);
     var myHeaders = new Headers();
     myHeaders.append('If-Range', userToken);
     myHeaders.append('Content-Type', 'application/json');
@@ -23,7 +24,7 @@ export const ProductListAction =
       limit: limit,
       gender: 'MALE,FEMALE,ALL',
       item_group: '1,2,3,4',
-      category: '',
+      category: category,
       search_text: '',
     });
 
@@ -44,7 +45,7 @@ export const ProductListAction =
         if (serverResponse.status == true) {
           dispatch({
             type: PRODUCT_LIST,
-            payload: serverResponse,
+            payload: {serverResponse, category},
           });
 
           //   Toast.show({
@@ -65,6 +66,7 @@ export const ProductListAction =
         }
       })
       .catch(error => {
+        console.log(error);
         dispatch(ProductListLoadingAction());
         Toast.show({
           text1: 'Server response failed',

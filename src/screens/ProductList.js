@@ -22,7 +22,7 @@ import {
 import {useDispatch} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
 import {ActivityIndicator} from 'react-native-paper';
-import {UpdateCartAction} from '../../redux/actions/CartAction';
+import {UpdateCartAction, GetCartAction} from '../../redux/actions/CartAction';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -32,7 +32,8 @@ const ProductList = () => {
   );
   const {wishlist} = useSelector(state => state.wishlistState);
   const {updatecart} = useSelector(state => state.cartState);
-  const data = ProductList.data;
+  const data = ProductList.serverResponse.data;
+  const categoryid = ProductList.category;
   const navigation = useNavigation();
   const wishlistdata = wishlist?.data;
   const [select, setSelect] = useState();
@@ -40,7 +41,7 @@ const ProductList = () => {
 
   const handleOnpress = item => {
     const newItem = wishlistdata.filter(val => {
-      console.log(val.id, item.id);
+      // console.log(val.id, item.id);
       if (val.id === item.id) {
         dispatch(GetWishlistAction(userToken));
         dispatch(RemoveWishlistAction(userToken, item.id));
@@ -93,7 +94,9 @@ const ProductList = () => {
           data={data}
           horizontal={false}
           numColumns={2}
-          onEndReached={() => dispatch(ProductListAction(userToken, limit))}
+          onEndReached={() =>
+            dispatch(ProductListAction(userToken, limit, categoryid))
+          }
           ListFooterComponent={() => (
             <View
               style={{
@@ -131,9 +134,12 @@ const ProductList = () => {
                       justifyContent: 'space-between',
                     }}>
                     <TouchableOpacity
-                      onPress={() =>
-                        dispatch(UpdateCartAction(userToken, item.id))
-                      }>
+                      onPress={() => {
+                        return (
+                          dispatch(UpdateCartAction(userToken, item.id)),
+                          dispatch(GetCartAction(userToken))
+                        );
+                      }}>
                       <Ionicons
                         name={'cart-outline'}
                         color={'#c79248'}
