@@ -32,7 +32,7 @@ const ProductList = () => {
   );
   const {wishlist} = useSelector(state => state.wishlistState);
   const {updatecart} = useSelector(state => state.cartState);
-  const data = ProductList.serverResponse.data;
+  const data = ProductList.serverResponse?.data;
   const categoryid = ProductList.category;
   const navigation = useNavigation();
   const wishlistdata = wishlist?.data;
@@ -54,6 +54,8 @@ const ProductList = () => {
     });
     setSelect(newItem);
   };
+
+  // console.log(categoryid);
 
   // const newItem = wishlistdata.map(val => {
   //   setVal(val);

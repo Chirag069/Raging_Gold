@@ -29,3 +29,6 @@ export const REMOVE_CART = 'REMOVE_CART';
 export const CART_LOADING = 'CART_LOADING';
 
 export const HOME = 'HOME';
+
+export const FILTER = 'FILTER';
+export const FILTER_LOADING = 'FILTER_LOADING';

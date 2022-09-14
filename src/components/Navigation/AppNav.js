@@ -1,13 +1,19 @@
 import React, {useEffect} from 'react';
 import {View} from 'react-native';
 import Spinner from 'react-native-loading-spinner-overlay';
-import {useSelector} from 'react-redux';
 import AuthStack from './AuthStack';
 import DrawerNavigation from './DrawerNavigation';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
+import {useDispatch, useSelector} from 'react-redux';
+import {HomeAction} from '../../../redux/actions/HomeAction';
 
 const AppNav = () => {
+  const dispatch = useDispatch();
   const {authLoading, userToken} = useSelector(state => state.authState);
+
+  useEffect(() => {
+    dispatch(HomeAction(userToken));
+  }, []);
 
   return (
     <View style={{flex: 1}}>

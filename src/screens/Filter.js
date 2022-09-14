@@ -11,6 +11,8 @@ import {
 import React, {useState} from 'react';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useFocusEffect} from '@react-navigation/native';
+import {FilterAction} from '../../redux/actions/filterAction';
+import {useDispatch, useSelector} from 'react-redux';
 
 const data = [
   {
@@ -79,6 +81,22 @@ const Screen_height = Dimensions.get('window').height;
 const Filter = () => {
   const [select, setSelect] = useState(data);
   const [filter, setFilter] = useState();
+  const dispatch = useDispatch();
+  const {userToken} = useSelector(state => state.authState);
+  const {Filter} = useSelector(state => state.filterState);
+
+  useFocusEffect(
+    React.useCallback(() => {
+      dispatch(FilterAction(userToken));
+
+      // return () => {
+      //   Alert.alert('Screen was unfocused');
+      //   // Useful for cleanup functions
+      // };
+    }, []),
+  );
+
+  console.log(Filter);
 
   const handleOnpress = item => {
     const newItem = select.map(val => {

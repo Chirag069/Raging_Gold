@@ -23,6 +23,7 @@ import {
   WishListLoadingAction,
 } from '../../redux/actions/WishListAction';
 import {HomeAction} from '../../redux/actions/HomeAction';
+import {useFocusEffect} from '@react-navigation/native';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -35,19 +36,27 @@ const Home = () => {
   const {userToken} = useSelector(state => state.authState);
   const {home} = useSelector(state => state.homeState);
 
-  useEffect(() => {
-    dispatch(HomeAction(userToken));
-  }, []);
+  // useEffect(() => {
+  //   dispatch(HomeAction(userToken));
+  // }, []);
 
- 
+  // useFocusEffect(
+  //   React.useCallback(() => {
+  //     dispatch(HomeAction(userToken));
+
+  //     // return () => {
+  //     //   Alert.alert('Screen was unfocused');
+  //     //   // Useful for cleanup functions
+  //     // };
+  //   }, []),
+  // );
 
   const carouselItems = home.data?.slider;
   const data = home.data?.sub_category;
-  const limit = data?.length +1;
 
   // console.log(limit)
 
-  // console.log(data);
+  // console.log(carouselItems);
 
   const _renderItem = ({item, index}) => {
     return (
@@ -77,7 +86,7 @@ const Home = () => {
             itemWidth={Screen_Width}
             renderItem={_renderItem}
             autoplay={true}
-            loop={true}
+            loop={false}
             inactiveSlideScale={1}
             inactiveSlideOpacity={1}
             onSnapToItem={index => setActiveIndex(index)}
@@ -178,23 +187,37 @@ const Home = () => {
           }}
           renderItem={post => {
             const item = post.item;
-           return (
+            return (
               <View
                 style={{
                   marginHorizontal: 20,
                   alignItems: 'center',
                   marginBottom: scale(10),
                 }}>
-                <TouchableOpacity onPress={()=>{navigation.navigate('ProductList'),
-                  dispatch(ProductListAction(userToken,10,item.id))}}>
+                <TouchableOpacity
+                  onPress={() => {
+                    navigation.navigate('ProductList'),
+                      dispatch(ProductListAction(userToken, 10, item.id));
+                  }}>
                   <ImageBackground
-                    style={{width: scale(330), height: scale(180),alignItems:"flex-end"}}
+                    style={{
+                      width: scale(330),
+                      height: scale(180),
+                      alignItems: 'flex-end',
+                    }}
                     resizeMode="cover"
                     source={{
-                      uri: item.image
-                    }}
-                  >
-                    <Text style={{color:"white",fontSize:scale(20),marginRight:scale(20),marginTop:verticalScale(10)}}>{item.name}</Text>
+                      uri: item.image,
+                    }}>
+                    <Text
+                      style={{
+                        color: 'white',
+                        fontSize: scale(20),
+                        marginRight: scale(20),
+                        marginTop: verticalScale(10),
+                      }}>
+                      {item.name}
+                    </Text>
                   </ImageBackground>
                 </TouchableOpacity>
               </View>

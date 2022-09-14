@@ -7,6 +7,7 @@ import WishListReducer from './WishListReducer.js';
 import ProductListReducer from './ProductListReducer.js';
 import CartReducer from './CartReducer.js';
 import HomeReducer from './HomeReducer.js';
+import filterReducer from './filterReducer.js';
 
 export default combineReducers({
   themeState: themeReducer,
@@ -17,4 +18,5 @@ export default combineReducers({
   productlistState: ProductListReducer,
   cartState: CartReducer,
   homeState: HomeReducer,
+  filterState: filterReducer,
 });
