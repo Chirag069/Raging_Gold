@@ -35,7 +35,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import {useNavigation} from '@react-navigation/native';
 import Total from '../../screens/Total';
 import CustomTabBar from '../Custom/CustomTabBar';
-import { HomeAction } from '../../../redux/actions/HomeAction';
+import {HomeAction} from '../../../redux/actions/HomeAction';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();

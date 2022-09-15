@@ -9,6 +9,7 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
+  LogBox,
 } from 'react-native';
 import React, {useState, useRef, useEffect} from 'react';
 import Carousel from 'react-native-snap-carousel-v4';
@@ -24,6 +25,7 @@ import {
 } from '../../redux/actions/WishListAction';
 import {HomeAction} from '../../redux/actions/HomeAction';
 import {useFocusEffect} from '@react-navigation/native';
+import {Button} from 'react-native-paper';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -36,9 +38,10 @@ const Home = () => {
   const {userToken} = useSelector(state => state.authState);
   const {home} = useSelector(state => state.homeState);
 
-  // useEffect(() => {
-  //   dispatch(HomeAction(userToken));
-  // }, []);
+  useEffect(() => {
+    dispatch(HomeAction(userToken));
+    LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
+  }, []);
 
   // useFocusEffect(
   //   React.useCallback(() => {

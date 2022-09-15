@@ -12,6 +12,7 @@ export const TOGGLE_TASK = 'TOGGLE_TASK';
 
 export const INCREMENT = 'INCREMENT';
 export const DECREMENT = 'DECREMENT';
+export const RESET = 'RESET';
 
 export const USER_DATA = 'USER_DATA';
 

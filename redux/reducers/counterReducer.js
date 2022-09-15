@@ -1,8 +1,7 @@
-import {INCREMENT} from '../actions/types';
-import {DECREMENT} from '../actions/types';
+import {INCREMENT, DECREMENT, RESET} from '../actions/types';
 
 const initialState = {
-  counter: 0,
+  counter: 1,
 };
 
 export default (state = initialState, action) => {
@@ -16,6 +15,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         counter: state.counter - 1,
+      };
+    case RESET:
+      return {
+        ...state,
+        counter: (state.counter = 0),
       };
 
     default:

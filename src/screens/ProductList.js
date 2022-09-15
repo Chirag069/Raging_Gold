@@ -31,7 +31,7 @@ const ProductList = () => {
     state => state.productlistState,
   );
   const {wishlist} = useSelector(state => state.wishlistState);
-  const {updatecart} = useSelector(state => state.cartState);
+  const {cartLoading} = useSelector(state => state.cartState);
   const data = ProductList.serverResponse?.data;
   const categoryid = ProductList.category;
   const navigation = useNavigation();
@@ -77,152 +77,171 @@ const ProductList = () => {
 
   return (
     <>
-      <View
-        style={{
-          backgroundColor: 'white',
-          paddingHorizontal: scale(10),
-          paddingVertical: verticalScale(10),
-          marginBottom: verticalScale(17),
-        }}>
-        <Text style={{color: '#c79248', fontSize: scale(20)}}>
-          Exclusive Gold Ring
-        </Text>
-      </View>
+      {cartLoading ? (
+        <View
+          style={{
+            marginTop: 'auto',
+            marginBottom: 'auto',
+            alignItems: 'center',
+            paddingVertical: verticalScale(20),
+          }}>
+          <ActivityIndicator
+            animating={cartLoading}
+            color={'#c79248'}
+            size={scale(30)}
+          />
+        </View>
+      ) : (
+        <>
+          <View
+            style={{
+              backgroundColor: 'white',
+              paddingHorizontal: scale(10),
+              paddingVertical: verticalScale(10),
+              marginBottom: verticalScale(17),
+            }}>
+            <Text style={{color: '#c79248', fontSize: scale(20)}}>
+              Exclusive Gold Ring
+            </Text>
+          </View>
 
-      <View style={styles.container}>
-        <FlatList
-          style={styles.list}
-          contentContainerStyle={styles.listContainer}
-          data={data}
-          horizontal={false}
-          numColumns={2}
-          onEndReached={() =>
-            dispatch(ProductListAction(userToken, limit, categoryid))
-          }
-          ListFooterComponent={() => (
-            <View
-              style={{
-                marginTop: 'auto',
-                marginBottom: 'auto',
-                alignItems: 'center',
-                paddingVertical: verticalScale(20),
-              }}>
-              <ActivityIndicator
-                animating={productlistloading}
-                color={'#c79248'}
-                size={scale(30)}
-              />
-            </View>
-          )}
-          keyExtractor={item => {
-            return item.id;
-          }}
-          ItemSeparatorComponent={() => {
-            return <View style={styles.separator} />;
-          }}
-          renderItem={post => {
-            const item = post.item;
-            return (
-              <Pressable onPress={() => navigation.navigate('ProductDetail')}>
+          <View style={styles.container}>
+            <FlatList
+              style={styles.list}
+              contentContainerStyle={styles.listContainer}
+              data={data}
+              horizontal={false}
+              numColumns={2}
+              onEndReached={() =>
+                dispatch(ProductListAction(userToken, limit, categoryid))
+              }
+              ListFooterComponent={() => (
                 <View
                   style={{
-                    backgroundColor: 'white',
-                    width: scale(160),
-                    marginHorizontal: scale(5),
+                    marginTop: 'auto',
+                    marginBottom: 'auto',
+                    alignItems: 'center',
+                    paddingVertical: verticalScale(20),
                   }}>
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                    }}>
-                    <TouchableOpacity
-                      onPress={() => {
-                        return (
-                          dispatch(UpdateCartAction(userToken, item.id)),
-                          dispatch(GetCartAction(userToken))
-                        );
-                      }}>
-                      <Ionicons
-                        name={'cart-outline'}
-                        color={'#c79248'}
-                        size={scale(30)}
-                        style={{alignSelf: 'flex-end', padding: scale(2)}}
-                      />
-                    </TouchableOpacity>
-                    <Pressable onPress={() => handleOnpress(item)}>
-                      <Ionicons
-                        name={'heart'}
-                        color={'#c79248'}
-                        size={scale(30)}
-                        style={{alignSelf: 'flex-end', padding: scale(2)}}
-                      />
-                    </Pressable>
-                  </View>
-
-                  <Image
-                    style={{
-                      height: scale(140),
-                      width: scale(160),
-                      alignSelf: 'center',
-                    }}
-                    source={{
-                      uri: item.image,
-                    }}
+                  <ActivityIndicator
+                    animating={productlistloading}
+                    color={'#c79248'}
+                    size={scale(30)}
                   />
-
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      paddingHorizontal: scale(5),
-                    }}>
-                    <Text
-                      style={{
-                        fontSize: scale(12),
-                        marginTop: verticalScale(5),
-                        marginBottom: verticalScale(5),
-                      }}>
-                      {item.design_name}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: scale(12),
-                        marginTop: verticalScale(5),
-                        marginBottom: verticalScale(5),
-                      }}>
-                      GW:{item.item}
-                    </Text>
-                  </View>
-
-                  <View
-                    style={{
-                      flexDirection: 'row',
-                      justifyContent: 'space-between',
-                      paddingHorizontal: scale(5),
-                    }}>
-                    <Text
-                      style={{
-                        fontSize: scale(12),
-                        marginTop: verticalScale(5),
-                        marginBottom: verticalScale(5),
-                      }}>
-                      {item.amount}
-                    </Text>
-                    <Text
-                      style={{
-                        fontSize: scale(12),
-                        marginTop: verticalScale(5),
-                        marginBottom: verticalScale(5),
-                      }}>
-                      GW:{item.gr}
-                    </Text>
-                  </View>
                 </View>
-              </Pressable>
-            );
-          }}
-        />
-      </View>
+              )}
+              keyExtractor={item => {
+                return item.id;
+              }}
+              ItemSeparatorComponent={() => {
+                return <View style={styles.separator} />;
+              }}
+              renderItem={post => {
+                const item = post.item;
+                return (
+                  <Pressable
+                    onPress={() => navigation.navigate('ProductDetail')}>
+                    <View
+                      style={{
+                        backgroundColor: 'white',
+                        width: scale(160),
+                        marginHorizontal: scale(5),
+                      }}>
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                        }}>
+                        <TouchableOpacity
+                          onPress={() => {
+                            return (
+                              dispatch(UpdateCartAction(userToken, 1, item.id)),
+                              dispatch(GetCartAction(userToken))
+                            );
+                          }}>
+                          <Ionicons
+                            name={'cart-outline'}
+                            color={'#c79248'}
+                            size={scale(30)}
+                            style={{alignSelf: 'flex-end', padding: scale(2)}}
+                          />
+                        </TouchableOpacity>
+                        <Pressable onPress={() => handleOnpress(item)}>
+                          <Ionicons
+                            name={'heart'}
+                            color={'#c79248'}
+                            size={scale(30)}
+                            style={{alignSelf: 'flex-end', padding: scale(2)}}
+                          />
+                        </Pressable>
+                      </View>
+
+                      <Image
+                        style={{
+                          height: scale(140),
+                          width: scale(160),
+                          alignSelf: 'center',
+                        }}
+                        source={{
+                          uri: item.image,
+                        }}
+                      />
+
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          paddingHorizontal: scale(5),
+                        }}>
+                        <Text
+                          style={{
+                            fontSize: scale(12),
+                            marginTop: verticalScale(5),
+                            marginBottom: verticalScale(5),
+                          }}>
+                          {item.design_name}
+                        </Text>
+                        <Text
+                          style={{
+                            fontSize: scale(12),
+                            marginTop: verticalScale(5),
+                            marginBottom: verticalScale(5),
+                          }}>
+                          GW:{item.item}
+                        </Text>
+                      </View>
+
+                      <View
+                        style={{
+                          flexDirection: 'row',
+                          justifyContent: 'space-between',
+                          paddingHorizontal: scale(5),
+                        }}>
+                        <Text
+                          style={{
+                            fontSize: scale(12),
+                            marginTop: verticalScale(5),
+                            marginBottom: verticalScale(5),
+                          }}>
+                          {item.amount}
+                        </Text>
+                        <Text
+                          style={{
+                            fontSize: scale(12),
+                            marginTop: verticalScale(5),
+                            marginBottom: verticalScale(5),
+                          }}>
+                          GW:{item.gr}
+                        </Text>
+                      </View>
+                    </View>
+                  </Pressable>
+                );
+              }}
+            />
+          </View>
+        </>
+      )}
     </>
   );
 };

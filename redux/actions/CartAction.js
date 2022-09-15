@@ -131,16 +131,17 @@ export const RemoveCartAction =
   };
 
 export const UpdateCartAction =
-  (userToken = '', item_config_id = '', qty = '') =>
+  (userToken = '', qty = '', item_config_id = '') =>
   dispatch => {
     dispatch(CartLoadingAction(true));
+    console.log(qty, item_config_id);
     var myHeaders = new Headers();
     myHeaders.append('If-Range', userToken);
     myHeaders.append('Content-Type', 'application/json');
 
     var raw = JSON.stringify({
       item_config_id: item_config_id,
-      qty: 1,
+      qty: qty,
       action: 'add',
       group_id: 1,
       size_id: 1,

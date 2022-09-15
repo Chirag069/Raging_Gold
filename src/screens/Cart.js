@@ -13,7 +13,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {useDispatch, useSelector} from 'react-redux';
-import {increment, decrement} from '../../redux/actions/CounterActions';
+import {increment, decrement, reset} from '../../redux/actions/CounterActions';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
@@ -49,6 +49,8 @@ const Cart = () => {
 
   const data = cart.data;
 
+  // console.log(data);
+
   return (
     <>
       {cartLoading ? (
@@ -72,7 +74,6 @@ const Cart = () => {
               backgroundColor: 'white',
               paddingHorizontal: scale(10),
               paddingVertical: verticalScale(10),
-              marginBottom: verticalScale(5),
             }}>
             <Text style={{color: '#c79248', fontSize: scale(20)}}>Cart</Text>
           </View>
@@ -96,7 +97,7 @@ const Cart = () => {
                 }}
                 renderItem={post => {
                   const item = post.item;
-
+                  console.log(item);
                   return (
                     <View
                       style={{
@@ -190,8 +191,13 @@ const Cart = () => {
                               }}>
                               <TouchableOpacity
                                 onPress={() => {
-                                  dispatch(decrement());
-                                  dispatch(UpdateCartAction(userToken, -1));
+                                  if (counter > 1) {
+                                    dispatch(decrement());
+                                    dispatch(
+                                      UpdateCartAction(userToken, -1, item.id),
+                                    );
+                                  }
+                                  return dispatch(GetCartAction(userToken));
                                 }}
                                 style={{
                                   backgroundColor: '#c79248',
@@ -215,14 +221,17 @@ const Cart = () => {
                                   paddingHorizontal: scale(12),
                                 }}>
                                 <Text style={{fontSize: scale(20)}}>
-                                  {counter}
+                                  {item.cart_qty}
                                 </Text>
                               </View>
                               <TouchableOpacity
                                 onPress={() => {
-                                  dispatch(increment());
-                                  dispatch(
-                                    UpdateCartAction(userToken, counter),
+                                  return (
+                                    dispatch(GetCartAction(userToken)),
+                                    dispatch(increment()),
+                                    dispatch(
+                                      UpdateCartAction(userToken, +1, item.id),
+                                    )
                                   );
                                 }}
                                 style={{
@@ -248,7 +257,8 @@ const Cart = () => {
                                   dispatch(
                                     RemoveCartAction(userToken, item.id),
                                   ),
-                                  dispatch(GetCartAction(userToken))
+                                  dispatch(GetCartAction(userToken)),
+                                  dispatch(reset())
                                 );
                               }}
                               style={{
