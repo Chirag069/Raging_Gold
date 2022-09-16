@@ -10,8 +10,7 @@ export const HomeAction =
     myHeaders.append('Content-Type', 'application/json');
 
     var raw = JSON.stringify({
-      token:
-      userToken
+      token: userToken,
     });
 
     var requestOptions = {
@@ -25,7 +24,7 @@ export const HomeAction =
       .then(response => response.json())
       .then(result => {
         let serverResponse = result;
-      
+
         if (serverResponse.status == true) {
           dispatch({
             type: HOME,
@@ -50,7 +49,6 @@ export const HomeAction =
         }
       })
       .catch(error => {
-        // console.log(error);
         Toast.show({
           text1: 'Server response failed',
           visibilityTime: 2000,

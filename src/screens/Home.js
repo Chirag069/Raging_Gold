@@ -19,10 +19,7 @@ import Dots from 'react-native-dots-pagination';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useDispatch, useSelector} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
-import {
-  GetWishlistAction,
-  WishListLoadingAction,
-} from '../../redux/actions/WishListAction';
+import {GetWishlistAction} from '../../redux/actions/WishListAction';
 import {HomeAction} from '../../redux/actions/HomeAction';
 import {useFocusEffect} from '@react-navigation/native';
 import {Button} from 'react-native-paper';
@@ -200,7 +197,8 @@ const Home = () => {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('ProductList'),
-                      dispatch(ProductListAction(userToken, 10, item.id));
+                      dispatch(GetWishlistAction(userToken));
+                    dispatch(ProductListAction(userToken, 10, item.id));
                   }}>
                   <ImageBackground
                     style={{

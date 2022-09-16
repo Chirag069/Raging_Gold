@@ -29,11 +29,13 @@ export default (state = initialState, action) => {
       return {
         ...state,
         addwishlist: action.payload,
+        wishlistLoading: false,
       };
     case REMOVE_WISHLIST:
       return {
         ...state,
         removewishlist: action.payload,
+        wishlistLoading: false,
       };
     default:
       return state;

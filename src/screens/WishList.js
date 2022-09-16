@@ -41,9 +41,8 @@ const WishList = () => {
   );
 
   const handleOnpress = item => {
-    setWishlistid(item.id);
-    dispatch(AddWishlistAction(userToken, wishlistid));
-    dispatch(RemoveWishlistAction(userToken, wishlistid));
+    dispatch(RemoveWishlistAction(userToken, item.id));
+    dispatch(GetWishlistAction(userToken));
   };
 
   return (
@@ -170,7 +169,7 @@ const WishList = () => {
                           onPress={() => handleOnpress(item)}
                           style={{alignItems: 'flex-end', flex: 1}}>
                           <Ionicons
-                            name={item.id ? 'heart-outline' : 'heart'}
+                            name={item.id ? 'heart' : 'heart-outline'}
                             color={'#c79248'}
                             size={scale(27)}
                             style={{padding: scale(2)}}

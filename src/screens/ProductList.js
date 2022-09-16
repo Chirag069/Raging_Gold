@@ -23,6 +23,7 @@ import {useDispatch} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
 import {ActivityIndicator} from 'react-native-paper';
 import {UpdateCartAction, GetCartAction} from '../../redux/actions/CartAction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProductList = () => {
   const dispatch = useDispatch();
@@ -30,54 +31,68 @@ const ProductList = () => {
   const {ProductList, productlistloading} = useSelector(
     state => state.productlistState,
   );
-  const {wishlist} = useSelector(state => state.wishlistState);
+  const {wishlist, wishlistLoading} = useSelector(state => state.wishlistState);
   const {cartLoading} = useSelector(state => state.cartState);
   const data = ProductList.serverResponse?.data;
   const categoryid = ProductList.category;
   const navigation = useNavigation();
   const wishlistdata = wishlist?.data;
-  const [select, setSelect] = useState();
-  const [val, setVal] = useState();
-
-  const handleOnpress = item => {
-    const newItem = wishlistdata.filter(val => {
-      // console.log(val.id, item.id);
-      if (val.id === item.id) {
-        dispatch(GetWishlistAction(userToken));
-        dispatch(RemoveWishlistAction(userToken, item.id));
-      } else {
-        if (val.id !== item.id) {
-          dispatch(GetWishlistAction(userToken));
-          dispatch(AddWishlistAction(userToken, item.id));
-        }
-      }
-    });
-    setSelect(newItem);
-  };
-
-  // console.log(categoryid);
-
-  // const newItem = wishlistdata.map(val => {
-  //   setVal(val);
-  //   // console.log(val);
-  // });
-  // setSelect(newItem);
-  // console.log(val.id, item.id);
-  // if (val?.id !== item.id) {
-  //   dispatch(GetWishlistAction(userToken));
-  //   dispatch(AddWishlistAction(userToken, item.id));
-  // } else {
-  //   if (val?.id == item.id) {
-  //     dispatch(GetWishlistAction(userToken));
-  //     dispatch(RemoveWishlistAction(userToken, item.id));
-  //   }
-  // }
+  const [liked, setLiked] = useState([]);
+  const [wishlistlike, setWishlistlike] = useState([]);
+  const [wishlistid, setWishlistid] = useState();
 
   const limit = data?.length + 10;
 
+  // const handleOnpress = item => {
+  //   const newItem = wishlistdata.map(val => {
+  //     if (val.id) {
+  //       setWishlistid(val);
+  //     } else {
+  //       setWishlistid('false');
+  //     }
+  //   });
+  //   // setSelect(newItem);
+  // };
+  // console.log(wishlistid);
+
+  // wishlistdata.filter(item => {
+  //   const index = item.id;
+  //   if (wishlistlike.includes(index)) {
+  //     let unlike = liked.filter(elem => elem !== index);
+  //     setLiked(unlike);
+  //   } else {
+  //     setWishlistlike([...liked, index]);
+  //   }
+  // });
+
+  // console.log(wishlist.data);
+
+  useEffect(() => {
+    getData();
+  }, []);
+
+  try {
+    AsyncStorage.setItem('data', JSON.stringify(liked));
+  } catch (error) {
+    console.log(error.message);
+  }
+
+  const getData = async () => {
+    try {
+      const value = await AsyncStorage.getItem('data');
+      if (value !== null) {
+        // We have data!!
+        console.log(value);
+        setWishlistid(value);
+      }
+    } catch (error) {
+      // Error retrieving data
+    }
+  };
+
   return (
     <>
-      {cartLoading ? (
+      {cartLoading || wishlistLoading ? (
         <View
           style={{
             marginTop: 'auto',
@@ -86,7 +101,7 @@ const ProductList = () => {
             paddingVertical: verticalScale(20),
           }}>
           <ActivityIndicator
-            animating={cartLoading}
+            animating={cartLoading || wishlistLoading}
             color={'#c79248'}
             size={scale(30)}
           />
@@ -138,6 +153,7 @@ const ProductList = () => {
               }}
               renderItem={post => {
                 const item = post.item;
+                const index = item.id;
                 return (
                   <Pressable
                     onPress={() => navigation.navigate('ProductDetail')}>
@@ -166,9 +182,32 @@ const ProductList = () => {
                             style={{alignSelf: 'flex-end', padding: scale(2)}}
                           />
                         </TouchableOpacity>
-                        <Pressable onPress={() => handleOnpress(item)}>
+                        <Pressable
+                          onPress={() => {
+                            // handleOnpress(item);
+                            // console.log(item.id);
+                            // console.log(liked);
+                            if (liked.includes(index)) {
+                              let unlike = liked.filter(elem => elem !== index);
+                              setLiked(unlike);
+                            } else {
+                              setLiked([...liked, index]);
+                            }
+                            liked.includes(index)
+                              ? (dispatch(GetWishlistAction(userToken)),
+                                dispatch(
+                                  RemoveWishlistAction(userToken, item.id),
+                                ))
+                              : (dispatch(GetWishlistAction(userToken)),
+                                dispatch(
+                                  AddWishlistAction(userToken, item.id),
+                                ));
+                            // console.log(liked.includes(index));
+                          }}>
                           <Ionicons
-                            name={'heart'}
+                            name={
+                              liked.includes(index) ? 'heart' : 'heart-outline'
+                            }
                             color={'#c79248'}
                             size={scale(30)}
                             style={{alignSelf: 'flex-end', padding: scale(2)}}
@@ -231,7 +270,7 @@ const ProductList = () => {
                             marginTop: verticalScale(5),
                             marginBottom: verticalScale(5),
                           }}>
-                          GW:{item.gr}
+                          GW: {item.gr}
                         </Text>
                       </View>
                     </View>

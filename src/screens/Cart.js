@@ -192,7 +192,7 @@ const Cart = () => {
                               <TouchableOpacity
                                 onPress={() => {
                                   if (counter > 1) {
-                                    dispatch(decrement());
+                                    // dispatch(decrement());
                                     dispatch(
                                       UpdateCartAction(userToken, -1, item.id),
                                     );
@@ -227,11 +227,11 @@ const Cart = () => {
                               <TouchableOpacity
                                 onPress={() => {
                                   return (
-                                    dispatch(GetCartAction(userToken)),
-                                    dispatch(increment()),
                                     dispatch(
                                       UpdateCartAction(userToken, +1, item.id),
-                                    )
+                                    ),
+                                    dispatch(GetCartAction(userToken))
+                                    // dispatch(increment()),
                                   );
                                 }}
                                 style={{
@@ -257,8 +257,8 @@ const Cart = () => {
                                   dispatch(
                                     RemoveCartAction(userToken, item.id),
                                   ),
-                                  dispatch(GetCartAction(userToken)),
-                                  dispatch(reset())
+                                  dispatch(GetCartAction(userToken))
+                                  // dispatch(reset())
                                 );
                               }}
                               style={{

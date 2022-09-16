@@ -22,6 +22,7 @@ import {authLogOutAction} from '../../../redux/actions/authActons';
 import {HomeAction} from '../../../redux/actions/HomeAction';
 import Profile from '../../screens/Profile';
 import {ProductListAction} from '../../../redux/actions/ProductListAction';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const CustomDrawer = props => {
   const dispatch = useDispatch();

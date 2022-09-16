@@ -1,5 +1,6 @@
 import {USER_LOGIN, AUTH_LOADING, USER_LOGOUT, PRODUCT_LIST} from './types';
 import Toast from 'react-native-toast-message';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 export const authLoadingAction =
   (loading = false) =>
@@ -11,14 +12,21 @@ export const authLoadingAction =
   };
 
 export const authLogOutAction = () => dispatch => {
+  try {
+    AsyncStorage.removeItem('token');
+  } catch (e) {
+    console.log(e);
+  }
+
   dispatch({
     type: USER_LOGOUT,
   });
 };
 
 export const userLoginAction =
-  (userName = '', userPassword = '') =>
+  (userName = '', userPassword = '', usertoken = '') =>
   dispatch => {
+    console.log(usertoken);
     dispatch(authLoadingAction(true));
     var myHeaders = new Headers();
     myHeaders.append('If-Match', 'LOGIN');
@@ -49,6 +57,11 @@ export const userLoginAction =
         dispatch(authLoadingAction());
         if (serverResponse.status == true) {
           let userToken = serverResponse.data.token;
+          try {
+            AsyncStorage.setItem('token', userToken);
+          } catch (error) {
+            console.log(error);
+          }
 
           dispatch({
             type: USER_LOGIN,
