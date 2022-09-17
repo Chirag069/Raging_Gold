@@ -1,7 +1,6 @@
 import {PRODUCTLIST_LOADING, PRODUCT_LIST} from '../actions/types';
 
 const initialState = {
-  userToken: null,
   authLoading: false,
   userdata: null,
   ProductList: [],

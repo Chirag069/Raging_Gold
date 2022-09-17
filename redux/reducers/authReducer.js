@@ -3,19 +3,23 @@ import {
   USER_LOGIN,
   AUTH_LOADING,
   USER_DATA,
-  PRODUCT_LIST,
+  LOGGED,
 } from '../actions/types';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const initialState = {
   userToken: null,
   authLoading: false,
   userdata: null,
-  ProductList: [],
+  Token: null,
 };
 
 export default (state = initialState, action) => {
   switch (action.type) {
+    case LOGGED:
+      return {
+        ...state,
+        Token: action.payload,
+      };
     case USER_LOGIN:
       return {
         ...state,

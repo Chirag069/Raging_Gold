@@ -35,12 +35,12 @@ const Cart = () => {
   const {cart, cartLoading, removecart, updatecart} = useSelector(
     state => state.cartState,
   );
-  const {userToken} = useSelector(state => state.authState);
+  const {Token} = useSelector(state => state.authState);
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(GetCartAction(userToken));
-      // dispatch(UpdateCartAction(userToken));
+      dispatch(GetCartAction(Token));
+      // dispatch(UpdateCartAction(Token));
       LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
     }, []),
   );
@@ -97,7 +97,7 @@ const Cart = () => {
                 }}
                 renderItem={post => {
                   const item = post.item;
-                  console.log(item);
+                  // console.log(item);
                   return (
                     <View
                       style={{
@@ -194,10 +194,10 @@ const Cart = () => {
                                   if (counter > 1) {
                                     // dispatch(decrement());
                                     dispatch(
-                                      UpdateCartAction(userToken, -1, item.id),
+                                      UpdateCartAction(Token, -1, item.id),
                                     );
                                   }
-                                  return dispatch(GetCartAction(userToken));
+                                  return dispatch(GetCartAction(Token));
                                 }}
                                 style={{
                                   backgroundColor: '#c79248',
@@ -228,9 +228,9 @@ const Cart = () => {
                                 onPress={() => {
                                   return (
                                     dispatch(
-                                      UpdateCartAction(userToken, +1, item.id),
+                                      UpdateCartAction(Token, +1, item.id),
                                     ),
-                                    dispatch(GetCartAction(userToken))
+                                    dispatch(GetCartAction(Token))
                                     // dispatch(increment()),
                                   );
                                 }}
@@ -254,10 +254,8 @@ const Cart = () => {
                             <Pressable
                               onPress={() => {
                                 return (
-                                  dispatch(
-                                    RemoveCartAction(userToken, item.id),
-                                  ),
-                                  dispatch(GetCartAction(userToken))
+                                  dispatch(RemoveCartAction(Token, item.id)),
+                                  dispatch(GetCartAction(Token))
                                   // dispatch(reset())
                                 );
                               }}

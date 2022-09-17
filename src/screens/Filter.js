@@ -82,12 +82,12 @@ const Filter = () => {
   const [select, setSelect] = useState(data);
   const [filter, setFilter] = useState();
   const dispatch = useDispatch();
-  const {userToken} = useSelector(state => state.authState);
+  const {Token} = useSelector(state => state.authState);
   const {Filter} = useSelector(state => state.filterState);
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(FilterAction(userToken));
+      dispatch(FilterAction(Token));
 
       // return () => {
       //   Alert.alert('Screen was unfocused');
@@ -96,7 +96,7 @@ const Filter = () => {
     }, []),
   );
 
-  console.log(Filter);
+  // console.log(Filter);
 
   const handleOnpress = item => {
     const newItem = select.map(val => {

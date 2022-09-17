@@ -4,6 +4,7 @@ import Toast from 'react-native-toast-message';
 export const HomeAction =
   (userToken = '') =>
   dispatch => {
+    console.log(userToken);
     // dispatch(WishListLoadingAction(true));
     var myHeaders = new Headers();
     myHeaders.append('If-Range', userToken);

@@ -13,7 +13,7 @@ import {TextInput, Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
 import Toast from 'react-native-toast-message';
-import {userLoginAction} from '../../redux/actions/authActons';
+import {userLoginAction, LoggedAction} from '../../redux/actions/authActons';
 import {sha1} from 'react-native-sha1';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import CustomButton from '../components/Custom/CustomButton';
@@ -24,13 +24,6 @@ const SignIn = () => {
   const dispatch = useDispatch();
   const [emailInput, setEmailInput] = useState('');
   const [passwordInput, setPasswordInput] = useState('');
-  // const [pwd, setPwd] = useState(null);
-
-  // {
-  //   sha1(passwordInput).then(hash => {
-  //     setPwd(hash);
-  //   });
-  // }
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('focus', () => {
@@ -43,6 +36,7 @@ const SignIn = () => {
   const userSignIn = () => {
     if (emailInput && passwordInput) {
       dispatch(userLoginAction(emailInput, passwordInput));
+      dispatch(LoggedAction());
     } else {
       Toast.show({
         text1: 'you forgot to enter something',

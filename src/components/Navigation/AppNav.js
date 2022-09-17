@@ -6,29 +6,17 @@ import DrawerNavigation from './DrawerNavigation';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useSelector, useDispatch} from 'react-redux';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import {userLoginAction} from '../../../redux/actions/authActons';
+import {LoggedAction} from '../../../redux/actions/authActons';
 
 const AppNav = () => {
   const dispatch = useDispatch();
-  const {authLoading, userToken} = useSelector(state => state.authState);
-  const [usertoken, setuserToken] = useState(null);
-
-  // console.log(userToken);
+  const {authLoading, Token} = useSelector(state => state.authState);
 
   useEffect(() => {
-    getData();
+    dispatch(LoggedAction());
   }, []);
 
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('token');
-
-      setuserToken(value);
-      console.log(value);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // console.log(Token);
 
   return (
     <View style={{flex: 1}}>
@@ -39,7 +27,8 @@ const AppNav = () => {
         overlayColor="rgba(0,0,0, 0.5)"
         size={scale(30)}
       />
-      {userToken !== null ? <DrawerNavigation /> : <AuthStack />}
+      {Token !== null ? <DrawerNavigation /> : <AuthStack />}
+      {/* <DrawerNavigation /> */}
     </View>
   );
 };

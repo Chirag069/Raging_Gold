@@ -18,7 +18,10 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {useNavigation} from '@react-navigation/native';
 import {useSelector, useDispatch} from 'react-redux';
-import {authLogOutAction} from '../../../redux/actions/authActons';
+import {
+  authLogOutAction,
+  LoggedAction,
+} from '../../../redux/actions/authActons';
 import {HomeAction} from '../../../redux/actions/HomeAction';
 import Profile from '../../screens/Profile';
 import {ProductListAction} from '../../../redux/actions/ProductListAction';
@@ -27,11 +30,11 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 const CustomDrawer = props => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
-  const {userToken} = useSelector(state => state.authState);
+  const {Token} = useSelector(state => state.authState);
   const {home} = useSelector(state => state.homeState);
 
   useEffect(() => {
-    dispatch(HomeAction(userToken));
+    dispatch(HomeAction(Token));
   }, []);
 
   const data = home.data?.sub_category;
@@ -179,7 +182,7 @@ const CustomDrawer = props => {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('ProductList'),
-                      dispatch(ProductListAction(userToken, 10, item.item.id));
+                      dispatch(ProductListAction(Token, 10, item.item.id));
                   }}
                   style={{
                     paddingHorizontal: scale(10),
@@ -216,6 +219,7 @@ const CustomDrawer = props => {
         <TouchableOpacity
           onPress={() => {
             dispatch(authLogOutAction());
+            dispatch(LoggedAction());
           }}
           style={{}}>
           <View style={{flexDirection: 'row', alignItems: 'center'}}>

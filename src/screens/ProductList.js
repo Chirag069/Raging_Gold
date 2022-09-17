@@ -7,9 +7,13 @@ import {
   StyleSheet,
   FlatList,
   TouchableOpacity,
+  Modal,
+  Alert,
 } from 'react-native';
 import React, {useState, useEffect} from 'react';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
+
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useSelector} from 'react-redux';
@@ -27,7 +31,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const ProductList = () => {
   const dispatch = useDispatch();
-  const {userToken} = useSelector(state => state.authState);
+  const {Token} = useSelector(state => state.authState);
   const {ProductList, productlistloading} = useSelector(
     state => state.productlistState,
   );
@@ -40,6 +44,7 @@ const ProductList = () => {
   const [liked, setLiked] = useState([]);
   const [wishlistlike, setWishlistlike] = useState([]);
   const [wishlistid, setWishlistid] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
 
   const limit = data?.length + 10;
 
@@ -65,34 +70,11 @@ const ProductList = () => {
   //   }
   // });
 
-  // console.log(wishlist.data);
-
-  useEffect(() => {
-    getData();
-  }, []);
-
-  try {
-    AsyncStorage.setItem('data', JSON.stringify(liked));
-  } catch (error) {
-    console.log(error.message);
-  }
-
-  const getData = async () => {
-    try {
-      const value = await AsyncStorage.getItem('data');
-      if (value !== null) {
-        // We have data!!
-        console.log(value);
-        setWishlistid(value);
-      }
-    } catch (error) {
-      // Error retrieving data
-    }
-  };
+  console.log(ProductList);
 
   return (
     <>
-      {cartLoading || wishlistLoading ? (
+      {wishlistLoading ? (
         <View
           style={{
             marginTop: 'auto',
@@ -101,7 +83,7 @@ const ProductList = () => {
             paddingVertical: verticalScale(20),
           }}>
           <ActivityIndicator
-            animating={cartLoading || wishlistLoading}
+            animating={wishlistLoading}
             color={'#c79248'}
             size={scale(30)}
           />
@@ -113,12 +95,107 @@ const ProductList = () => {
               backgroundColor: 'white',
               paddingHorizontal: scale(10),
               paddingVertical: verticalScale(10),
-              marginBottom: verticalScale(17),
             }}>
             <Text style={{color: '#c79248', fontSize: scale(20)}}>
               Exclusive Gold Ring
             </Text>
           </View>
+
+          <View
+            style={{
+              backgroundColor: 'white',
+              padding: scale(10),
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+            }}>
+            <TouchableOpacity
+              onPress={() => setModalVisible(true)}
+              style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Ionicons name="cart-sharp" size={scale(25)} color="#333" />
+              <Text
+                style={{
+                  fontSize: scale(15),
+                  color: '#333',
+                  marginLeft: scale(10),
+                }}>
+                CART
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{flexDirection: 'row', alignItems: 'center'}}>
+              <MaterialCommunityIcons
+                name="filter"
+                size={scale(25)}
+                color="#333"
+              />
+              <Text
+                style={{
+                  fontSize: scale(15),
+                  color: '#333',
+                  marginLeft: scale(10),
+                }}>
+                FILTER
+              </Text>
+            </TouchableOpacity>
+
+            <TouchableOpacity
+              style={{flexDirection: 'row', alignItems: 'center'}}>
+              <Ionicons name="cart-sharp" size={scale(25)} color="#333" />
+              <Text
+                style={{
+                  fontSize: scale(15),
+                  color: '#333',
+                  marginLeft: scale(10),
+                }}>
+                VIEW STYLE
+              </Text>
+            </TouchableOpacity>
+          </View>
+
+          <Modal
+            animationType="slide"
+            transparent={true}
+            visible={modalVisible}
+            onRequestClose={() => {
+              Alert.alert('Modal has been closed.');
+              setModalVisible(!modalVisible);
+            }}>
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+                alignItems: 'center',
+                backgroundColor: 'rgba(0,0,0,0.6)',
+              }}>
+              <View
+                style={{
+                  backgroundColor: 'white',
+                  borderRadius: scale(15),
+                  paddingHorizontal: scale(40),
+                  paddingVertical: verticalScale(20),
+                  alignItems: 'center',
+                  shadowColor: '#000',
+                  shadowOffset: {
+                    width: 0,
+                    height: scale(2),
+                  },
+                  shadowOpacity: 0.25,
+                  shadowRadius: 4,
+                  elevation: 5,
+                }}>
+                <Text
+                  style={{
+                    fontSize: moderateScale(17),
+                    color: 'black',
+                    fontWeight: 'bold',
+                    marginBottom: verticalScale(5),
+                  }}>
+                  Serch Any Product
+                </Text>
+              </View>
+            </View>
+          </Modal>
 
           <View style={styles.container}>
             <FlatList
@@ -128,7 +205,7 @@ const ProductList = () => {
               horizontal={false}
               numColumns={2}
               onEndReached={() =>
-                dispatch(ProductListAction(userToken, limit, categoryid))
+                dispatch(ProductListAction(Token, limit, categoryid))
               }
               ListFooterComponent={() => (
                 <View
@@ -171,8 +248,8 @@ const ProductList = () => {
                         <TouchableOpacity
                           onPress={() => {
                             return (
-                              dispatch(UpdateCartAction(userToken, 1, item.id)),
-                              dispatch(GetCartAction(userToken))
+                              dispatch(UpdateCartAction(Token, 1, item.id)),
+                              dispatch(GetCartAction(Token))
                             );
                           }}>
                           <Ionicons
@@ -193,16 +270,22 @@ const ProductList = () => {
                             } else {
                               setLiked([...liked, index]);
                             }
+
+                            try {
+                              AsyncStorage.setItem(
+                                'liked',
+                                JSON.stringify(liked),
+                              );
+                            } catch (error) {
+                              // console.log(error.message);
+                            }
+
                             liked.includes(index)
-                              ? (dispatch(GetWishlistAction(userToken)),
-                                dispatch(
-                                  RemoveWishlistAction(userToken, item.id),
-                                ))
-                              : (dispatch(GetWishlistAction(userToken)),
-                                dispatch(
-                                  AddWishlistAction(userToken, item.id),
-                                ));
-                            // console.log(liked.includes(index));
+                              ? (dispatch(GetWishlistAction(Token)),
+                                dispatch(RemoveWishlistAction(Token, item.id)))
+                              : (dispatch(GetWishlistAction(Token)),
+                                dispatch(AddWishlistAction(Token, item.id)));
+                            // console.log(liked.includes(index), index);
                           }}>
                           <Ionicons
                             name={

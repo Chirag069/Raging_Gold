@@ -40,7 +40,7 @@ export const GetWishlistAction =
         if (serverResponse.status == true) {
           dispatch({
             type: GET_WISHLIST,
-            payload: serverResponse,
+            payload: serverResponse.data,
           });
 
           // Toast.show({
@@ -51,6 +51,7 @@ export const GetWishlistAction =
           //   type: 'success',
           // });
         } else {
+          dispatch(WishListLoadingAction());
           Toast.show({
             text1: serverResponse.msg,
             visibilityTime: 2000,

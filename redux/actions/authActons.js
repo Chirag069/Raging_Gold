@@ -1,4 +1,4 @@
-import {USER_LOGIN, AUTH_LOADING, USER_LOGOUT, PRODUCT_LIST} from './types';
+import {USER_LOGIN, AUTH_LOADING, USER_LOGOUT, LOGGED} from './types';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -10,6 +10,31 @@ export const authLoadingAction =
       payload: loading,
     });
   };
+
+export const LoggedAction = () => async dispatch => {
+  dispatch(authLoadingAction(true));
+  try {
+    const value = await AsyncStorage.getItem('token');
+    if (value) {
+      dispatch(authLoadingAction());
+      dispatch({
+        type: LOGGED,
+        payload: value,
+      });
+    } else {
+      dispatch(authLoadingAction());
+    }
+  } catch (error) {
+    dispatch(authLoadingAction());
+    Toast.show({
+      text1: 'server response fail',
+      visibilityTime: 3000,
+      autoHide: true,
+      position: 'top',
+      type: 'error',
+    });
+  }
+};
 
 export const authLogOutAction = () => dispatch => {
   try {
@@ -26,7 +51,6 @@ export const authLogOutAction = () => dispatch => {
 export const userLoginAction =
   (userName = '', userPassword = '', usertoken = '') =>
   dispatch => {
-    console.log(usertoken);
     dispatch(authLoadingAction(true));
     var myHeaders = new Headers();
     myHeaders.append('If-Match', 'LOGIN');

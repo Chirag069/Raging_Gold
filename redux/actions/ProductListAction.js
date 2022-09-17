@@ -14,7 +14,6 @@ export const ProductListAction =
   (userToken = '', limit = '10', category = '') =>
   dispatch => {
     dispatch(ProductListLoadingAction(true));
-    // console.log(category, limit);
     var myHeaders = new Headers();
     myHeaders.append('If-Range', userToken);
     myHeaders.append('Content-Type', 'application/json');
@@ -47,15 +46,8 @@ export const ProductListAction =
             type: PRODUCT_LIST,
             payload: {serverResponse, category},
           });
-
-          //   Toast.show({
-          //     text1: serverResponse.message,
-          //     visibilityTime: 2000,
-          //     autoHide: true,
-          //     position: 'top',
-          //     type: 'success',
-          //   });
         } else {
+          dispatch(ProductListLoadingAction());
           Toast.show({
             text1: serverResponse.msg,
             visibilityTime: 2000,

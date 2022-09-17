@@ -21,8 +21,7 @@ import {useDispatch, useSelector} from 'react-redux';
 import {ProductListAction} from '../../redux/actions/ProductListAction';
 import {GetWishlistAction} from '../../redux/actions/WishListAction';
 import {HomeAction} from '../../redux/actions/HomeAction';
-import {useFocusEffect} from '@react-navigation/native';
-import {Button} from 'react-native-paper';
+import {LoggedAction} from '../../redux/actions/authActons';
 
 const Screen_Width = Dimensions.get('window').width;
 const Screen_height = Dimensions.get('window').height;
@@ -32,11 +31,13 @@ const Home = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const ref = useRef(null);
   const dispatch = useDispatch();
-  const {userToken} = useSelector(state => state.authState);
+  const {userToken, Token} = useSelector(state => state.authState);
   const {home} = useSelector(state => state.homeState);
+  const [usertoken, setuserToken] = useState(null);
 
   useEffect(() => {
-    dispatch(HomeAction(userToken));
+    dispatch(HomeAction(Token));
+    dispatch(LoggedAction());
     LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
   }, []);
 
@@ -50,6 +51,8 @@ const Home = () => {
   //     // };
   //   }, []),
   // );
+
+  // console.log(Token);
 
   const carouselItems = home.data?.slider;
   const data = home.data?.sub_category;
@@ -93,82 +96,6 @@ const Home = () => {
           />
           <Dots length={carouselItems?.length} active={activeIndex} />
         </View>
-        {/* <View style={{marginHorizontal: scale(10), marginBottom: scale(10)}}>
-          <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-            <Pressable
-              onPress={() => {
-                navigation.navigate('ProductList'),
-                  dispatch(ProductListAction(userToken));
-                dispatch(GetWishlistAction(userToken));
-              }}>
-              <View style={{backgroundColor: 'white', width: scale(160)}}>
-                <ImageBackground
-                  style={{
-                    height: scale(130),
-                    width: scale(150),
-                    alignSelf: 'center',
-                  }}
-                  source={{
-                    uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/503920FCHAA29_1.jpg',
-                  }}>
-                  <Pressable>
-                    <Ionicons
-                      name="heart-outline"
-                      color={'#c79248'}
-                      size={scale(30)}
-                      style={{alignSelf: 'flex-end', padding: scale(2)}}
-                    />
-                  </Pressable>
-                </ImageBackground>
-                <View style={{alignItems: 'center'}}>
-                  <Text style={{fontSize: scale(15)}}>Gold Ring</Text>
-                  <Text
-                    style={{
-                      fontSize: scale(15),
-                      marginTop: 5,
-                      marginBottom: 5,
-                    }}>
-                    ₹ 15000/-
-                  </Text>
-                </View>
-              </View>
-            </Pressable>
-
-            <Pressable onPress={() => navigation.navigate('ProductList')}>
-              <View style={{backgroundColor: 'white', width: scale(160)}}>
-                <ImageBackground
-                  style={{
-                    height: scale(130),
-                    width: scale(150),
-                    alignSelf: 'center',
-                  }}
-                  source={{
-                    uri: 'https://staticimg.titan.co.in/Tanishq/Catalog/501169SDHAAA29_2.jpg',
-                  }}>
-                  <Pressable>
-                    <Ionicons
-                      name="heart-outline"
-                      color={'#c79248'}
-                      size={scale(30)}
-                      style={{alignSelf: 'flex-end', padding: scale(2)}}
-                    />
-                  </Pressable>
-                </ImageBackground>
-                <View style={{alignItems: 'center'}}>
-                  <Text style={{fontSize: scale(15)}}>Gold Ring</Text>
-                  <Text
-                    style={{
-                      fontSize: scale(15),
-                      marginTop: 5,
-                      marginBottom: 5,
-                    }}>
-                    ₹ 15000/-
-                  </Text>
-                </View>
-              </View>
-            </Pressable>
-          </View>
-        </View> */}
 
         <FlatList
           style={{
@@ -197,8 +124,8 @@ const Home = () => {
                 <TouchableOpacity
                   onPress={() => {
                     navigation.navigate('ProductList'),
-                      dispatch(GetWishlistAction(userToken));
-                    dispatch(ProductListAction(userToken, 10, item.id));
+                      dispatch(GetWishlistAction(Token));
+                    dispatch(ProductListAction(Token, 10, item.id));
                   }}>
                   <ImageBackground
                     style={{

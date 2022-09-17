@@ -23,26 +23,19 @@ import {useFocusEffect} from '@react-navigation/native';
 
 const WishList = () => {
   const dispatch = useDispatch();
-  const {userToken} = useSelector(state => state.authState);
+  const {Token} = useSelector(state => state.authState);
   const {wishlist, wishlistLoading} = useSelector(state => state.wishlistState);
-  const [wishlistid, setWishlistid] = useState();
-  const data = wishlist.data;
 
   useFocusEffect(
     React.useCallback(() => {
-      dispatch(GetWishlistAction(userToken));
+      dispatch(GetWishlistAction(Token));
       LogBox.ignoreLogs(['VirtualizedLists should never be nested']);
-
-      // return () => {
-      //   Alert.alert('Screen was unfocused');
-      //   // Useful for cleanup functions
-      // };
     }, []),
   );
 
   const handleOnpress = item => {
-    dispatch(RemoveWishlistAction(userToken, item.id));
-    dispatch(GetWishlistAction(userToken));
+    dispatch(RemoveWishlistAction(Token, item.id));
+    dispatch(GetWishlistAction(Token));
   };
 
   return (
@@ -75,7 +68,7 @@ const WishList = () => {
             </Text>
           </View>
 
-          {data?.length != 0 ? (
+          {wishlist?.length != 0 ? (
             <ScrollView>
               <FlatList
                 style={{
@@ -83,7 +76,7 @@ const WishList = () => {
                   backgroundColor: '#F5F5F5',
                 }}
                 contentContainerStyle={{flex: 1}}
-                data={data}
+                data={wishlist}
                 horizontal={false}
                 numColumns={1}
                 keyExtractor={item => {

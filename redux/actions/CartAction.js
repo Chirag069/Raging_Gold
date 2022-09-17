@@ -59,6 +59,7 @@ export const GetCartAction =
         }
       })
       .catch(error => {
+        dispatch(CartLoadingAction());
         Toast.show({
           text1: 'Server response failed',
           visibilityTime: 2000,
