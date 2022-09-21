@@ -13,6 +13,10 @@ export const ProductListLoadingAction =
 export const ProductListAction =
   (userToken = '', limit = '10', category = '') =>
   dispatch => {
+    // console.log(category);
+    const {genderselect, categoryselect, itemgroupselect, subcategoryslelct} =
+      category;
+
     dispatch(ProductListLoadingAction(true));
     var myHeaders = new Headers();
     myHeaders.append('If-Range', userToken);
@@ -21,9 +25,9 @@ export const ProductListAction =
     var raw = JSON.stringify({
       offset: 5,
       limit: limit,
-      gender: 'MALE,FEMALE,ALL',
-      item_group: '1,2,3,4',
-      category: category,
+      gender: genderselect?.join(),
+      item_group: itemgroupselect?.join(),
+      category: categoryselect ? categoryselect?.join() : category,
       search_text: '',
     });
 
@@ -58,7 +62,6 @@ export const ProductListAction =
         }
       })
       .catch(error => {
-        console.log(error);
         dispatch(ProductListLoadingAction());
         Toast.show({
           text1: 'Server response failed',

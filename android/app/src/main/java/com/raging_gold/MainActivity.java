@@ -5,6 +5,8 @@ import com.facebook.react.ReactActivityDelegate;
 import com.facebook.react.ReactRootView;
 import android.os.Bundle; // here
 import org.devio.rn.splashscreen.SplashScreen; // here
+import android.view.WindowManager; //for screenshort disabled
+
 
 
 public class MainActivity extends ReactActivity {
@@ -21,6 +23,7 @@ public class MainActivity extends ReactActivity {
     protected void onCreate(Bundle savedInstanceState) {
         SplashScreen.show(this);  // here
         super.onCreate(null);
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);//for screenshort disabled
     }
   /**
    * Returns the instance of the {@link ReactActivityDelegate}. There the RootView is created and

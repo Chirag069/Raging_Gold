@@ -16,6 +16,10 @@ export default (state = initialState, action) => {
       return {
         ...state,
         Filter: action.payload,
+        gender: action.payload.gender,
+        subcategory: action.payload.sub_category,
+        itemgroup: action.payload.item_group,
+        category: action.payload.category,
         filterLoading: false,
       };
 

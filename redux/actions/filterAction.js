@@ -35,9 +35,11 @@ export const FilterAction =
         let serverResponse = result;
         dispatch(FilterLoadingAction());
         if (serverResponse.status == true) {
+          const responsedata = serverResponse.data;
+
           dispatch({
             type: FILTER,
-            payload: serverResponse,
+            payload: responsedata,
           });
 
           // Toast.show({

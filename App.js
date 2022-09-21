@@ -7,7 +7,6 @@ import Toast from 'react-native-toast-message';
 import 'react-native-gesture-handler';
 import AppNav from './src/components/Navigation/AppNav';
 import {NavigationContainer} from '@react-navigation/native';
-import LikeSystem from './src/screens/LikeSystem.js';
 
 const App = () => {
   useEffect(() => {
@@ -22,7 +21,6 @@ const App = () => {
       </NavigationContainer>
       <Toast />
     </Provider>
-    // <LikeSystem />
   );
 };
 

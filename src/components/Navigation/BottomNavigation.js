@@ -36,6 +36,7 @@ import {useNavigation} from '@react-navigation/native';
 import Total from '../../screens/Total';
 import CustomTabBar from '../Custom/CustomTabBar';
 import {HomeAction} from '../../../redux/actions/HomeAction';
+import Youtube from '../../screens/Youtube';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -107,6 +108,14 @@ const HomeStack = () => {
         }}
         name="Profile"
         component={Profile}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="Youtube"
+        component={Youtube}
       />
     </Stack.Navigator>
   );
