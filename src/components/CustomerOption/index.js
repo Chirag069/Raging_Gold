@@ -21,14 +21,14 @@ const CustomerOption = () => {
         <View style={{marginVertical: verticalScale(30)}}>
           <View style={{marginHorizontal: scale(40)}}>
             <CustomButton
-            borderWidth={scale(1.5)}
-            borderColor={"#c79248"}
+              borderWidth={scale(1.5)}
+              borderColor={'#c79248'}
               buttoncolor={'white'}
               buttonwidth={scale(270)}
               buttonheight={verticalScale(50)}
               borderradius={scale(30)}
               text={'ARE YOU BUYER'}
-              fontcolor={"grey"}
+              fontcolor={'grey'}
               fontSize={scale(20)}
             />
           </View>
@@ -37,15 +37,15 @@ const CustomerOption = () => {
               marginHorizontal: scale(40),
               marginVertical: verticalScale(30),
             }}>
-           <CustomButton
+            <CustomButton
               buttoncolor={'#c79248'}
               buttonwidth={scale(270)}
               buttonheight={verticalScale(50)}
               borderradius={scale(30)}
               text={'ARE YOU CUSTOMER'}
-              fontcolor={"white"}
+              fontcolor={'white'}
               fontSize={scale(20)}
-              onPress={()=>navigation.navigate('SignIn')}
+              onPress={() => navigation.navigate('SignIn')}
             />
           </View>
         </View>

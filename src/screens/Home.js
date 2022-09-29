@@ -10,9 +10,13 @@ import {
   ScrollView,
   FlatList,
   LogBox,
+  StyleSheet,
 } from 'react-native';
 import React, {useState, useRef, useEffect} from 'react';
-import Carousel from 'react-native-snap-carousel-v4';
+import Carousel, {
+  ParallaxImage,
+  Pagination,
+} from 'react-native-snap-carousel-v4';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {useNavigation} from '@react-navigation/native';
 import Dots from 'react-native-dots-pagination';
@@ -29,7 +33,7 @@ const Screen_height = Dimensions.get('window').height;
 const Home = () => {
   const navigation = useNavigation();
   const [activeIndex, setActiveIndex] = useState(0);
-  const ref = useRef(null);
+  const carouselRef = useRef(null);
   const dispatch = useDispatch();
   const {userToken, Token} = useSelector(state => state.authState);
   const {home} = useSelector(state => state.homeState);
@@ -61,19 +65,30 @@ const Home = () => {
 
   // console.log(carouselItems);
 
-  const _renderItem = ({item, index}) => {
+  // const _renderItem = ({item, index}) => {
+  //   return (
+  //     <View
+  //       style={{
+  //         backgroundColor: 'floralwhite',
+  //         width: Screen_Width,
+  //       }}>
+  //       <Image
+  //         style={{height: scale(220), width: Screen_Width}}
+  //         resizeMode="cover"
+  //         source={{uri: item.image}}
+  //       />
+  //     </View>
+  //   );
+
+  const _renderItem = ({item, index}, parallaxProps) => {
     return (
-      <View
-        style={{
-          backgroundColor: 'floralwhite',
-          width: Screen_Width,
-        }}>
-        <Image
-          style={{height: scale(220), width: Screen_Width}}
-          resizeMode="cover"
-          source={{uri: item.image}}
-        />
-      </View>
+      <ParallaxImage
+        source={{uri: item.image}}
+        containerStyle={{height: scale(210), width: Screen_Width}}
+        style={{resizeMode: 'cover'}}
+        parallaxFactor={0.4}
+        {...parallaxProps}
+      />
     );
   };
 
@@ -82,19 +97,31 @@ const Home = () => {
       <ScrollView>
         <View style={{justifyContent: 'center'}}>
           <Carousel
-            layout={'default'}
-            ref={ref}
-            data={carouselItems}
+            ref={carouselRef}
             sliderWidth={Screen_Width}
             itemWidth={Screen_Width}
+            data={carouselItems}
             renderItem={_renderItem}
+            hasParallaxImages={true}
+            loop
             autoplay={true}
-            loop={false}
-            inactiveSlideScale={1}
-            inactiveSlideOpacity={1}
+            autoplayDelay={2000}
             onSnapToItem={index => setActiveIndex(index)}
+            autoplayInterval={2000}
           />
-          <Dots length={carouselItems?.length} active={activeIndex} />
+
+          <Pagination
+            dotsLength={carouselItems?.length}
+            activeDotIndex={activeIndex}
+            dotColor={'#c79248'}
+            inactiveDotColor={'black'}
+            dotStyle={styles.dotStyle}
+            inactiveDotStyle={styles.inactiveDotStyle}
+            inactiveDotOpacity={0.4}
+            inactiveDotScale={0.6}
+            dotContainerStyle={styles.dotContainerStyle}
+            containerStyle={styles.containerStyle}
+          />
         </View>
 
         <FlatList
@@ -156,5 +183,20 @@ const Home = () => {
     </SafeAreaView>
   );
 };
+
+const styles = StyleSheet.create({
+  dotStyle: {
+    width: scale(20),
+    height: scale(10),
+    borderRadius: verticalScale(10),
+  },
+  inactiveDotStyle: {
+    width: scale(15),
+    height: scale(15),
+    borderRadius: scale(7.5),
+  },
+  dotContainerStyle: {marginHorizontal: scale(5)},
+  containerStyle: {paddingVertical: verticalScale(10)},
+});
 
 export default Home;

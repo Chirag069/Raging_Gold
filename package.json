@@ -3,9 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "android": "react-native run-android",
+    "android": "npx react-native run-android",
     "ios": "react-native run-ios",
-    "start": "react-native start",
+    "start": "npx react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
@@ -37,6 +37,7 @@
     "react-native-size-matters": "^0.4.0",
     "react-native-snap-carousel-v4": "^1.0.1",
     "react-native-splash-screen": "^3.3.0",
+    "react-native-sqlite-storage": "^6.0.1",
     "react-native-star-rating-widget": "^1.2.0",
     "react-native-svg": "^12.1.1",
     "react-native-toast-message": "^2.1.5",
