@@ -34,3 +34,5 @@ export const HOME = 'HOME';
 
 export const FILTER = 'FILTER';
 export const FILTER_LOADING = 'FILTER_LOADING';
+
+export const USER_UPDATE = 'USER_UPDATE';

@@ -16,8 +16,6 @@ const AppNav = () => {
     dispatch(LoggedAction());
   }, []);
 
-  // console.log(Token);
-
   return (
     <>
       {!Token ? (

@@ -20,6 +20,8 @@ import OrderHistory from '../../screens/OrderHistory';
 import MyInvoice from '../../screens/MyInvoice';
 import Profile from '../../screens/Profile';
 import ProfileHeader from '../Custom/ProfileHeader';
+import UserEntry from '../../screens/UserEntry';
+import UserReport from '../../screens/UserReport';
 import {
   GetWishlistAction,
   AddWishlistAction,
@@ -27,6 +29,7 @@ import {
   WishListLoadingAction,
 } from '../../../redux/actions/WishListAction';
 import {GetCartAction} from '../../../redux/actions/CartAction';
+import UserUpdate from '../../screens/UserUpdate';
 //icon
 import Entypo from 'react-native-vector-icons/Entypo';
 import AntDesign from 'react-native-vector-icons/AntDesign';
@@ -117,6 +120,30 @@ const HomeStack = () => {
         name="Youtube"
         component={Youtube}
       />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="userentry"
+        component={UserEntry}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="userreport"
+        component={UserReport}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="userupdate"
+        component={UserUpdate}
+      />
     </Stack.Navigator>
   );
 };
@@ -127,14 +154,7 @@ function BottomNavigation() {
   const {cart} = useSelector(state => state.cartState);
   const [itemqty, setItemqty] = useState(null);
 
-  useEffect(() => {
-    dispatch(GetCartAction(userToken));
-    // dispatch(HomeAction(userToken));
-  }, []);
-
   const cartqty = cart?.totaldata?.total_qty;
-
-  // console.log(cartqty);
 
   return (
     <Tab.Navigator

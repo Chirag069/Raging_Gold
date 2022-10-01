@@ -105,9 +105,9 @@ const Home = () => {
             hasParallaxImages={true}
             loop
             autoplay={true}
-            autoplayDelay={2000}
+            autoplayDelay={5000}
             onSnapToItem={index => setActiveIndex(index)}
-            autoplayInterval={2000}
+            // autoplayInterval={1000}
           />
 
           <Pagination

@@ -8,6 +8,7 @@ import ProductListReducer from './ProductListReducer.js';
 import CartReducer from './CartReducer.js';
 import HomeReducer from './HomeReducer.js';
 import filterReducer from './filterReducer.js';
+import usercrudReducer from './usercrudReducer.js';
 
 export default combineReducers({
   themeState: themeReducer,
@@ -19,4 +20,5 @@ export default combineReducers({
   cartState: CartReducer,
   homeState: HomeReducer,
   filterState: filterReducer,
+  usercrudState: usercrudReducer,
 });

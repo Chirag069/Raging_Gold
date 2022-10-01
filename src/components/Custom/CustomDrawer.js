@@ -5,6 +5,7 @@ import {
   ImageBackground,
   TouchableOpacity,
   FlatList,
+  TouchableNativeFeedback,
 } from 'react-native';
 import React, {useContext, useEffect} from 'react';
 import {
@@ -172,6 +173,66 @@ const CustomDrawer = props => {
             </Text>
             <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
           </TouchableOpacity>
+        </View>
+
+        <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#c79248')}
+            onPress={() => navigation.navigate('userentry')}>
+            <View
+              style={{
+                paddingHorizontal: scale(10),
+                paddingVertical: verticalScale(8),
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                User Entry
+              </Text>
+              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+
+        {/* <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#c79248')}
+            onPress={() => navigation.navigate('userupdate')}>
+            <View
+              style={{
+                paddingHorizontal: scale(10),
+                paddingVertical: verticalScale(8),
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                User Update
+              </Text>
+              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
+            </View>
+          </TouchableNativeFeedback>
+        </View> */}
+
+        <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#c79248')}
+            onPress={() => navigation.navigate('userreport')}>
+            <View
+              style={{
+                paddingHorizontal: scale(10),
+                paddingVertical: verticalScale(8),
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                User Report
+              </Text>
+              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
+            </View>
+          </TouchableNativeFeedback>
         </View>
 
         <View style={{marginHorizontal: scale(10), marginVertical: scale(10)}}>
