@@ -1,4 +1,10 @@
-import {USER_LOGIN, AUTH_LOADING, USER_LOGOUT, LOGGED} from './types';
+import {
+  USER_LOGIN,
+  AUTH_LOADING,
+  USER_LOGOUT,
+  LOGGED,
+  LOGGED_LOADING,
+} from './types';
 import Toast from 'react-native-toast-message';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -11,21 +17,26 @@ export const authLoadingAction =
     });
   };
 
+export const LoggedLoadingAction =
+  (loading = false) =>
+  dispatch => {
+    dispatch({
+      type: LOGGED_LOADING,
+      payload: loading,
+    });
+  };
+
 export const LoggedAction = () => async dispatch => {
-  dispatch(authLoadingAction(true));
   try {
     const value = await AsyncStorage.getItem('token');
     if (value) {
-      dispatch(authLoadingAction());
       dispatch({
         type: LOGGED,
         payload: value,
       });
     } else {
-      dispatch(authLoadingAction());
     }
   } catch (error) {
-    dispatch(authLoadingAction());
     Toast.show({
       text1: 'server response fail',
       visibilityTime: 3000,
@@ -49,7 +60,7 @@ export const authLogOutAction = () => dispatch => {
 };
 
 export const userLoginAction =
-  (userName = '', userPassword = '', usertoken = '') =>
+  (userName = '', userPassword = '') =>
   dispatch => {
     dispatch(authLoadingAction(true));
     var myHeaders = new Headers();

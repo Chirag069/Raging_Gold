@@ -487,9 +487,6 @@ const ProductList = () => {
                               </TouchableOpacity>
                               <Pressable
                                 onPress={() => {
-                                  // handleOnpress(item);
-                                  // console.log(item.id);
-                                  // console.log(liked);
                                   if (liked.includes(index)) {
                                     let unlike = liked.filter(
                                       elem => elem !== index,

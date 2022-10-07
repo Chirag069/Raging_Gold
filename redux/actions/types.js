@@ -4,6 +4,7 @@ export const USER_LOGIN = 'USER_LOGIN';
 export const USER_LOGOUT = 'USER_LOGOUT';
 export const AUTH_LOADING = 'AUTH_LOADING';
 export const LOGGED = 'LOGGED';
+export const LOGGED_LOADING = 'LOGGED_LOADING';
 
 export const GET_USER_ALL_TASK = 'GET_USER_ALL_TASK';
 export const GET_USER_ALL_LOADING = 'GET_USER_ALL_LOADING';

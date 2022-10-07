@@ -83,7 +83,7 @@ const CustomDrawer = props => {
                 marginHorizontal: scale(10),
                 marginBottom: verticalScale(5),
               }}>
-              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+              <Text style={{color: '#333', fontSize: verticalScale(15)}}>
                 Ramani Chirag
               </Text>
             </View>
@@ -195,26 +195,6 @@ const CustomDrawer = props => {
           </TouchableNativeFeedback>
         </View>
 
-        {/* <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
-          <TouchableNativeFeedback
-            background={TouchableNativeFeedback.Ripple('#c79248')}
-            onPress={() => navigation.navigate('userupdate')}>
-            <View
-              style={{
-                paddingHorizontal: scale(10),
-                paddingVertical: verticalScale(8),
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}>
-              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
-                User Update
-              </Text>
-              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
-            </View>
-          </TouchableNativeFeedback>
-        </View> */}
-
         <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
           <TouchableNativeFeedback
             background={TouchableNativeFeedback.Ripple('#c79248')}
@@ -229,6 +209,46 @@ const CustomDrawer = props => {
               }}>
               <Text style={{color: '#333', fontSize: verticalScale(12)}}>
                 User Report
+              </Text>
+              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+
+        <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#c79248')}
+            onPress={() => navigation.navigate('productdatabase')}>
+            <View
+              style={{
+                paddingHorizontal: scale(10),
+                paddingVertical: verticalScale(8),
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                Product Database
+              </Text>
+              <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
+            </View>
+          </TouchableNativeFeedback>
+        </View>
+
+        <View style={{borderColor: 'lightgrey', borderBottomWidth: 1}}>
+          <TouchableNativeFeedback
+            background={TouchableNativeFeedback.Ripple('#c79248')}
+            onPress={() => navigation.navigate('CartDB')}>
+            <View
+              style={{
+                paddingHorizontal: scale(10),
+                paddingVertical: verticalScale(8),
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}>
+              <Text style={{color: '#333', fontSize: verticalScale(12)}}>
+                cart database
               </Text>
               <Entypo name="chevron-right" size={scale(20)} color="#c79248" />
             </View>

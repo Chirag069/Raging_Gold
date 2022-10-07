@@ -4,11 +4,13 @@ import {
   AUTH_LOADING,
   USER_DATA,
   LOGGED,
+  LOGGED_LOADING,
 } from '../actions/types';
 
 const initialState = {
   userToken: null,
   authLoading: false,
+  loggedLoading: false,
   userdata: null,
   Token: null,
 };
@@ -19,6 +21,7 @@ export default (state = initialState, action) => {
       return {
         ...state,
         Token: action.payload,
+        loggedLoading: false,
       };
     case USER_LOGIN:
       return {
@@ -34,6 +37,11 @@ export default (state = initialState, action) => {
       return {
         ...state,
         authLoading: action.payload,
+      };
+    case LOGGED_LOADING:
+      return {
+        ...state,
+        loggedLoading: action.payload,
       };
     case USER_LOGOUT:
       return {

@@ -1,14 +1,22 @@
 import {View, Image, SafeAreaView, ScrollView, Dimensions} from 'react-native';
-import React from 'react';
+import React, {useEffect} from 'react';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import CustomButton from '../Custom/CustomButton';
+import {useDispatch, useSelector} from 'react-redux';
+import {LoggedLoadingAction} from '../../../redux/actions/authActons';
 
 const Screen_Width = Dimensions.get('window').width;
 
 const CustomerOption = () => {
   const navigation = useNavigation();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(LoggedLoadingAction(false));
+  }, []);
+
   return (
     <SafeAreaView style={{backgroundColor: 'white', flex: 1}}>
       <ScrollView>

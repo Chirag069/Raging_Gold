@@ -22,6 +22,7 @@ import Profile from '../../screens/Profile';
 import ProfileHeader from '../Custom/ProfileHeader';
 import UserEntry from '../../screens/UserEntry';
 import UserReport from '../../screens/UserReport';
+import ProductDatabase from '../../screens/ProductDatabase';
 import {
   GetWishlistAction,
   AddWishlistAction,
@@ -40,6 +41,8 @@ import Total from '../../screens/Total';
 import CustomTabBar from '../Custom/CustomTabBar';
 import {HomeAction} from '../../../redux/actions/HomeAction';
 import Youtube from '../../screens/Youtube';
+import cartDB from '../../screens/CartDB';
+import CartDB from '../../screens/CartDB';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -143,6 +146,22 @@ const HomeStack = () => {
         }}
         name="userupdate"
         component={UserUpdate}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="productdatabase"
+        component={ProductDatabase}
+      />
+      <Stack.Screen
+        options={{
+          headerShown: true,
+          header: () => <CustomHeader />,
+        }}
+        name="CartDB"
+        component={CartDB}
       />
     </Stack.Navigator>
   );

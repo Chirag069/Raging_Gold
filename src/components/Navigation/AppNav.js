@@ -7,18 +7,22 @@ import {scale, verticalScale, moderateScale} from 'react-native-size-matters';
 import {useSelector, useDispatch} from 'react-redux';
 import {LoggedAction} from '../../../redux/actions/authActons';
 import {ActivityIndicator} from 'react-native-paper';
+import {LoggedLoadingAction} from '../../../redux/actions/authActons';
 
 const AppNav = () => {
   const dispatch = useDispatch();
-  const {authLoading, Token} = useSelector(state => state.authState);
+  const {loggedLoading, Token} = useSelector(state => state.authState);
 
   useEffect(() => {
     dispatch(LoggedAction());
+    // dispatch(LoggedLoadingAction(true));
   }, []);
+
+  console.log(loggedLoading);
 
   return (
     <>
-      {!Token ? (
+      {loggedLoading ? (
         <View
           style={{
             marginTop: 'auto',
@@ -27,7 +31,7 @@ const AppNav = () => {
             paddingVertical: verticalScale(20),
           }}>
           <ActivityIndicator
-            animating={authLoading}
+            animating={loggedLoading}
             color={'#c79248'}
             size={scale(30)}
           />
